@@ -1,0 +1,1786 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Nahdi Tour — Konsultasi Travel Umroh & Haji Terpercaya</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          body: ['Inter', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          // Nahdi Tour design system tokens
+          primary: {
+            50: '#EBF4FF', 100: '#DBE8FF', 200: '#BFCFFF', 300: '#9EB0FF', 400: '#7E8FF3',
+            500: '#616FD5', 600: '#4B56BA', 700: '#394198', 800: '#24286D', 900: '#111341', 950: '#05061F',
+          },
+          accent: {
+            50: '#FFF4D5', 100: '#FFE9B5', 200: '#F1D087', 300: '#DAB255',
+            400: '#BD9116', 500: '#9F7200', 600: '#875A00', 700: '#6B4500',
+          },
+          slate0: '#FFFFFF',
+          slate50: '#F2FCFF',
+          slate100: '#EBF5FD',
+          slate200: '#DCE6EE',
+          slate300: '#C5CFD7',
+          slate400: '#96A0A7',
+          slate500: '#6A737A',
+          slate600: '#4E575D',
+          slate700: '#363E44',
+          slate800: '#1B2328',
+          slate900: '#080E13',
+          // legacy aliases used in markup
+          ink:   '#111341', // primary-900
+          ink2:  '#363E44', // slate-700
+          fog:   '#F2FCFF', // slate-50
+          line:  '#DCE6EE', // slate-200
+          muted: '#6A737A', // slate-500
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgb(17 19 65 / 0.05), 0 10px 24px -8px rgb(17 19 65 / 0.12)',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  :root {
+    --tw-font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+    --tw-font-body: Inter, system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body { font-family: var(--tw-font-body); color: #1B2328; background: #fff; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+  .font-display { font-family: var(--tw-font-display); letter-spacing: -0.02em; }
+  .bg-grad-blue { background: linear-gradient(180deg, #E6EFFF 0%, #ECF3FF 30%, #F2F7FF 55%, #F8FBFF 78%, #FCFEFF 90%, #FFFFFF 100%); }
+
+  /* Infinite marquee for mitra logos */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 28s) linear infinite;
+  }
+  .marquee { overflow: hidden; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-fade {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  }
+
+  /* Smooth tab content transition */
+  .tab-panel { opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; position: absolute; inset: 0; pointer-events: none; }
+  .tab-panel.is-active { opacity: 1; transform: translateY(0); position: relative; pointer-events: auto; }
+
+  /* Step progress indicator */
+  .step-dot { transition: background-color .3s ease, border-color .3s ease, color .3s ease, box-shadow .3s ease, transform .3s ease; }
+  .step-label { transition: color .3s ease; }
+  .step.is-active .step-dot { transform: scale(1.06); }
+
+  /* Testimonial carousel */
+  .testi-viewport {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+  .testi-track {
+    display: flex;
+    gap: 20px;
+    padding: 8px 0;
+    transition: transform .6s cubic-bezier(.22,.61,.36,1);
+    will-change: transform;
+  }
+  .testi-card {
+    flex: 0 0 calc(100% - 16px);
+    background: #EEF0F3;
+    border-radius: 18px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    min-height: 320px;
+  }
+  @media (max-width: 639px) {
+    .testi-card { text-align: center; align-items: center; }
+    .testi-card > svg { margin-left: auto; margin-right: auto; }
+    .testi-card .mt-7 { justify-content: center; }
+  }
+  @media (min-width: 640px) {
+    .testi-card { flex: 0 0 calc((100% - 20px) / 2); }
+  }
+  @media (min-width: 1024px) {
+    .testi-track { gap: 24px; }
+    .testi-card { flex: 0 0 calc((100% - 48px) / 3); padding: 32px; min-height: 360px; }
+  }
+
+  /* Video experience carousel */
+  .vexp-viewport {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+  }
+  .vexp-track {
+    display: flex;
+    gap: 20px;
+    padding: 6px 0;
+    transition: transform .6s cubic-bezier(.22,.61,.36,1);
+    will-change: transform;
+  }
+  .vexp-card {
+    flex: 0 0 calc(100% - 16px);
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    cursor: pointer;
+    background: #111341;
+    box-shadow: 0 18px 40px -18px rgba(0,0,0,.6);
+    transition: transform .5s cubic-bezier(.22,.61,.36,1), box-shadow .5s ease;
+  }
+  .vexp-card:hover { transform: translateY(-4px); box-shadow: 0 26px 56px -20px rgba(0,0,0,.7); }
+  .vexp-card .vexp-slot { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .vexp-card img, .vexp-card image-slot { transition: transform .8s cubic-bezier(.22,.61,.36,1); }
+  .vexp-card:hover .vexp-slot { transform: scale(1.05); }
+  .vexp-scrim {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(5,6,31,.55) 0%, rgba(5,6,31,0) 32%, rgba(5,6,31,.18) 55%, rgba(5,6,31,.88) 100%);
+  }
+  .vexp-play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 66px; height: 66px; border-radius: 9999px;
+    background: rgba(255,255,255,.92); color: #111341;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 28px rgba(0,0,0,.4);
+    transition: transform .35s cubic-bezier(.34,1.56,.64,1), background .3s ease;
+  }
+  .vexp-card:hover .vexp-play { transform: translate(-50%,-50%) scale(1.1); background: #DAB255; }
+  .vexp-play::before {
+    content: ""; position: absolute; inset: -10px; border-radius: 9999px;
+    border: 2px solid rgba(255,255,255,.5); animation: vexp-ping 2.4s ease-out infinite;
+  }
+  @keyframes vexp-ping { 0% { transform: scale(.85); opacity: .7; } 100% { transform: scale(1.35); opacity: 0; } }
+  @media (min-width: 640px) {
+    .vexp-card { flex: 0 0 calc((100% - 20px) / 2); }
+  }
+  @media (min-width: 1024px) {
+    .vexp-track { gap: 24px; }
+    .vexp-card { flex: 0 0 calc((100% - 48px) / 3); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vexp-play::before { animation: none; }
+    .vexp-card, .vexp-card .vexp-slot, .vexp-play { transition: none; }
+  }
+
+  /* SVG illustration tiny ambient float */
+  @keyframes drift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .drift { animation: drift 4.5s ease-in-out infinite; }
+  @keyframes drift-slow { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+  .drift-slow { animation: drift-slow 6s ease-in-out infinite; }
+
+  /* Sweep highlight */
+  @keyframes sweep { 0% { transform: translateX(-120%); } 100% { transform: translateX(220%); } }
+  .sweep { animation: sweep 3s ease-in-out infinite; }
+
+  /* Verified badge — pinging halo + checkmark draw */
+  @keyframes verify-ping {
+    0%   { transform: scale(0.9); opacity: 0.7; }
+    80%, 100% { transform: scale(2.1); opacity: 0; }
+  }
+  .verify-ping { animation: verify-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite; transform-origin: center; }
+  @keyframes verify-draw {
+    0%   { stroke-dashoffset: 100; }
+    25%  { stroke-dashoffset: 0; }
+    85%  { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: 0; }
+  }
+  .verify-mark path { animation: verify-draw 2.4s ease-out infinite; }
+  @keyframes verify-pop {
+    0%, 100% { transform: scale(1); }
+    18%      { transform: scale(1.12); }
+    36%      { transform: scale(1); }
+  }
+  .verify-mark { animation: verify-pop 2.4s ease-out infinite; transform-origin: center; }
+
+  /* Hero ambient scene */
+  @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.95; } }
+  .hero-stars circle { animation: twinkle 3.5s ease-in-out infinite; transform-origin: center; }
+  .hero-stars circle:nth-child(odd)  { animation-duration: 4.5s; animation-delay: -1s; }
+  .hero-stars circle:nth-child(3n)   { animation-duration: 5.5s; animation-delay: -2s; }
+  [data-parallax] { transition: transform .35s cubic-bezier(0.22, 0.61, 0.36, 1); will-change: transform; }
+
+  /* Focus rings stay visible */
+  :focus-visible { outline: 2px solid #4B56BA; outline-offset: 3px; border-radius: 4px; }
+
+  /* Hero tawaf ornament — slow rotation */
+  @keyframes ornament-spin { to { transform: rotate(360deg); } }
+
+  /* Hero Ka'bah backdrop — slow cinematic zoom + color grade */
+  .hero-parallax { animation: hero-zoom 32s ease-in-out infinite alternate; transform-origin: 50% 46%; will-change: transform; filter: contrast(1.04) saturate(1.1) brightness(1.18); }
+  @keyframes hero-zoom { from { transform: scale(1.08); } to { transform: scale(1.2); } }
+  .hero-parallax-wrap { transition: transform .9s cubic-bezier(.22,.61,.36,1); will-change: transform; }
+  .hero-cine-vignette { background: radial-gradient(125% 105% at 50% 42%, rgba(5,6,31,0) 50%, rgba(5,6,31,0.16) 76%, rgba(5,6,31,0.5) 100%); }
+  @media (prefers-reduced-motion: reduce) { .hero-parallax { animation: none; } .hero-parallax-wrap { transition: none; transform: none !important; } }
+  .ornament-spin-slow { animation: ornament-spin 120s linear infinite; transform-origin: 50% 50%; }
+  @media (prefers-reduced-motion: reduce) { .ornament-spin-slow { animation: none; } }
+
+  /* Decorative underline ornament under the rotating word */
+  .hero-underline { color: #C99A2E; pointer-events: none; }
+  .hero-underline svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+  /* Rotating headline word — typewriter */
+  .hero-rotate-box {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+  }
+  .hero-rotate-word {
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    border-right: 3px solid currentColor;
+    padding-right: 2px;
+    animation: caret-blink 1s step-end infinite;
+    min-height: 1em;
+  }
+  @keyframes caret-blink {
+    0%, 100% { border-color: currentColor; }
+    50%      { border-color: transparent; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-rotate-word { animation: none; border-right-color: transparent; }
+  }
+  .hero-rotate-word.is-static { animation: none; border-right-color: transparent; padding-right: 0; }
+
+  /* ---- Layanan media: alive on scroll + hover/focus ---- */
+  .media-card {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px) scale(.965);
+    transition: opacity .9s cubic-bezier(.22,.61,.36,1),
+                transform .7s cubic-bezier(.22,.61,.36,1),
+                box-shadow .45s ease;
+  }
+  .media-card.in-view { opacity: 1; transform: none; }
+  .media-card img {
+    transform: scale(1.08);
+    transition: transform 1s cubic-bezier(.22,.61,.36,1), filter .5s ease;
+    will-change: transform;
+  }
+  @keyframes kenburns {
+    0%   { transform: scale(1.02) translate(0, 0); }
+    50%  { transform: scale(1.09) translate(-1.6%, -1.4%); }
+    100% { transform: scale(1.02) translate(0, 0); }
+  }
+  .media-card.in-view img { transform: scale(1.02); animation: kenburns 16s ease-in-out 1.1s infinite; }
+
+  /* CTA hover */
+  .btn-primary { background:#4B56BA; color:#fff; transition: background .2s ease, transform .2s ease; box-shadow: 0 1px 2px rgb(17 19 65 / 0.10); }
+  .btn-primary:hover { background:#394198; }
+  .btn-primary:active { background:#24286D; }
+  .btn-outline { background:#fff; color:#24286D; border:1.5px solid #C5CFD7; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+  .btn-outline:hover { background:#F4F5F7; color:#24286D; border-color:#96A0A7; }
+  .btn-outline:active { background:#EBF0F4; border-color:#6A737A; }
+  .btn-gold { background:#875A00; color:#fff; transition: background .2s ease; }
+  .btn-gold:hover { background:#6B4500; }
+
+  /* Subtle grid pattern for hero backdrop */
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgb(17 19 65 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(17 19 65 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 50% 30%, #000 35%, transparent 75%);
+  }
+
+  /* Soft hero wash */
+  .hero-wash {
+    background:
+      radial-gradient(60% 40% at 20% 10%, rgb(218 178 85 / 0.10), transparent 70%),
+      radial-gradient(60% 50% at 90% 0%, rgb(75 86 186 / 0.10), transparent 70%);
+  }
+
+  /* Islamic geometric ornament — subtle */
+  .ornament {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80' fill='none' stroke='%23111341' stroke-opacity='0.07' stroke-width='1'><path d='M40 4 L60 24 L40 44 L20 24 Z'/><path d='M40 36 L60 56 L40 76 L20 56 Z'/><circle cx='40' cy='40' r='6'/></svg>");
+  }
+
+  /* Dot nav */
+  .dot { width:8px; height:8px; border-radius:9999px; background:#C5CFD7; transition: width .3s ease, background .3s ease; }
+  .dot.is-active { width: 28px; background:#4B56BA; }
+
+  /* Avatar generic */
+  .avatar { background: linear-gradient(135deg, #DBE8FF, #C5CFD7); color: #24286D; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track, .drift, .drift-slow, .sweep, .verify-ping, .verify-mark, .verify-mark path, .hero-stars circle { animation: none !important; }
+    .media-card.in-view img { animation: none !important; transform: scale(1) !important; }
+    [data-parallax] { transition: none !important; transform: none !important; }
+    .verify-mark path { stroke-dashoffset: 0 !important; }
+  }
+
+  /* Tweaks panel */
+  #tweaks-panel { font-family: var(--tw-font-body); color: #1B2328; }
+  #tweaks-panel .tw-row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0; border-top:1px solid #DCE6EE; }
+  #tweaks-panel .tw-row:first-of-type { border-top:0; }
+  #tweaks-panel select, #tweaks-panel input[type="range"] { font-size:13px; }
+  #tweaks-panel input[type="range"] { accent-color: #4B56BA; }
+  #tweaks-panel .seg { display:inline-flex; border:1px solid #4B56BA; border-radius:999px; overflow:hidden; }
+  #tweaks-panel .seg button { padding:4px 10px; font-size:12px; background:#fff; color:#24286D; }
+  #tweaks-panel .seg button.is-on { background:#4B56BA; color:#fff; }
+</style>
+</head>
+<body class="bg-white text-ink">
+
+<template id="__bundler_thumbnail" data-bg-color="#111341">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#111341"/>
+    <!-- gold glow halo -->
+    <circle cx="600" cy="430" r="240" fill="#DAB255" opacity="0.18"/>
+    <circle cx="600" cy="430" r="160" fill="#DAB255" opacity="0.22"/>
+    <!-- minarets -->
+    <g fill="#24286D">
+      <rect x="360" y="280" width="24" height="320"/>
+      <polygon points="350,280 372,230 394,280"/>
+      <circle cx="372" cy="230" r="10" fill="#DAB255"/>
+      <rect x="816" y="280" width="24" height="320"/>
+      <polygon points="806,280 828,230 850,280"/>
+      <circle cx="828" cy="230" r="10" fill="#DAB255"/>
+    </g>
+    <!-- Kaaba -->
+    <g transform="translate(500 380)">
+      <rect x="0" y="0" width="200" height="200" fill="#05061F"/>
+      <rect x="0" y="84" width="200" height="20" fill="#DAB255"/>
+      <rect x="136" y="116" width="32" height="64" fill="#DAB255" opacity="0.7"/>
+    </g>
+    <!-- wordmark -->
+    <text x="600" y="700" text-anchor="middle" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="48" letter-spacing="-1">Nahdi<tspan fill="#DAB255"> Tour</tspan></text>
+  </svg>
+</template>
+
+<!-- ============== NAVBAR ============== -->
+<header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-line">
+  <nav class="max-w-[1120px] mx-auto px-5 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#beranda" class="flex items-center"><img src="assets/mark-nahdi-tour-trim.png" alt="Nahdi Tour" class="h-7 w-auto sm:hidden" /><img src="assets/logo-nahdi-tour-trim.png" alt="Nahdi Tour" class="hidden sm:block h-7 w-auto" /></a>
+
+    <ul class="hidden md:flex items-center gap-1 text-sm font-medium text-slate700">
+      <li><a href="#beranda" class="inline-flex items-center px-4 py-2 rounded-md hover:bg-[#F4F5F7] hover:text-primary-800 focus-visible:bg-primary-50 transition-colors">Beranda</a></li>
+      <li><a href="Layanan.html" class="inline-flex items-center px-4 py-2 rounded-md hover:bg-[#F4F5F7] hover:text-primary-800 focus-visible:bg-primary-50 transition-colors">Layanan</a></li>
+      <li><a href="Tentang Kami.html" class="inline-flex items-center px-4 py-2 rounded-md hover:bg-[#F4F5F7] hover:text-primary-800 focus-visible:bg-primary-50 transition-colors">Tentang Kami</a></li>
+      <li><a href="Artikel.html" class="inline-flex items-center px-4 py-2 rounded-md hover:bg-[#F4F5F7] hover:text-primary-800 focus-visible:bg-primary-50 transition-colors">Artikel</a></li>
+    </ul>
+
+    <div class="flex items-center gap-2">
+      <a href="#konsultasi" class="btn-primary hidden md:inline-flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold">
+        Konsultasi Sekarang</a>
+
+      <!-- Mobile kebab menu trigger -->
+      <button id="menuToggle" type="button" aria-label="Buka menu" aria-controls="mobileMenu" aria-expanded="false" class="md:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 rounded-lg text-primary-900 hover:bg-[#F4F5F7] focus-visible:bg-primary-50 transition-colors">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ============== MOBILE MENU (mweb) ============== -->
+<div id="mobileMenu" class="fixed inset-0 z-50 md:hidden hidden" role="dialog" aria-modal="true" aria-label="Menu navigasi">
+  <div id="menuBackdrop" class="absolute inset-0 bg-primary-950/40 opacity-0 transition-opacity duration-300"></div>
+
+  <div id="menuPanel" class="absolute inset-x-0 top-0 bg-white rounded-b-3xl shadow-[0_24px_60px_-12px_rgb(17_19_65_/_0.35)] flex flex-col -translate-y-3 opacity-0 transition-all duration-300 ease-out max-h-[100dvh]">
+    <!-- panel header -->
+    <div class="flex items-center justify-between px-5 h-16 border-b border-line shrink-0">
+      <a href="#beranda" data-menu-link class="flex items-center"><img src="assets/mark-nahdi-tour-trim.png" alt="Nahdi Tour" class="h-7 w-auto sm:hidden" /><img src="assets/logo-nahdi-tour-trim.png" alt="Nahdi Tour" class="hidden sm:block h-7 w-auto" /></a>
+      <button id="menuClose" type="button" aria-label="Tutup menu" class="inline-flex items-center justify-center w-10 h-10 -mr-2 rounded-lg text-primary-900 hover:bg-[#F4F5F7] focus-visible:bg-primary-50 transition-colors">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- nav links -->
+    <nav class="px-5 overflow-y-auto">
+      <ul class="divide-y divide-line">
+        <li>
+          <a href="#beranda" data-menu-link class="group flex items-center justify-between py-5 text-lg font-medium text-slate600 hover:text-primary-900 transition-colors">
+            Beranda
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate300 group-hover:text-primary-600 group-hover:translate-x-0.5 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="Layanan.html" data-menu-link class="group flex items-center justify-between py-5 text-lg font-medium text-slate600 hover:text-primary-900 transition-colors">
+            Layanan
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate300 group-hover:text-primary-600 group-hover:translate-x-0.5 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="Tentang Kami.html" data-menu-link class="group flex items-center justify-between py-5 text-lg font-medium text-slate600 hover:text-primary-900 transition-colors">
+            Tentang Kami
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate300 group-hover:text-primary-600 group-hover:translate-x-0.5 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="Artikel.html" data-menu-link class="group flex items-center justify-between py-5 text-lg font-medium text-slate600 hover:text-primary-900 transition-colors">
+            Artikel
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate300 group-hover:text-primary-600 group-hover:translate-x-0.5 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- footer CTA -->
+    <div class="mt-auto px-5 pt-5 pb-7 border-t border-line bg-slate50/60 shrink-0">
+      <a href="#konsultasi" data-menu-link class="btn-primary flex items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-base font-semibold w-full">
+        Konsultasi Sekarang</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============== HERO ============== -->
+<section id="beranda" class="relative overflow-hidden bg-white">
+
+  <div class="relative z-10 max-w-[1120px] mx-auto px-5 lg:px-8 py-8 lg:py-10 flex flex-col justify-center min-h-[calc(70svh-4rem)]">
+
+    <div class="grid lg:grid-cols-[1.08fr_0.92fr] gap-10 lg:gap-12 items-stretch">
+
+      <!-- LEFT — copy -->
+      <div class="text-center lg:text-left flex flex-col justify-center" data-comment-anchor="c9daa46b88-div">
+        <span class="inline-flex w-fit self-center lg:self-start items-center gap-2.5 pl-5 pr-5 py-2 rounded-full border border-primary-100 bg-white text-sm font-medium text-primary-800 mb-6 shadow-sm">
+          <span class="verify-badge relative inline-flex items-center justify-center w-[18px] h-[18px]">
+            <span class="verify-ping absolute inset-0 rounded-full bg-accent-300/55"></span>
+            <svg class="verify-mark relative" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#875A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </span>
+          Agen Travel Umroh &amp; Haji Terverifikasi
+        </span>
+
+        <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] text-balance text-primary-900">
+          <span class="block">Berangkat Umrah dan Haji dengan</span>
+          <span class="block">Biaya Lebih <span class="hero-rotate-box"><span class="relative inline-block"><span id="heroRotateWord" class="hero-rotate-word is-static">Hemat</span><span class="hero-underline absolute left-0 right-0 -bottom-3 h-[22px]" style="color:#C99A2E"><svg viewBox="0 0 200 22" preserveAspectRatio="none" fill="currentColor" stroke="none"><path d="M3 11 C 28 6 72 5 112 6 C 150 6.8 178 7.5 196 5 C 199 4.6 200 7 198 9 C 180 12.5 150 13.5 112 14 C 72 14.6 36 15 6 16.5 C 2.5 16.7 0.5 14.5 1.2 12.5 C 1.6 11.4 2 11.1 3 11 Z"/></svg></span></span></span></span>
+        </h1>
+
+        <p class="mt-6 max-w-xl mx-auto lg:mx-0 text-base sm:text-lg text-slate600 leading-relaxed">
+          Nikmati perjalanan ibadah yang lebih hemat melalui berbagai program keuntungan dan subsidi, tanpa mengurangi kualitas layanan maupun kenyamanan.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center lg:justify-start gap-3">
+          <a href="#konsultasi" class="btn-primary inline-flex w-full sm:w-auto justify-center items-center gap-2.5 rounded-lg px-7 py-4 text-base font-semibold">
+            Konsultasi Sekarang</a>
+          <a href="#layanan" class="btn-outline inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-lg px-6 py-4 text-base font-semibold">
+            Rekomendasi Paket
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT — framed Ka'bah image -->
+      <div class="relative">
+        <div class="relative rounded-2xl overflow-hidden border border-primary-100/60 aspect-[4/5] sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[400px] max-w-md mx-auto lg:max-w-none">
+          <!-- Hero video: uploaded clip stored locally at assets/hero-kabah.mp4 -->
+          <div class="absolute inset-0 hero-parallax-wrap" id="heroParallax">
+            <video class="w-full h-full object-cover object-center hero-parallax" autoplay muted loop playsinline preload="auto" poster="assets/kaaba-masjidil-haram.jpg" aria-label="Suasana Ka'bah di Masjidil Haram, Makkah">
+              <source src="assets/hero-kabah.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="absolute inset-0 pointer-events-none hero-cine-vignette"></div>
+          <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(180deg, rgba(5,6,31,0.18) 0%, rgba(5,6,31,0) 30%, rgba(5,6,31,0) 52%, rgba(5,6,31,0.48) 100%)"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== TRUST POINTS ============== -->
+<section class="bg-white">
+  <div class="max-w-[1120px] mx-auto px-5 lg:px-8 pt-6 pb-10 lg:pt-8 lg:pb-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-slate200 rounded-2xl overflow-hidden border border-slate200 shadow-soft">
+      <div class="bg-white p-6 lg:p-8 flex flex-col items-center text-center">
+        <div class="min-w-0">
+          <p class="font-display font-extrabold text-[24pt] text-primary-900 leading-none">700+</p>
+          <p class="mt-2.5 font-display font-bold text-[14pt] text-primary-900">Jamaah Berangkat</p>
+          <p class="mt-1 text-[12pt] text-slate500 leading-snug">Amanah kami sejak 2016</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 lg:p-8 flex flex-col items-center text-center">
+        <div class="min-w-0">
+          <p class="font-display font-extrabold text-[24pt] text-primary-900 leading-none">10+</p>
+          <p class="mt-2.5 font-display font-bold text-[14pt] text-primary-900">Tahun Pengalaman</p>
+          <p class="mt-1 text-[12pt] text-slate500 leading-snug">Melayani sepenuh hati</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 lg:p-8 flex flex-col items-center text-center" data-comment-anchor="095d69c8cd-div">
+        <div class="min-w-0">
+          <p class="font-display font-extrabold text-[24pt] text-primary-900 leading-none">10+</p>
+          <p class="mt-2.5 font-display font-bold text-[14pt] text-primary-900">Mitra Resmi</p>
+          <p class="mt-1 text-[12pt] text-slate500 leading-snug">Travel umroh &amp; haji</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 lg:p-8 flex flex-col items-center text-center" data-comment-anchor="31b3208edb-div">
+        <div class="min-w-0">
+          <p class="font-display font-extrabold text-[24pt] text-primary-900 leading-none">100%</p>
+          <p class="mt-2.5 font-display font-bold text-[14pt] text-primary-900">Legal &amp; Resmi</p>
+          <p class="mt-1 text-[12pt] text-slate500 leading-snug">Berizin resmi BPW</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MITRA TRAVEL (auto marquee) ============== -->
+<section class="bg-white">
+  <div class="max-w-[1120px] mx-auto px-5 lg:px-8 pt-2 pb-8 lg:pt-3 lg:pb-10" data-comment-anchor="f25dda0a9e-div">
+    <p class="text-center text-sm sm:text-base text-slate600 max-w-2xl mx-auto">
+      Kami didukung oleh <strong class="font-semibold text-primary-800">lebih dari 10 mitra travel</strong> umroh dan haji resmi di Indonesia.
+    </p>
+
+    <div class="marquee marquee-fade mt-6 relative">
+      <div class="marquee-track" id="mitraTrack">
+        <!-- logos rendered by JS, duplicated for seamless loop -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PILIH KAMI ============== -->
+<section id="pilih-kami" class="bg-grad-blue">
+  <div class="max-w-[1120px] mx-auto px-5 lg:px-8 py-16">
+
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-balance text-primary-900">Mengapa Pilih Kami</h2>
+      <p class="mt-4 text-slate600">Alasan jamaah mempercayakan perjalanan ibadahnya kepada Nahdi Tour.</p>
+    </div>
+
+    <div class="mt-12 lg:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+
+      <div class="text-left bg-white rounded-2xl border border-slate200 p-7">
+        <div class="w-12 h-12 rounded-xl bg-primary-50 text-primary-700 flex items-center justify-center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3 class="mt-5 font-display font-bold text-xl text-primary-900">Terpercaya sejak 2016</h3>
+        <p class="mt-3 text-slate600 leading-relaxed text-[15px]">Sejak 2016 mendampingi jamaah memilih paket tenang, jelas, dan tertata.</p>
+      </div>
+
+      <div class="text-left bg-white rounded-2xl border border-slate200 p-7">
+        <div class="w-12 h-12 rounded-xl bg-primary-50 text-primary-700 flex items-center justify-center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3 class="mt-5 font-display font-bold text-xl text-primary-900">Travel Resmi &amp; Aman</h3>
+        <p class="mt-3 text-slate600 leading-relaxed text-[15px]">Rekomendasi paket dari travel yang terdaftar di Penyelenggara Perjalanan Ibadah Umroh (PPIU) dan Penyelenggara Ibadah Haji Khusus (PIHK).</p>
+      </div>
+
+      <div class="text-left bg-white rounded-2xl border border-slate200 p-7">
+        <div class="w-12 h-12 rounded-xl bg-primary-50 text-primary-700 flex items-center justify-center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="mt-5 font-display font-bold text-xl text-primary-900">Pembimbing Ahli</h3>
+        <p class="mt-3 text-slate600 leading-relaxed text-[15px]">Pembimbing berpengalaman memandu manasik secara ringkas dan jelas hingga pulang.</p>
+      </div>
+
+      <div class="text-left bg-white rounded-2xl border border-slate200 p-7">
+        <div class="w-12 h-12 rounded-xl bg-primary-50 text-primary-700 flex items-center justify-center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/><circle cx="17.5" cy="13.5" r="1"/></svg>
+        </div>
+        <h3 class="mt-5 font-display font-bold text-xl text-primary-900">Biaya Sesuai Kebutuhan</h3>
+        <p class="mt-3 text-slate600 leading-relaxed text-[15px]">Sebutkan budget dan preferensi; kami kurasikan paket realistis tanpa biaya tersembunyi.</p>
+      </div>
+
+      <div class="text-left bg-white rounded-2xl border border-slate200 p-7">
+        <div class="w-12 h-12 rounded-xl bg-primary-50 text-primary-700 flex items-center justify-center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3 class="mt-5 font-display font-bold text-xl text-primary-900">Ilmu &amp; Keimanan</h3>
+        <p class="mt-3 text-slate600 leading-relaxed text-[15px]">Program penuh kajian keislaman, meningkatkan ilmu dan keimanan selama perjalanan ibadah.</p>
+      </div>
+
+      <div class="text-left bg-white rounded-2xl border border-slate200 p-7">
+        <div class="w-12 h-12 rounded-xl bg-primary-50 text-primary-700 flex items-center justify-center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg>
+        </div>
+        <h3 class="mt-5 font-display font-bold text-xl text-primary-900">Siap Mendampingi Kebutuhan Khusus</h3>
+        <p class="mt-3 text-slate600 leading-relaxed text-[15px]">Berpengalaman membantu jamaah dengan kondisi khusus.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== CERITAKAN KEBUTUHAN (auto tabs) ============== -->
+<section id="tentang" class="bg-white">
+  <div class="max-w-[1120px] mx-auto px-5 lg:px-8 py-16">
+
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-balance text-primary-900">Bagaimana Kami Membantu</h2>
+      <p class="mt-4 text-slate600">Pelajari bagaimana kami membantu proses ibadah Umrah &amp; Haji Anda jadi lebih mudah.</p>
+    </div>
+
+    <!-- Combined card: step indicator + panels as one group -->
+    <div class="mt-10 mx-auto max-w-4xl">
+      <div class="relative rounded-2xl border border-slate200 bg-white overflow-hidden">
+        <!-- Step progress indicator -->
+        <div class="bg-white border-b border-slate200 px-5 sm:px-10 pt-7 pb-6">
+          <ol id="tabPills" class="relative flex items-start justify-between max-w-3xl mx-auto">
+            <!-- track + steps rendered by JS -->
+          </ol>
+        </div>
+
+        <!-- Tab panels -->
+        <div id="tabPanels" class="relative" style="min-height: 380px;">
+          <!-- panels rendered by JS -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== LAYANAN KAMI ============== -->
+<section id="layanan" class="bg-white">
+  <div class="max-w-[1120px] mx-auto px-5 lg:px-8 py-16">
+
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-primary-900">Rekomendasi Kami</h2>
+      <p class="mt-4 text-slate600">Dari ibadah utama hingga perjalanan halal — kami merancang setiap perjalanan dengan ketenangan dan kemudahan.</p>
+    </div>
+
+    <div class="mt-10 lg:mt-12 max-w-5xl mx-auto">
+    <!-- Row 1 -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+      <div class="order-2 lg:order-1">
+        <h3 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl leading-tight text-primary-900">Paket Haji dan Umroh</h3>
+        <p class="mt-4 text-slate600 leading-relaxed">
+          Wujudkan perjalanan ibadah ke Tanah Suci dengan lebih tenang dan nyaman. Kami menghadirkan paket haji dan umrah terpercaya dengan layanan lengkap, pendampingan profesional, serta fasilitas terbaik untuk ibadah yang lebih khusyuk.
+        </p>
+        <ul class="mt-6 space-y-2 text-sm text-slate700">
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4B56BA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Mutawif berpengalaman</li>
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4B56BA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Hotel dekat Masjidil Haram</li>
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4B56BA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Manasik gratis untuk semua jamaah</li>
+        </ul>
+        <a href="Layanan.html" class="mt-8 btn-outline inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold">
+          Pelajari Selengkapnya
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="order-1 lg:order-2">
+        <div class="media-card aspect-[4/3] max-w-md mx-auto lg:max-w-none lg:mx-0 rounded-2xl overflow-hidden">
+          <img src="assets/kaaba-masjidil-haram.jpg" alt="Ka'bah di Masjidil Haram" class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="mt-12 lg:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+      <div class="order-1 lg:order-2">
+        <div class="media-card aspect-[4/3] max-w-md mx-auto lg:max-w-none lg:mx-0 rounded-2xl overflow-hidden">
+          <img src="assets/wisata-halal.jpg" alt="Wisata halal" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div class="order-2 lg:order-1">
+        <h3 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl leading-tight text-primary-900">Wisata Halal</h3>
+        <p class="mt-4 text-slate600 leading-relaxed">
+          Nikmati pengalaman wisata halal yang nyaman, aman, dan sesuai syariat. Mulai dari pilihan destinasi, akomodasi ramah muslim, hingga itinerary yang dirancang untuk memastikan ibadah Anda tetap terjaga selama perjalanan.
+        </p>
+        <ul class="mt-6 space-y-2 text-sm text-slate700">
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#875A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Akomodasi muslim-friendly</li>
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#875A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Itinerary tetap menjaga sholat</li>
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#875A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Kuliner halal terpercaya</li>
+        </ul>
+        <a href="Layanan.html" class="mt-8 btn-outline inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold">
+          Pelajari Selengkapnya
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== TESTIMONI ============== -->
+<section id="artikel" class="bg-white relative overflow-hidden">
+  <div class="relative max-w-[1120px] mx-auto px-5 lg:px-8 py-16">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-primary-900">Kata Pelanggan Kami</h2>
+      <p class="mt-4 text-slate600">Cerita dari mereka yang telah menggunakan layanan kami.</p>
+    </div>
+
+    <div class="mt-10 relative">
+      <div class="testi-viewport">
+        <div id="testiTrack" class="testi-track">
+          <!-- testimonials rendered by JS -->
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center gap-2 mt-8" id="testiDots">
+        <!-- dots rendered by JS -->
+      </div>
+
+      <!-- prev/next -->
+      <button id="testiPrev" aria-label="Sebelumnya" class="hidden md:flex absolute top-1/2 -translate-y-1/2 left-0 lg:-left-4 w-11 h-11 rounded-full bg-white border border-primary-100 shadow-soft items-center justify-center text-primary-800 hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-colors z-10">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button id="testiNext" aria-label="Selanjutnya" class="hidden md:flex absolute top-1/2 -translate-y-1/2 right-0 lg:-right-4 w-11 h-11 rounded-full bg-white border border-primary-100 shadow-soft items-center justify-center text-primary-800 hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-colors z-10">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PENGALAMAN PELANGGAN (video testimoni) ============== -->
+<section id="pengalaman" class="bg-grad-blue relative overflow-hidden" data-screen-label="Pengalaman Pelanggan">
+  <div class="relative max-w-[1120px] mx-auto px-5 lg:px-8 py-16">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-primary-900 text-balance">Pengalaman Pelanggan Kami</h2>
+      <p class="mt-4 text-slate600">Dengar langsung cerita perjalanan ibadah jamaah kami — momen yang tak terlupakan menuju Tanah Suci.</p>
+    </div>
+
+    <div class="mt-12 relative">
+      <div class="vexp-viewport">
+        <div id="vexpTrack" class="vexp-track">
+          <!-- video cards rendered by JS -->
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center gap-2 mt-8" id="vexpDots">
+        <!-- dots rendered by JS -->
+      </div>
+
+      <button id="vexpPrev" aria-label="Sebelumnya" class="hidden md:flex absolute top-1/2 -translate-y-1/2 left-0 lg:-left-4 w-11 h-11 rounded-full bg-white border border-primary-100 shadow-soft items-center justify-center text-primary-900 hover:bg-accent-300 hover:text-primary-900 transition-colors z-20">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button id="vexpNext" aria-label="Selanjutnya" class="hidden md:flex absolute top-1/2 -translate-y-1/2 right-0 lg:-right-4 w-11 h-11 rounded-full bg-white border border-primary-100 shadow-soft items-center justify-center text-primary-900 hover:bg-accent-300 hover:text-primary-900 transition-colors z-20">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Video lightbox -->
+<div id="vexpLightbox" class="fixed inset-0 z-[120] hidden items-center justify-center p-5" aria-hidden="true">
+  <div class="absolute inset-0 bg-primary-950/85 backdrop-blur-sm" data-vexp-close></div>
+  <div class="relative w-full max-w-3xl">
+    <button data-vexp-close aria-label="Tutup" class="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-white text-primary-900 flex items-center justify-center shadow-lg hover:bg-accent-300 transition-colors z-10">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div id="vexpStage" class="aspect-video w-full rounded-2xl overflow-hidden bg-black ring-1 ring-white/10 flex items-center justify-center">
+      <!-- video injected by JS -->
+    </div>
+    <p id="vexpStageCaption" class="mt-4 text-center text-sm text-white/70"></p>
+  </div>
+</div>
+
+<!-- ============== CTA PENUTUP ============== -->
+<section id="konsultasi" class="bg-white relative overflow-hidden" data-screen-label="CTA Konsultasi">
+  <!-- subtle decorative pattern -->
+  <div class="absolute inset-0 opacity-[0.05] pointer-events-none">
+    <svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <pattern id="dots" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1" fill="#4B56BA"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#dots)"/>
+    </svg>
+  </div>
+  <!-- gold ornament line -->
+  <div class="absolute top-0 inset-x-0 h-px" style="background:linear-gradient(90deg, transparent, #DAB255 50%, transparent);"></div>
+  <div class="relative max-w-[1120px] mx-auto px-5 lg:px-8 py-11 lg:py-12 text-center">
+    <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-6xl leading-[1.05] text-balance max-w-4xl mx-auto text-primary-900">
+      Setiap Niat Baik Akan Selalu Dimudahkan
+    </h2>
+    <p class="mt-5 max-w-xl mx-auto text-slate600">
+      Bergabunglah dengan lebih dari <strong class="font-semibold text-primary-900">700 jamaah</strong> lainnya yang telah berangkat ke tanah suci.
+    </p>
+    <div class="mt-9 flex items-stretch sm:items-center justify-center">
+      <a href="#" class="btn-primary inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-lg px-7 py-4 text-base font-semibold">
+        Konsultasi Sekarang</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============== FOOTER ============== -->
+<footer class="bg-white border-t border-slate200">
+  <div class="max-w-[1120px] mx-auto px-5 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-5">
+    <a href="#beranda" class="flex items-center gap-2">
+      <img src="assets/mark-nahdi-tour-trim.png" alt="Nahdi Tour" class="h-7 w-auto sm:hidden" /><img src="assets/logo-nahdi-tour-trim.png" alt="Nahdi Tour" class="hidden sm:block h-7 w-auto" />
+    </a>
+    <p class="text-xs text-slate500 text-center">
+      © 2023 Nahdi Tour <span class="mx-2 text-slate300">|</span> Nahdi Tour adalah merek milik PT Nahdi Duta Wisata. <span class="mx-2 text-slate300">|</span>
+      <span class="inline-flex items-center gap-1.5">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4B56BA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+        (BPW) NIB: 9123456789123
+      </span>
+    </p>
+    <div class="flex items-center gap-2 text-primary-800">
+      <a aria-label="Instagram" href="#" class="w-9 h-9 inline-flex items-center justify-center rounded-md hover:bg-[#F4F5F7] hover:text-primary-900 focus-visible:bg-primary-50 transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+      </a>
+      <a aria-label="Facebook" href="#" class="w-9 h-9 inline-flex items-center justify-center rounded-md hover:bg-[#F4F5F7] hover:text-primary-900 focus-visible:bg-primary-50 transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a aria-label="TikTok" href="#" class="w-9 h-9 inline-flex items-center justify-center rounded-md hover:bg-[#F4F5F7] hover:text-primary-900 focus-visible:bg-primary-50 transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 7.3a5.5 5.5 0 0 1-3.3-1.1V15a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v2.7a2.8 2.8 0 1 0 1.9 2.7V2h2.7a5.5 5.5 0 0 0 3.3 5z"/></svg>
+      </a>
+      <a aria-label="YouTube" href="#" class="w-9 h-9 inline-flex items-center justify-center rounded-md hover:bg-[#F4F5F7] hover:text-primary-900 focus-visible:bg-primary-50 transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+      </a>
+      <a aria-label="WhatsApp" href="#" class="w-9 h-9 inline-flex items-center justify-center rounded-md hover:bg-[#F4F5F7] hover:text-primary-900 focus-visible:bg-primary-50 transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== TWEAKS PANEL ============== -->
+<aside id="tweaks-panel" hidden style="position:fixed;bottom:20px;right:20px;width:300px;background:#fff;border:1px solid #DCE6EE;border-radius:14px;box-shadow:0 12px 32px -8px rgb(17 19 65 / 0.22);padding:18px;z-index:60;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+    <span style="font-family:var(--tw-font-display);font-weight:800;letter-spacing:-0.01em;font-size:14px;color:#111341;">Tweaks</span>
+    <button id="tweaksClose" aria-label="Tutup" style="background:transparent;border:0;cursor:pointer;color:#6A737A;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
+
+  <div class="tw-row">
+    <label for="tw-font" style="font-size:13px;color:#363E44;">Font heading</label>
+    <select id="tw-font" style="border:1px solid #DCE6EE;border-radius:6px;padding:4px 6px;color:#111341;">
+      <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+      <option value="Inter">Inter</option>
+      <option value="Poppins">Poppins</option>
+      <option value="DM Serif Display">DM Serif Display</option>
+    </select>
+  </div>
+
+  <div class="tw-row">
+    <label style="font-size:13px;color:#1F1F1F;">Aksen judul</label>
+    <div class="seg" id="tw-accent">
+      <button data-val="indigo" class="is-on">Indigo</button>
+      <button data-val="gold">Emas</button>
+      <button data-val="mono">Mono</button>
+    </div>
+  </div>
+
+  <div class="tw-row" style="flex-direction:column;align-items:stretch;gap:6px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <label for="tw-tab-speed" style="font-size:13px;color:#363E44;">Auto-tab interval</label>
+      <span id="tw-tab-speed-val" style="font-size:12px;color:#6A737A;">8.0s</span>
+    </div>
+    <input id="tw-tab-speed" type="range" min="3" max="14" step="0.5" value="8">
+  </div>
+
+  <div class="tw-row" style="flex-direction:column;align-items:stretch;gap:6px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <label for="tw-marquee-speed" style="font-size:13px;color:#363E44;">Marquee speed</label>
+      <span id="tw-marquee-speed-val" style="font-size:12px;color:#6A737A;">28s/loop</span>
+    </div>
+    <input id="tw-marquee-speed" type="range" min="14" max="60" step="2" value="28">
+  </div>
+
+  <div class="tw-row">
+    <label style="font-size:13px;color:#363E44;">Headline copy</label>
+    <button id="tw-copy-cycle" style="border:1px solid #4B56BA;color:#24286D;background:#fff;border-radius:6px;padding:4px 10px;font-size:12px;">Putar</button>
+  </div>
+</aside>
+
+<!-- ============== APP JS ============== -->
+<script src="image-slot.js"></script>
+<script>
+(() => {
+  // --- TWEAK STATE (persisted block, host rewrites this on disk) ---
+  const TWEAKS = /*EDITMODE-BEGIN*/{
+    "headingFont": "Plus Jakarta Sans",
+    "accent": "indigo",
+    "tabIntervalSec": 8,
+    "marqueeSeconds": 50,
+    "headlineIdx": 0
+  }/*EDITMODE-END*/;
+
+  const HEADLINES = [
+    { line1: "Berangkat Umrah dan Haji dengan", line2: "Biaya Lebih ", rotate: ["Hemat"], rotateLine: 2 },
+    { line1: "Bantu Anda Memilih Layanan", line2: "Travel Umroh & Haji ", rotate: ["Terbaik", "Amanah"], rotateLine: 2 },
+    { line1: "Pilih Travel Umroh yang", line2: "Selalu ", rotate: ["Tepat", "Amanah", "Terpercaya"], rotateLine: 2 },
+    { line1: "Berangkat ke Tanah Suci", line2: "dengan Lebih ", rotate: ["Tenang", "Aman", "Amanah"], rotateLine: 2 },
+  ];
+
+  // Rotating final word — typewriter effect
+  let wordTimer = null;
+  let typeTimers = [];
+  const clearTypeTimers = () => { typeTimers.forEach(clearTimeout); typeTimers = []; };
+  const startWordRotator = (words) => {
+    if (wordTimer) { clearInterval(wordTimer); wordTimer = null; }
+    clearTypeTimers();
+    const el = document.getElementById('heroRotateWord');
+    if (!el) return;
+    if (!Array.isArray(words) || words.length < 2) {
+      if (Array.isArray(words) && words[0] != null) el.textContent = words[0];
+      el.classList.add('is-static');
+      return;
+    }
+    el.classList.remove('is-static');
+    let i = 0;
+    el.textContent = words[0];
+
+    // Reserve width on the outer box so the line never reflows / shifts other elements,
+    // while the inner text + caret + underline stay tight to the actual text.
+    const box = el.closest('.hero-rotate-box');
+    const reserve = () => {
+      const prev = el.textContent;
+      if (box) box.style.minWidth = '0px';
+      let maxW = 0;
+      words.forEach(w => { el.textContent = w; if (el.offsetWidth > maxW) maxW = el.offsetWidth; });
+      if (box) box.style.minWidth = Math.ceil(maxW) + 'px';
+      el.textContent = prev;
+    };
+    reserve();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (document.getElementById('heroRotateWord') === el) reserve(); });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      wordTimer = setInterval(() => { i = (i + 1) % words.length; el.textContent = words[i]; }, 2600);
+      return;
+    }
+
+    const typeSpeed = 150, delSpeed = 80, hold = 2600;
+    const cycle = () => {
+      const current = el.textContent;
+      const next = words[(i + 1) % words.length];
+      let pos = current.length;
+      const del = () => {
+        if (pos > 0) {
+          el.textContent = current.slice(0, --pos);
+          typeTimers.push(setTimeout(del, delSpeed));
+        } else {
+          let p = 0;
+          const type = () => {
+            if (p < next.length) {
+              el.textContent = next.slice(0, ++p);
+              typeTimers.push(setTimeout(type, typeSpeed));
+            } else {
+              i = (i + 1) % words.length;
+              typeTimers.push(setTimeout(cycle, hold));
+            }
+          };
+          typeTimers.push(setTimeout(type, typeSpeed));
+        }
+      };
+      typeTimers.push(setTimeout(del, delSpeed));
+    };
+    typeTimers.push(setTimeout(cycle, hold));
+  };
+
+  // -------- MITRA MARQUEE --------
+  const mitra = [
+    { name:'El Marwa',          src:'assets/mitra/el-marwa.png' },
+    { name:'Namira Travel',     src:'assets/mitra/namira.png' },
+    { name:'Uhud Tour',         src:'assets/mitra/uhud-tour.png' },
+    { name:'Mutiara Sunnah',    src:'assets/mitra/mutiara-sunnah.png' },
+    { name:'HaramainKU',        src:'assets/mitra/haramainku.png' },
+    { name:'Pahala Wisata',     src:'assets/mitra/pahala-wisata.png' },
+    { name:'Safir Tour & Travel', src:'assets/mitra/safir.png' },
+    { name:'WIPA',              src:'assets/mitra/wipa.png' },
+    { name:'UMI Tour & Travel', src:'assets/mitra/umi.png' },
+    { name:'Marco Tour & Travel', src:'assets/mitra/marco.png' },
+    { name:'Al-Anshar Madani Travel', src:'assets/mitra/al-anshar.png' },
+    { name:'Allia',             src:'assets/mitra/allia.png' },
+    { name:'Dwins Travel',      src:'assets/mitra/dwins-travel.png' },
+  ];
+  const track = document.getElementById('mitraTrack');
+  const buildLogo = (m) => {
+    const el = document.createElement('div');
+    el.className = 'shrink-0 h-24 flex items-center justify-center mr-8 sm:mr-11 select-none';
+    el.innerHTML = `
+      <img src="${m.src}" alt="${m.name}" loading="lazy"
+        class="h-full w-auto max-w-[240px] object-contain transition duration-300" />`;
+    return el;
+  };
+  const buildMarquee = () => {
+    track.innerHTML = '';
+    [...mitra, ...mitra].forEach((m) => track.appendChild(buildLogo(m)));
+  };
+  buildMarquee();
+
+  // -------- HERO BACKDROP — cursor parallax disabled --------
+  // (cursor interaction removed by request; the slow cinematic zoom on .hero-parallax remains via CSS)
+  // Slow-motion + reliable autoplay nudge for the hero video.
+  (() => {
+    const hv = document.querySelector('#heroParallax video');
+    if (!hv) return;
+    const SLOMO = 0.82;
+    const apply = () => { try { hv.playbackRate = SLOMO; } catch (e) {} };
+    const nudge = () => { apply(); const p = hv.play(); if (p && p.catch) p.catch(() => {}); };
+    hv.addEventListener('loadedmetadata', apply);
+    hv.addEventListener('loadeddata', nudge);
+    hv.addEventListener('play', apply);
+    nudge();
+    // resume if the browser paused it after regaining focus/visibility
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) nudge(); });
+  })();
+
+  // -------- MOBILE MENU (mweb) --------
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (mobileMenu) {
+    const menuToggle = document.getElementById('menuToggle');
+    const menuClose = document.getElementById('menuClose');
+    const menuBackdrop = document.getElementById('menuBackdrop');
+    const menuPanel = document.getElementById('menuPanel');
+    let menuOpen = false;
+
+    const openMenu = () => {
+      menuOpen = true;
+      mobileMenu.classList.remove('hidden');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => {
+        menuBackdrop.classList.remove('opacity-0');
+        menuPanel.classList.remove('-translate-y-3', 'opacity-0');
+      });
+    };
+    const closeMenu = () => {
+      if (!menuOpen) return;
+      menuOpen = false;
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuBackdrop.classList.add('opacity-0');
+      menuPanel.classList.add('-translate-y-3', 'opacity-0');
+      document.body.style.overflow = '';
+      const done = () => { mobileMenu.classList.add('hidden'); menuPanel.removeEventListener('transitionend', done); };
+      menuPanel.addEventListener('transitionend', done);
+    };
+
+    menuToggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuBackdrop.addEventListener('click', closeMenu);
+    mobileMenu.querySelectorAll('[data-menu-link]').forEach(a => a.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  }
+
+  // -------- LAYANAN MEDIA: reveal on scroll --------
+  const mediaCards = document.querySelectorAll('.media-card');
+  if (mediaCards.length) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+      mediaCards.forEach(c => c.classList.add('in-view'));
+    } else {
+      const mediaObs = new IntersectionObserver((entries, obs) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) { en.target.classList.add('in-view'); obs.unobserve(en.target); }
+        });
+      }, { threshold: 0.25 });
+      mediaCards.forEach(c => mediaObs.observe(c));
+    }
+  }
+
+  // -------- HERO PARALLAX --------
+  // Subtle mouse-driven parallax for the welcoming scene.
+  const hero = document.getElementById('beranda');
+  if (hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const pLayers = hero.querySelectorAll('[data-parallax]');
+    let raf = 0, tx = 0, ty = 0;
+    const updateParallax = () => {
+      raf = 0;
+      pLayers.forEach(el => {
+        const k = parseFloat(el.dataset.parallax) || 0;
+        el.style.transform = `translate3d(${tx * k}px, ${ty * k * 0.4}px, 0)`;
+      });
+    };
+    hero.addEventListener('mousemove', (e) => {
+      const r = hero.getBoundingClientRect();
+      tx = (e.clientX - (r.left + r.width / 2));
+      ty = (e.clientY - (r.top + r.height / 2));
+      hero.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      hero.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      if (!raf) raf = requestAnimationFrame(updateParallax);
+    });
+    hero.addEventListener('mouseleave', () => {
+      tx = 0; ty = 0;
+      hero.style.setProperty('--mx', '50%');
+      hero.style.setProperty('--my', '32%');
+      if (!raf) raf = requestAnimationFrame(updateParallax);
+    });
+  }
+
+  // -------- AUTO TABS --------
+  const tabs = [
+    {
+      key: 'cerita',
+      num: '1',
+      title: 'Ceritakan Kebutuhan',
+      desc: 'Calon jamaah menghubungi Nahdi Tour via WhatsApp dan menceritakan kebutuhan perjalanan ibadahnya — jumlah jamaah, waktu keberangkatan, dan preferensi paket.',
+      poster: 'assets/step-1-konsultasi.jpg',
+      imgHint: 'Foto jamaah sedang konsultasi via WhatsApp / HP',
+      svg: `
+        <svg viewBox="0 0 320 240" class="w-full max-w-[520px] mx-auto" aria-hidden="true">
+          <defs>
+            <linearGradient id="bubg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBF4FF"/><stop offset="1" stop-color="#DBE8FF"/></linearGradient>
+          </defs>
+          <!-- phone frame -->
+          <rect x="60" y="20" width="200" height="200" rx="24" fill="#111341"/>
+          <rect x="68" y="32" width="184" height="176" rx="16" fill="url(#bubg)"/>
+          <circle cx="160" cy="28" r="2.4" fill="#DAB255"/>
+          <!-- chat bubbles -->
+          <g class="drift-slow">
+            <rect x="84" y="56" width="120" height="28" rx="14" fill="#fff" stroke="#DCE6EE"/>
+            <circle cx="98" cy="70" r="4" fill="#4B56BA"/>
+            <rect x="108" y="66" width="80" height="3" rx="1.5" fill="#24286D" opacity=".7"/>
+            <rect x="108" y="73" width="58" height="3" rx="1.5" fill="#24286D" opacity=".35"/>
+          </g>
+          <g class="drift">
+            <rect x="116" y="96" width="120" height="44" rx="14" fill="#4B56BA"/>
+            <rect x="132" y="106" width="88" height="3.5" rx="1.5" fill="#fff" opacity=".95"/>
+            <rect x="132" y="115" width="64" height="3.5" rx="1.5" fill="#fff" opacity=".75"/>
+            <rect x="132" y="124" width="74" height="3.5" rx="1.5" fill="#fff" opacity=".55"/>
+          </g>
+          <g class="drift-slow">
+            <rect x="84" y="150" width="100" height="28" rx="14" fill="#fff" stroke="#DCE6EE"/>
+            <rect x="92" y="160" width="70" height="3" rx="1.5" fill="#24286D" opacity=".7"/>
+            <rect x="92" y="167" width="46" height="3" rx="1.5" fill="#24286D" opacity=".35"/>
+          </g>
+          <!-- WA indicator dot -->
+          <circle cx="248" cy="44" r="6" fill="#DAB255"/>
+          <circle cx="248" cy="44" r="2.5" fill="#111341"/>
+          <!-- input bar -->
+          <rect x="76" y="186" width="168" height="14" rx="7" fill="#fff" stroke="#DCE6EE"/>
+          <circle cx="232" cy="193" r="4.5" fill="#4B56BA"/>
+        </svg>`
+    },
+    {
+      key: 'pilih',
+      num: '2',
+      title: 'Kami Bantu Pilihkan',
+      desc: 'Tim Nahdi Tour memberikan konsultasi personal dan merekomendasikan travel yang paling sesuai dengan kebutuhan, anggaran, dan preferensi ibadah Anda.',
+      poster: 'assets/step-2-rekomendasi.jpg',
+      imgHint: 'Foto tim memberikan rekomendasi / konsultasi',
+      svg: `
+        <svg viewBox="0 0 320 240" class="w-full max-w-[520px] mx-auto" aria-hidden="true">
+          <!-- background card -->
+          <rect x="30" y="36" width="260" height="170" rx="20" fill="#EBF4FF" stroke="#DBE8FF"/>
+          <!-- 3 option cards -->
+          <g class="drift-slow">
+            <rect x="48" y="58" width="76" height="126" rx="12" fill="#fff" stroke="#DCE6EE"/>
+            <rect x="60" y="70" width="52" height="38" rx="6" fill="#DCE6EE"/>
+            <rect x="60" y="116" width="52" height="6" rx="3" fill="#24286D" opacity=".7"/>
+            <rect x="60" y="128" width="38" height="4" rx="2" fill="#24286D" opacity=".3"/>
+            <rect x="60" y="146" width="52" height="20" rx="6" fill="#fff" stroke="#24286D"/>
+            <rect x="72" y="154" width="28" height="4" rx="2" fill="#24286D"/>
+          </g>
+
+          <!-- middle: HIGHLIGHTED -->
+          <g class="drift">
+            <rect x="132" y="50" width="76" height="142" rx="14" fill="#111341"/>
+            <rect x="144" y="62" width="52" height="38" rx="6" fill="#fff" opacity=".14"/>
+            <!-- check badge (gold) -->
+            <circle cx="196" cy="62" r="10" fill="#DAB255"/>
+            <path d="M191 62.5 l3.5 3.5 L201 59" stroke="#111341" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="144" y="108" width="52" height="6" rx="3" fill="#fff"/>
+            <rect x="144" y="120" width="38" height="4" rx="2" fill="#fff" opacity=".6"/>
+            <rect x="144" y="138" width="52" height="22" rx="6" fill="#DAB255"/>
+            <rect x="156" y="146" width="28" height="6" rx="3" fill="#111341"/>
+            <text x="170" y="178" text-anchor="middle" fill="#DAB255" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" font-size="9">REKOMENDASI</text>
+          </g>
+
+          <g class="drift-slow">
+            <rect x="216" y="58" width="76" height="126" rx="12" fill="#fff" stroke="#DCE6EE"/>
+            <rect x="228" y="70" width="52" height="38" rx="6" fill="#DCE6EE"/>
+            <rect x="228" y="116" width="52" height="6" rx="3" fill="#24286D" opacity=".7"/>
+            <rect x="228" y="128" width="38" height="4" rx="2" fill="#24286D" opacity=".3"/>
+            <rect x="228" y="146" width="52" height="20" rx="6" fill="#fff" stroke="#24286D"/>
+            <rect x="240" y="154" width="28" height="4" rx="2" fill="#24286D"/>
+          </g>
+
+          <!-- pointer hand-cursor -->
+          <g transform="translate(168 196)">
+            <path d="M0 -4 L0 14 L4 10 L8 18 L11 17 L7 9 L13 9 Z" fill="#111341"/>
+          </g>
+        </svg>`
+    },
+    {
+      key: 'berangkat',
+      num: '3',
+      title: 'Berangkat Tenang',
+      desc: 'Jamaah berhasil berangkat ke Tanah Suci dengan tenang dan terlayani penuh — semua kebutuhan didampingi oleh mitra travel yang telah terverifikasi.',
+      poster: 'assets/step-3-berangkat.jpg',
+      imgHint: 'Foto keberangkatan jamaah ke Tanah Suci',
+      svg: `
+        <svg viewBox="0 0 320 240" class="w-full max-w-[520px] mx-auto" aria-hidden="true">
+          <defs>
+            <linearGradient id="skygrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DBE8FF"/><stop offset="1" stop-color="#BFCFFF"/></linearGradient>
+            <radialGradient id="sun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFE9B5" stop-opacity="0.9"/><stop offset="1" stop-color="#DAB255" stop-opacity="0"/></radialGradient>
+          </defs>
+          <!-- sky -->
+          <rect x="20" y="30" width="280" height="140" rx="18" fill="url(#skygrad)"/>
+          <!-- sun glow -->
+          <circle cx="240" cy="80" r="50" fill="url(#sun)"/>
+          <circle cx="240" cy="80" r="14" fill="#DAB255" opacity=".8"/>
+          <!-- clouds -->
+          <g fill="#fff" stroke="#DBE8FF">
+            <ellipse cx="70" cy="70" rx="22" ry="10"/>
+            <ellipse cx="100" cy="62" rx="16" ry="8"/>
+            <ellipse cx="270" cy="105" rx="18" ry="8"/>
+          </g>
+          <!-- ground -->
+          <rect x="0" y="170" width="320" height="40" fill="#111341"/>
+          <!-- runway dashes -->
+          <g stroke="#DAB255" stroke-dasharray="10 8" stroke-width="2">
+            <line x1="0" y1="190" x2="320" y2="190"/>
+          </g>
+          <!-- destination skyline (kaaba + minarets) -->
+          <g transform="translate(180 130)">
+            <rect x="0" y="0" width="36" height="36" fill="#05061F"/>
+            <rect x="0" y="16" width="36" height="5" fill="#DAB255"/>
+            <rect x="46" y="-30" width="6" height="66" fill="#24286D"/>
+            <polygon points="44,-30 49,-40 54,-30" fill="#24286D"/>
+            <circle cx="49" cy="-40" r="2" fill="#DAB255"/>
+            <rect x="-22" y="-30" width="6" height="66" fill="#24286D"/>
+            <polygon points="-24,-30 -19,-40 -14,-30" fill="#24286D"/>
+            <circle cx="-19" cy="-40" r="2" fill="#DAB255"/>
+          </g>
+          <!-- airplane -->
+          <g class="drift" transform="translate(110 102)">
+            <g transform="rotate(-8)" fill="#111341">
+              <path d="M-32 0 L32 -4 L42 0 L32 4 Z"/>
+              <path d="M0 -2 L-6 -12 L0 -12 L8 -2 Z"/>
+              <path d="M0 2 L-6 12 L0 12 L8 2 Z"/>
+              <circle cx="20" cy="-1" r="1.5" fill="#DAB255"/>
+              <circle cx="12" cy="-1" r="1.5" fill="#DAB255"/>
+              <circle cx="4" cy="-1" r="1.5" fill="#DAB255"/>
+            </g>
+          </g>
+          <!-- trail -->
+          <path d="M30 130 Q 80 110 130 100" stroke="#4B56BA" stroke-dasharray="3 5" fill="none" opacity=".55"/>
+          <!-- check seal -->
+          <g transform="translate(56 200)">
+            <circle cx="0" cy="0" r="16" fill="#DAB255"/>
+            <path d="M-6 0 l4 4 l8 -8" stroke="#111341" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <text x="84" y="204" fill="#fff" font-family="Inter, sans-serif" font-weight="600" font-size="10">Insya Allah berangkat</text>
+        </svg>`
+    },
+  ];
+
+  const pillsEl = document.getElementById('tabPills');
+  const panelsEl = document.getElementById('tabPanels');
+
+  // Render the track + fill once (sits behind the dots)
+  const stepsCount = tabs.length;
+  // dots are centered within flex-1 items, so first/last dot center sits at 1/(2N) from each edge
+  const sideInset = `calc(${100 / (stepsCount * 2)}%)`;
+  pillsEl.insertAdjacentHTML('beforeend', `
+    <div class="absolute top-[18px] h-[3px] bg-slate200 rounded-full overflow-hidden" style="left:${sideInset};right:${sideInset};" aria-hidden="true">
+      <div id="progressFill" class="h-full rounded-full" style="width:0%;background:linear-gradient(90deg,#4B56BA,#DAB255);"></div>
+    </div>
+  `);
+
+  tabs.forEach((t, i) => {
+    const step = document.createElement('li');
+    step.className = 'step relative flex-1 flex flex-col items-center text-center';
+    step.dataset.idx = i;
+    step.innerHTML = `
+      <button type="button" class="step-dot relative z-10 w-9 h-9 rounded-full border-2 border-slate300 bg-white text-slate500 font-semibold text-sm flex items-center justify-center cursor-pointer" aria-label="Langkah ${t.num}: ${t.title}">
+        <span class="step-num">${t.num}</span>
+        <svg class="step-check hidden" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <span class="step-label mt-3 text-xs sm:text-sm font-semibold text-slate500 max-w-[140px] leading-snug">${t.title}</span>
+    `;
+    pillsEl.appendChild(step);
+
+    const panel = document.createElement('div');
+    panel.className = 'tab-panel p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center';
+    panel.dataset.idx = i;
+    panel.innerHTML = `
+      <div class="lg:col-span-3 flex items-center justify-center">
+        <div class="media-card w-full max-w-[406px] aspect-[406/271] rounded-2xl overflow-hidden border border-slate200">
+          <image-slot id="step-img-${t.key}" class="w-full h-full" shape="rect" fit="cover" ${t.poster ? `src="${t.poster}"` : ''} placeholder="${t.imgHint}"></image-slot>
+        </div>
+      </div>
+      <div class="lg:col-span-2">
+        <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-primary-700">
+          <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary-900 text-accent-300 text-[10px] font-bold">${t.num}</span>
+          Langkah ${t.num}
+        </span>
+        <h3 class="mt-3 font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl leading-tight text-primary-900">${t.title}</h3>
+        <p class="mt-4 text-slate600 leading-relaxed">${t.desc}</p>
+      </div>`;
+    panelsEl.appendChild(panel);
+
+    step.querySelector('.step-dot').addEventListener('click', () => activateTab(i, true));
+  });
+
+  // The step media-cards are created above, AFTER the scroll-reveal observer
+  // was set up — so reveal them here, otherwise they stay at opacity:0.
+  panelsEl.querySelectorAll('.media-card').forEach(c => c.classList.add('in-view'));
+
+  let activeTab = 0;
+  let tabTimer = null;
+  const activateTab = (i, userInitiated = false) => {
+    activeTab = i;
+    document.querySelectorAll('#tabPills .step').forEach((step, idx) => {
+      const dot = step.querySelector('.step-dot');
+      const label = step.querySelector('.step-label');
+      const numEl = step.querySelector('.step-num');
+      const checkEl = step.querySelector('.step-check');
+      step.classList.remove('is-active', 'is-done');
+      if (idx < i) {
+        step.classList.add('is-done');
+        dot.style.cssText = 'background:#394198;border-color:#394198;color:#fff;box-shadow:none;';
+        label.style.color = '#24286D';
+        numEl.classList.add('hidden');
+        checkEl.classList.remove('hidden');
+      } else if (idx === i) {
+        step.classList.add('is-active');
+        dot.style.cssText = 'background:#4B56BA;border-color:#4B56BA;color:#fff;box-shadow:0 0 0 6px rgba(75,86,186,0.14);';
+        label.style.color = '#111341';
+        numEl.classList.remove('hidden');
+        checkEl.classList.add('hidden');
+      } else {
+        dot.style.cssText = '';
+        label.style.color = '';
+        numEl.classList.remove('hidden');
+        checkEl.classList.add('hidden');
+      }
+    });
+
+    // Progress fill: from the active dot's track position to the next dot's position, over tabIntervalSec
+    const fill = document.getElementById('progressFill');
+    if (fill) {
+      const segs = Math.max(1, stepsCount - 1);
+      const startPct = (i / segs) * 100;
+      const endPct = Math.min(100, ((i + 1) / segs) * 100);
+      fill.style.transition = 'none';
+      fill.style.width = startPct + '%';
+      // force reflow
+      void fill.offsetWidth;
+      fill.style.transition = `width ${TWEAKS.tabIntervalSec}s linear`;
+      fill.style.width = endPct + '%';
+    }
+
+    document.querySelectorAll('.tab-panel').forEach((panel, idx) => {
+      panel.classList.toggle('is-active', idx === i);
+    });
+    if (userInitiated) restartTabTimer();
+  };
+  const restartTabTimer = () => {
+    if (tabTimer) clearInterval(tabTimer);
+    tabTimer = setInterval(() => {
+      activateTab((activeTab + 1) % tabs.length);
+    }, TWEAKS.tabIntervalSec * 1000);
+  };
+  activateTab(0);
+  restartTabTimer();
+
+  // -------- TESTIMONIALS --------
+  const testimonials = [
+    {
+      name: 'Ibrahim',
+      role: 'Guru SMA IHBS Bekasi',
+      text: 'Pelayanannya sangat membantu dari awal konsultasi sampai keberangkatan. Prosesnya cepat, transparan, dan harga yang diberikan jauh lebih kompetitif dibandingkan tempat lain.',
+    },
+    {
+      name: 'Al Muslim',
+      role: 'Konsultan Procurement Bekasi',
+      text: 'Awalnya ragu pindah mitra travel, tapi ternyata keputusan terbaik. Tim sangat responsif, kebutuhan perjalanan saya ditangani dengan profesional, bahkan tanpa biaya penalti seperti yang dijanjikan.',
+    },
+    {
+      name: 'Trihaji',
+      role: 'Pemilik Yayasan Ibnu Bilal Bekasi',
+      text: 'Sangat puas dengan layanan yang diberikan. Semua proses dibuat mudah, pilihan travel lebih banyak, dan saya merasa lebih tenang karena didampingi oleh tim yang benar-benar berpengalaman.',
+    },
+    {
+      name: 'Siti Aminah',
+      role: 'Wirausaha Tasikmalaya',
+      text: 'Konsultasinya sabar dan detail. Saya yang awam soal paket umroh akhirnya paham perbedaan tiap mitra, lalu dipandu sampai dapat yang paling sesuai dengan budget keluarga.',
+    },
+    {
+      name: 'Mahmud Yusuf',
+      role: 'Karyawan Swasta Jakarta',
+      text: 'Pertama kali umroh dan langsung tenang karena tim Nahdi Tour memberi rekomendasi travel resmi. Tidak ada biaya tersembunyi, semuanya jelas di awal.',
+    },
+    {
+      name: 'Hj. Rohimah',
+      role: 'Ibu Rumah Tangga Bandung',
+      text: 'Alhamdulillah, saya dan suami bisa berangkat bareng tahun ini. Pendampingan dari Nahdi Tour membuat kami yakin memilih travel yang tepat — tanpa harus survey sendiri.',
+    },
+    {
+      name: 'Dr. Fauzan',
+      role: 'Dosen UIN Yogyakarta',
+      text: 'Saya membandingkan beberapa konsultan, dan Nahdi Tour yang paling jujur soal kelebihan-kekurangan tiap travel. Tidak menjual, tapi membimbing. Itu yang saya cari.',
+    },
+    {
+      name: 'Saefudin',
+      role: 'Pensiunan TNI Surabaya',
+      text: 'Sebagai pensiunan, saya butuh kepastian harga dan jadwal. Tim merangkum semua opsi dalam tabel singkat, jadi keputusan terasa mudah. Pelayanan benar-benar berkelas.',
+    },
+    {
+      name: 'Aisyah',
+      role: 'Pengelola TK Islam Depok',
+      text: 'Saya bawa rombongan 24 jamaah untuk umroh ramadhan. Tim Nahdi Tour negosiasi langsung dengan mitra travel hingga dapat harga grup terbaik. Sangat membantu.',
+    },
+    {
+      name: 'H. Bambang',
+      role: 'Pengusaha Properti Semarang',
+      text: 'Rekomendasi paket haji plus-nya sesuai ekspektasi. Hotel dekat Masjidil Haram, mutawif berpengalaman, dan biaya tidak melonjak di tengah jalan. Insya Allah jamaah lain juga puas.',
+    },
+  ];
+  const testiTrack = document.getElementById('testiTrack');
+  const testiDots = document.getElementById('testiDots');
+
+  const visibleCount = () => {
+    const w = window.innerWidth;
+    if (w >= 1024) return 3;
+    if (w >= 640)  return 2;
+    return 1;
+  };
+  const maxIdx = () => Math.max(0, testimonials.length - visibleCount());
+
+  const buildTesti = () => {
+    testiTrack.innerHTML = '';
+    testiDots.innerHTML = '';
+    testimonials.forEach((t, i) => {
+      const card = document.createElement('article');
+      card.className = 'testi-card';
+      card.innerHTML = `
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:#96A0A7;">
+          <path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v.5A2.5 2.5 0 0 1 4.5 18H4v2h.5A4.5 4.5 0 0 0 9 15.5V9a2 2 0 0 0 0-2zM19 7h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v.5A2.5 2.5 0 0 1 14.5 18H14v2h.5A4.5 4.5 0 0 0 19 15.5V9a2 2 0 0 0 0-2z"/>
+        </svg>
+        <p class="mt-4 text-[15px] sm:text-base leading-relaxed text-slate700 flex-1">${t.text}</p>
+        <div class="mt-7 flex items-center gap-4">
+          <image-slot id="testi-avatar-${i}" class="shrink-0 ring-2 ring-white rounded-full shadow-sm" style="width:56px;height:56px;" shape="circle" fit="cover" ${t.photo ? `src="${t.photo}"` : ''} placeholder="Foto"></image-slot>
+          <div class="min-w-0">
+            <p class="font-display font-bold text-primary-900 text-[15px] leading-tight truncate">${t.name}</p>
+            <p class="text-xs text-slate500 leading-snug mt-1">${t.role}</p>
+          </div>
+        </div>`;
+      testiTrack.appendChild(card);
+    });
+
+    // dots — one per stop-position
+    const stops = maxIdx() + 1;
+    for (let i = 0; i < stops; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'dot';
+      dot.setAttribute('aria-label', `Ke testimoni ${i + 1}`);
+      dot.addEventListener('click', () => goTesti(i, true));
+      testiDots.appendChild(dot);
+    }
+  };
+  buildTesti();
+
+  let testiIdx = 0;
+  let testiTimer = null;
+  const goTesti = (i, user = false) => {
+    const max = maxIdx();
+    // loop around at ends
+    if (i < 0) i = max;
+    if (i > max) i = 0;
+    testiIdx = i;
+
+    const firstCard = testiTrack.firstElementChild;
+    if (firstCard) {
+      const cardW = firstCard.getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(testiTrack).columnGap || getComputedStyle(testiTrack).gap) || 0;
+      const step = cardW + gap;
+      testiTrack.style.transform = `translateX(-${testiIdx * step}px)`;
+    }
+    [...testiDots.children].forEach((d, idx) => d.classList.toggle('is-active', idx === testiIdx));
+    if (user) startTestiTimer();
+  };
+  const startTestiTimer = () => {
+    if (testiTimer) clearInterval(testiTimer);
+    testiTimer = setInterval(() => goTesti(testiIdx + 1), 5000);
+  };
+
+  // re-measure on resize: rebuild dots if visibleCount changed and clamp index
+  let prevVisible = visibleCount();
+  window.addEventListener('resize', () => {
+    const v = visibleCount();
+    if (v !== prevVisible) {
+      prevVisible = v;
+      // rebuild dots
+      testiDots.innerHTML = '';
+      const stops = maxIdx() + 1;
+      for (let i = 0; i < stops; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'dot';
+        dot.setAttribute('aria-label', `Ke testimoni ${i + 1}`);
+        dot.addEventListener('click', () => goTesti(i, true));
+        testiDots.appendChild(dot);
+      }
+    }
+    goTesti(Math.min(testiIdx, maxIdx()));
+  });
+
+  goTesti(0);
+  startTestiTimer();
+  document.getElementById('testiPrev').addEventListener('click', () => goTesti(testiIdx - 1, true));
+  document.getElementById('testiNext').addEventListener('click', () => goTesti(testiIdx + 1, true));
+
+  // -------- VIDEO EXPERIENCE CAROUSEL --------
+  const vexp = [
+    { id:'vexp-1', name:'H. Ibrahim',     role:'Bekasi',     cat:'Umroh Reguler',   quote:'Perjalanan pertama yang tak terlupakan.', video:'XMchWkvrIkY' },
+    { id:'vexp-2', name:'Hj. Rohimah',    role:'Bandung',    cat:'Umroh Keluarga',  quote:'Berangkat bareng suami, hati jadi tenang.', video:'xOn1fsGHXw4' },
+    { id:'vexp-3', name:'H. Bambang',     role:'Semarang',   cat:'Haji Plus',       quote:'Hotel dekat, mutawif berpengalaman.', video:'G-36Z_1DmBU' },
+    { id:'vexp-4', name:'Aisyah',         role:'Depok',      cat:'Umroh Grup',      quote:'Rombongan 24 jamaah, semua terlayani.', video:'HXbc0Y-s9ck' },
+    { id:'vexp-5', name:'Dr. Fauzan',     role:'Yogyakarta', cat:'Umroh Ramadhan',  quote:'Dibimbing jujur dari awal sampai pulang.', video:'WucTHyRXbpw' },
+    { id:'vexp-6', name:'Saefudin',       role:'Surabaya',   cat:'Umroh Reguler',   quote:'Kepastian harga & jadwal, benar-benar berkelas.', video:'cZJMklmO3ec' },
+    { id:'vexp-7', name:'Hj. Maemunah',   role:'Cirebon',    cat:'Umroh Keluarga',  quote:'Pelayanan ramah, ibadah jadi lebih khusyuk.', video:'8BGORkz1sO0' },
+  ];
+  vexp.forEach(v => { v.poster = v.poster || `https://i.ytimg.com/vi/${v.video}/hqdefault.jpg`; });
+  const vexpTrack = document.getElementById('vexpTrack');
+  const vexpDots  = document.getElementById('vexpDots');
+
+  const vexpVisible = () => {
+    const w = window.innerWidth;
+    if (w >= 1024) return 3;
+    if (w >= 640)  return 2;
+    return 1;
+  };
+  const vexpMax = () => Math.max(0, vexp.length - vexpVisible());
+
+  const buildVexp = () => {
+    vexpTrack.innerHTML = '';
+    vexp.forEach((v) => {
+      const card = document.createElement('article');
+      card.className = 'vexp-card group';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', `Putar video cerita ${v.name}`);
+      const slot = `<image-slot id="${v.id}" class="vexp-slot" shape="rect" fit="cover"
+        ${v.poster ? `src="${v.poster}"` : ''} placeholder="Lepas thumbnail / foto jamaah"></image-slot>`;
+      card.innerHTML = `
+        ${slot}
+        <div class="vexp-scrim"></div>
+        <span class="absolute top-4 left-4 z-10 inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide bg-white/90 text-primary-900">${v.cat}</span>
+        <span class="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 text-[11px] font-semibold text-white/90">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          ${v.role}
+        </span>
+        <div class="vexp-play" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6">
+          <p class="font-display font-bold text-white text-lg sm:text-xl leading-snug text-balance">"${v.quote}"</p>
+          <div class="mt-3 flex items-center gap-2.5">
+            <span class="w-8 h-px bg-accent-300"></span>
+            <p class="text-sm text-white/90"><span class="font-semibold text-white">${v.name}</span> · ${v.role}</p>
+          </div>
+        </div>`;
+      const open = () => openVexp(v);
+      card.addEventListener('click', (e) => {
+        // let image-slot handle its own drop/reframe interactions
+        if (e.target.closest('image-slot') && e.detail === 0) return;
+        open();
+      });
+      card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+      vexpTrack.appendChild(card);
+    });
+
+    vexpDots.innerHTML = '';
+    const stops = vexpMax() + 1;
+    for (let i = 0; i < stops; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'dot';
+      dot.setAttribute('aria-label', `Ke video ${i + 1}`);
+      dot.addEventListener('click', () => goVexp(i, true));
+      vexpDots.appendChild(dot);
+    }
+  };
+  buildVexp();
+
+  let vexpIdx = 0, vexpTimer = null;
+  const goVexp = (i, user = false) => {
+    const max = vexpMax();
+    if (i < 0) i = max;
+    if (i > max) i = 0;
+    vexpIdx = i;
+    const first = vexpTrack.firstElementChild;
+    if (first) {
+      const cardW = first.getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(vexpTrack).columnGap || getComputedStyle(vexpTrack).gap) || 0;
+      vexpTrack.style.transform = `translateX(-${vexpIdx * (cardW + gap)}px)`;
+    }
+    [...vexpDots.children].forEach((d, idx) => d.classList.toggle('is-active', idx === vexpIdx));
+    if (user) startVexpTimer();
+  };
+  const startVexpTimer = () => {
+    if (vexpTimer) clearInterval(vexpTimer);
+    vexpTimer = setInterval(() => goVexp(vexpIdx + 1), 6000);
+  };
+
+  let vexpPrevVisible = vexpVisible();
+  window.addEventListener('resize', () => {
+    const v = vexpVisible();
+    if (v !== vexpPrevVisible) { vexpPrevVisible = v; buildVexp(); }
+    goVexp(Math.min(vexpIdx, vexpMax()));
+  });
+
+  goVexp(0);
+  startVexpTimer();
+  document.getElementById('vexpPrev').addEventListener('click', () => goVexp(vexpIdx - 1, true));
+  document.getElementById('vexpNext').addEventListener('click', () => goVexp(vexpIdx + 1, true));
+
+  // -------- VIDEO LIGHTBOX --------
+  const vexpLightbox = document.getElementById('vexpLightbox');
+  const vexpStage = document.getElementById('vexpStage');
+  const vexpCaption = document.getElementById('vexpStageCaption');
+  const openVexp = (v) => {
+    if (vexpTimer) clearInterval(vexpTimer);
+    if (v.video) {
+      vexpStage.style.height = 'min(82vh, 760px)';
+      vexpStage.style.width = 'auto';
+      vexpStage.style.aspectRatio = '9 / 16';
+      vexpStage.style.margin = '0 auto';
+      vexpStage.innerHTML = `<iframe src="https://www.youtube.com/embed/${v.video}?autoplay=1&mute=1&rel=0&playsinline=1" class="w-full h-full" style="border:0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+    } else {
+      vexpStage.innerHTML = `
+        <div class="text-center px-8 py-10">
+          <div class="mx-auto mb-4 w-14 h-14 rounded-full bg-white/10 flex items-center justify-center text-accent-200">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <p class="font-display font-bold text-white text-lg">Video belum ditautkan</p>
+          <p class="mt-2 text-sm text-white/65 max-w-sm mx-auto">Tambahkan tautan video testimoni jamaah untuk diputar di sini.</p>
+        </div>`;
+    }
+    vexpCaption.textContent = `${v.name} — ${v.cat} · ${v.role}`;
+    vexpLightbox.classList.remove('hidden');
+    vexpLightbox.classList.add('flex');
+    vexpLightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeVexp = () => {
+    vexpLightbox.classList.add('hidden');
+    vexpLightbox.classList.remove('flex');
+    vexpLightbox.setAttribute('aria-hidden', 'true');
+    vexpStage.innerHTML = '';
+    vexpStage.style.height = '';
+    vexpStage.style.width = '';
+    vexpStage.style.aspectRatio = '';
+    vexpStage.style.margin = '';
+    document.body.style.overflow = '';
+    startVexpTimer();
+  };
+  vexpLightbox.querySelectorAll('[data-vexp-close]').forEach(el => el.addEventListener('click', closeVexp));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !vexpLightbox.classList.contains('hidden')) closeVexp(); });
+
+  // -------- TWEAKS PROTOCOL --------
+  const panel = document.getElementById('tweaks-panel');
+  const setKeys = (edits) => {
+    Object.assign(TWEAKS, edits);
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+    applyAll();
+  };
+  const applyAll = () => {
+    // Font
+    document.documentElement.style.setProperty('--tw-font-display', `"${TWEAKS.headingFont}", system-ui, sans-serif`);
+    ensureGoogleFont(TWEAKS.headingFont);
+
+    // Accent
+    const accents = {
+      indigo: { italic: '#6B4500', ornament: '#C99A2E' },
+      gold:   { italic: '#875A00', ornament: '#B8860B' },
+      mono:   { italic: '#111341', ornament: '#24286D' },
+    };
+    const a = accents[TWEAKS.accent] || accents.mono;
+    document.querySelectorAll('h1 .italic, h2 .italic').forEach(el => el.style.color = a.italic);
+    document.querySelectorAll('.hero-underline').forEach(el => el.style.color = a.ornament);
+
+    // Marquee speed
+    document.documentElement.style.setProperty('--marquee-duration', TWEAKS.marqueeSeconds + 's');
+    const ms = document.getElementById('tw-marquee-speed-val'); if (ms) ms.textContent = TWEAKS.marqueeSeconds + 's/loop';
+
+    // Tab interval
+    const tv = document.getElementById('tw-tab-speed-val'); if (tv) tv.textContent = TWEAKS.tabIntervalSec.toFixed(1) + 's';
+    restartTabTimer();
+    activateTab(activeTab); // re-arm progress bar duration
+
+    // Headline copy
+    const h = HEADLINES[TWEAKS.headlineIdx % HEADLINES.length];
+    const headline = document.querySelector('#beranda h1');
+    if (headline && h) {
+      const rotateBox = `<span class="hero-rotate-box"><span class="relative inline-block"><span id="heroRotateWord" class="hero-rotate-word">${h.rotate[0]}</span><span class="hero-underline absolute left-0 right-0 -bottom-3 h-[22px]" style="color:${a.ornament}"><svg viewBox="0 0 200 22" preserveAspectRatio="none" fill="currentColor" stroke="none"><path d="M3 11 C 28 6 72 5 112 6 C 150 6.8 178 7.5 196 5 C 199 4.6 200 7 198 9 C 180 12.5 150 13.5 112 14 C 72 14.6 36 15 6 16.5 C 2.5 16.7 0.5 14.5 1.2 12.5 C 1.6 11.4 2 11.1 3 11 Z"/></svg></span></span></span>`;
+      const onLine1 = h.rotateLine === 1;
+      const b1 = `<span class="block">${h.line1}${onLine1 ? rotateBox + (h.tail || '') : ''}</span>`;
+      const b2 = `<span class="block">${h.line2}${onLine1 ? '' : rotateBox}</span>`;
+      headline.innerHTML = b1 + b2;
+      startWordRotator(h.rotate);
+    }
+
+    // Sync controls
+    const fontSel = document.getElementById('tw-font'); if (fontSel) fontSel.value = TWEAKS.headingFont;
+    document.querySelectorAll('#tw-accent button').forEach(b => b.classList.toggle('is-on', b.dataset.val === TWEAKS.accent));
+    const tabRng = document.getElementById('tw-tab-speed'); if (tabRng) tabRng.value = TWEAKS.tabIntervalSec;
+    const mRng = document.getElementById('tw-marquee-speed'); if (mRng) mRng.value = TWEAKS.marqueeSeconds;
+  };
+
+  const loadedFonts = new Set(['Plus Jakarta Sans', 'Inter']);
+  const ensureGoogleFont = (family) => {
+    if (loadedFonts.has(family)) return;
+    loadedFonts.add(family);
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family).replace(/%20/g, '+')}:wght@400;500;600;700;800&display=swap`;
+    document.head.appendChild(link);
+  };
+
+  // Wire controls
+  document.getElementById('tw-font').addEventListener('change', e => setKeys({ headingFont: e.target.value }));
+  document.querySelectorAll('#tw-accent button').forEach(b => {
+    b.addEventListener('click', () => setKeys({ accent: b.dataset.val }));
+  });
+  document.getElementById('tw-tab-speed').addEventListener('input', e => setKeys({ tabIntervalSec: parseFloat(e.target.value) }));
+  document.getElementById('tw-marquee-speed').addEventListener('input', e => setKeys({ marqueeSeconds: parseFloat(e.target.value) }));
+  document.getElementById('tw-copy-cycle').addEventListener('click', () => setKeys({ headlineIdx: (TWEAKS.headlineIdx + 1) % HEADLINES.length }));
+
+  // Show/hide panel via host protocol
+  window.addEventListener('message', (e) => {
+    const t = e.data && e.data.type;
+    if (t === '__activate_edit_mode') { panel.hidden = false; }
+    if (t === '__deactivate_edit_mode') { panel.hidden = true; }
+  });
+  document.getElementById('tweaksClose').addEventListener('click', () => {
+    panel.hidden = true;
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  });
+  // Announce after listener is live
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+  applyAll();
+})();
+</script>
+
+<!-- ============== WHATSAPP FAB ============== -->
+<a id="waFab"
+   href="https://wa.me/6281234567890?text=Assalamualaikum%20Nahdi%20Tour%2C%20saya%20ingin%20konsultasi%20paket%20umrah%20%2F%20haji."
+   target="_blank" rel="noopener"
+   aria-label="Chat via WhatsApp"
+   class="group fixed z-[110] bottom-5 right-5 sm:bottom-7 sm:right-7 flex items-center">
+  <span class="wa-tip pointer-events-none absolute right-[68px] whitespace-nowrap rounded-lg bg-primary-900 text-white text-sm font-medium px-3.5 py-2 shadow-lg opacity-0 translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
+    Konsultasi via WhatsApp
+    <span class="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 rotate-45 bg-primary-900"></span>
+  </span>
+  <span class="relative flex items-center justify-center">
+    <span class="wa-ping absolute inline-flex h-full w-full rounded-full" style="background:#25D366;opacity:.45"></span>
+    <span class="relative inline-flex items-center justify-center w-14 h-14 rounded-full text-white shadow-[0_10px_30px_-6px_rgba(37,211,102,0.6)] transition-transform duration-200 group-hover:scale-105 group-active:scale-95" style="background:#25D366">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 0 0 1.5 5.213l-.999 3.648 3.999-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </span>
+  </span>
+</a>
+
+<style>
+  @keyframes waPing { 0% { transform: scale(1); opacity:.5 } 70%,100% { transform: scale(1.9); opacity:0 } }
+  .wa-ping { animation: waPing 2.4s cubic-bezier(0,0,.2,1) infinite; }
+  @media (prefers-reduced-motion: reduce){ .wa-ping{ animation:none; display:none; } }
+</style>
+
+</body>
+</html>

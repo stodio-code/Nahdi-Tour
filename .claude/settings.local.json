@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(curl -s -I \"https://api.anthropic.com/v1/design/h/lYYrXdLjrvbOPfQ-9pEYXw\")",
+      "Bash(curl -s \"https://api.anthropic.com/v1/design/h/lYYrXdLjrvbOPfQ-9pEYXw?open_file=README.md\" -o /tmp/nahdi_readme.html)",
+      "Read(//tmp/**)",
+      "Bash(curl -s --compressed \"https://api.anthropic.com/v1/design/h/lYYrXdLjrvbOPfQ-9pEYXw?open_file=README.md\" -o /tmp/nahdi_design.html)",
+      "Bash(gunzip -c /tmp/nahdi_design.html > /tmp/nahdi_design_raw.html 2>&1; ls -la /tmp/nahdi_design_raw.html; head -c 3000 /tmp/nahdi_design_raw.html)",
+      "Bash(mkdir -p /tmp/nahdi_extract)",
+      "Bash(tar -xzf /tmp/nahdi_design.html)",
+      "Bash(curl -s --compressed \"https://api.anthropic.com/v1/design/h/9ipq3PcsR3McFzDjWQLDBA?open_file=Nahdi+Tour.html\" -o /tmp/nahdi2_design.tar.gz)",
+      "Bash(mkdir -p /tmp/nahdi2_extract)",
+      "Bash(tar -xzf /tmp/nahdi2_design.tar.gz -C /tmp/nahdi2_extract)"
+    ]
+  }
+}
