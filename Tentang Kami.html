@@ -464,6 +464,59 @@
     main .text-\[14pt\] { font-size: 15px !important; }
     main .text-\[12pt\] { font-size: 13px !important; }
   }
+  /* ---- PENGHARGAAN SECTION ---- */
+@keyframes pgh-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.pgh-marquee { overflow: hidden; }
+.pgh-track {
+  display: flex;
+  width: max-content;
+  animation: pgh-marquee var(--pgh-duration, 60s) linear infinite;
+}
+.pgh-marquee:hover .pgh-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .pgh-track { animation: none; } }
+.pgh-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.pgh-card {
+  flex: 0 0 auto;
+  width: 248px; height: 360px; margin-right: 28px;
+  border-radius: 14px; overflow: hidden;
+  background: #fff; border: 1px solid #E6EAF4;
+}
+.pgh-card img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.pgh-wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+.pgh-head { text-align: center; max-width: 42rem; margin: 0 auto; }
+.pgh-title {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 800; letter-spacing: -0.02em;
+  font-size: 48px; line-height: 1.05; color: #111341; margin: 0;
+}
+.pgh-sub {
+  margin-top: 12px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 18px; line-height: 1.6; color: #5A6573;
+}
+@media (max-width: 1024px) {
+  .pgh-wrap  { padding: 0 24px; }
+  .pgh-card  { width: 220px; height: 320px; margin-right: 22px; }
+  .pgh-title { font-size: 40px; }
+}
+@media (max-width: 768px) {
+  .pgh-wrap  { padding: 0 20px; }
+  .pgh-card  { width: 184px; height: 268px; margin-right: 18px; border-radius: 12px; }
+  .pgh-title { font-size: 32px; }
+  .pgh-sub   { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .pgh-wrap  { padding: 0 16px; }
+  .pgh-card  { width: 150px; height: 218px; margin-right: 14px; border-radius: 10px; }
+  .pgh-title { font-size: 28px; }
+  .pgh-track { --pgh-duration: 45s; }
+}
 </style>
   
 
@@ -599,6 +652,33 @@
     </p>
     <div class="marquee marquee-fade mt-8 relative">
       <div class="marquee-track" id="mitraTrack"></div>
+    </div>
+  </div>
+</section>
+  <!-- ===== PENGHARGAAN ===== -->
+<section style="background:#fff;">
+  <div class="pgh-wrap" style="padding-top:64px; padding-bottom:48px;">
+    <div class="pgh-head">
+      <h2 class="pgh-title">Penghargaan</h2>
+      <p class="pgh-sub">Pengakuan dan kepercayaan dari mitra travel serta lembaga resmi atas dedikasi dan kontribusi Nahdi Tour.</p>
+    </div>
+  </div>
+  <div class="pgh-wrap" style="padding-bottom:64px;">
+    <div class="pgh-marquee pgh-fade">
+      <div class="pgh-track" style="--pgh-duration:60s;">
+        <!-- Set 1 -->
+        <div class="pgh-card"><img src="assets/penghargaan/dwins-travel.png"     alt="Penghargaan Dwins Travel" loading="lazy"></div>
+        <div class="pgh-card"><img src="assets/penghargaan/samara-amanah.png"    alt="Sertifikat Samara Amanah Tour & Travel" loading="lazy"></div>
+        <div class="pgh-card"><img src="assets/penghargaan/kan-pariwisata.png"   alt="Sertifikat Kesesuaian Usaha Pariwisata (KAN)" loading="lazy"></div>
+        <div class="pgh-card"><img src="assets/penghargaan/fajar-insani.png"     alt="Penghargaan Mitra Eksklusif Fajar Insani" loading="lazy"></div>
+        <div class="pgh-card"><img src="assets/penghargaan/al-anshar-madani.png" alt="Penghargaan Mitra Strategis Al-Anshar Madani" loading="lazy"></div>
+        <!-- Set 2 (duplikat untuk loop mulus) -->
+        <div class="pgh-card"><img src="assets/penghargaan/dwins-travel.png"     alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="pgh-card"><img src="assets/penghargaan/samara-amanah.png"    alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="pgh-card"><img src="assets/penghargaan/kan-pariwisata.png"   alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="pgh-card"><img src="assets/penghargaan/fajar-insani.png"     alt="" aria-hidden="true" loading="lazy"></div>
+        <div class="pgh-card"><img src="assets/penghargaan/al-anshar-madani.png" alt="" aria-hidden="true" loading="lazy"></div>
+      </div>
     </div>
   </div>
 </section>
