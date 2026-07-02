@@ -346,9 +346,13 @@
     ],
   };
 
-  const cardHTML = (a, id) => `
-    <a href="Artikel Detail.html?judul=${encodeURIComponent(a.judul)}&kat=${encodeURIComponent(a.kat)}&tgl=${encodeURIComponent(a.tgl)}&foto=${encodeURIComponent(a.foto || '')}" class="artikel-card" aria-label="${a.judul}">
-      <image-slot id="${id}" style="width:100%;aspect-ratio:16/11;" shape="rect" fit="cover" ${a.foto ? `src="${a.foto}"` : ''} placeholder="Gambar artikel"></image-slot>
+  const hrefOf = (a) => a.href || ('Artikel Detail.html?judul=' + encodeURIComponent(a.judul) + '&kat=' + encodeURIComponent(a.kat) + '&tgl=' + encodeURIComponent(a.tgl) + '&foto=' + encodeURIComponent(a.foto || ''));
+
+  const cardHTML = (a, id) => {
+    const srcAttr = a.foto ? ' src="' + a.foto + '"' : '';
+    return `
+    <a href="${hrefOf(a)}" class="artikel-card" aria-label="${a.judul}">
+      <image-slot id="${id}" style="width:100%;aspect-ratio:16/11;" shape="rect" fit="cover"${srcAttr} placeholder="Gambar artikel"></image-slot>
       <div class="p-6 flex flex-col flex-1">
         <h3 class="artikel-title font-display font-bold text-xl leading-snug text-primary-900">${a.judul}</h3>
         <div class="mt-auto pt-6 flex items-center gap-2 text-sm text-slate500">
@@ -358,6 +362,7 @@
         </div>
       </div>
     </a>`;
+  };
 
   const skeletonHTML = () => `
     <div class="skeleton-card" aria-hidden="true">
