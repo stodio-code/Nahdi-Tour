@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sedang Dalam Perbaikan — Nahdi Tour</title>
+<meta name="description" content="Website Nahdi Tour sedang dalam pemeliharaan. Kami akan segera kembali. Untuk kebutuhan mendesak, hubungi kami via WhatsApp." />
+<!-- Jangan diindeks selama maintenance -->
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="icon" type="image/png" href="assets/mark-nahdi-tour-trim.png" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          body: ['Inter', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          primary: {
+            50: '#EBF4FF', 100: '#DBE8FF', 200: '#BFCFFF', 300: '#9EB0FF', 400: '#7E8FF3',
+            500: '#616FD5', 600: '#4B56BA', 700: '#394198', 800: '#24286D', 900: '#111341', 950: '#05061F',
+          },
+          accent: {
+            50: '#FFF4D5', 100: '#FFE9B5', 200: '#F1D087', 300: '#DAB255',
+            400: '#BD9116', 500: '#9F7200', 600: '#875A00', 700: '#6B4500',
+          },
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .font-display { font-family: "Plus Jakarta Sans", system-ui, sans-serif; letter-spacing: -0.02em; }
+
+  /* Makkah backdrop — slow cinematic zoom */
+  .bg-makkah {
+    position: fixed; inset: 0; z-index: 0;
+    background: url("assets/kaaba-masjidil-haram.jpg") center 40% / cover no-repeat;
+    transform: scale(1.06);
+    animation: makkah-zoom 30s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes makkah-zoom { from { transform: scale(1.06); } to { transform: scale(1.16); } }
+
+  /* Navy + gold overlay for mood and readability */
+  .bg-overlay {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      radial-gradient(120% 80% at 50% -10%, rgba(218,178,85,0.16), transparent 55%),
+      radial-gradient(100% 100% at 50% 120%, rgba(5,6,31,0.85), transparent 60%),
+      linear-gradient(180deg, rgba(5,6,31,0.82) 0%, rgba(17,19,65,0.72) 45%, rgba(5,6,31,0.9) 100%);
+  }
+
+  /* Content entrance */
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .rise { opacity: 0; animation: rise .8s cubic-bezier(.22,.61,.36,1) forwards; }
+  .rise-1 { animation-delay: .05s; }
+  .rise-2 { animation-delay: .18s; }
+  .rise-3 { animation-delay: .31s; }
+  .rise-4 { animation-delay: .44s; }
+  .rise-5 { animation-delay: .57s; }
+
+  /* Pulsing status dot */
+  .status-dot { position: relative; }
+  .status-dot::after {
+    content: ""; position: absolute; inset: 0; border-radius: 9999px;
+    background: #DAB255; animation: ping 2.2s cubic-bezier(0,0,.2,1) infinite;
+  }
+  @keyframes ping { 0% { transform: scale(1); opacity: .7; } 70%, 100% { transform: scale(2.6); opacity: 0; } }
+
+  /* Gold CTA */
+  .btn-gold { background:#DAB255; color:#111341; transition: background .2s ease, transform .2s ease, box-shadow .2s ease; box-shadow: 0 8px 24px -8px rgba(218,178,85,0.5); }
+  .btn-gold:hover { background:#E7C46A; transform: translateY(-1px); box-shadow: 0 12px 30px -8px rgba(218,178,85,0.6); }
+  .btn-gold:active { background:#C99A2E; transform: translateY(0); }
+
+  .soc { transition: background .2s ease, color .2s ease, border-color .2s ease; }
+  .soc:hover { background: rgba(255,255,255,0.12); color:#fff; border-color: rgba(255,255,255,0.35); }
+
+  :focus-visible { outline: 2px solid #DAB255; outline-offset: 3px; border-radius: 6px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bg-makkah { animation: none; transform: scale(1.06); }
+    .rise { opacity: 1; animation: none; }
+    .status-dot::after { animation: none; display: none; }
+  }
+</style>
+</head>
+<body class="min-h-[100dvh] bg-primary-950 text-white overflow-hidden">
+
+<div class="bg-makkah" aria-hidden="true"></div>
+<div class="bg-overlay" aria-hidden="true"></div>
+
+<main class="relative z-10 min-h-[100dvh] flex flex-col items-center justify-center text-center px-6 py-12">
+
+  <!-- Logo -->
+  <img src="assets/logo-full-white.png" alt="Nahdi Tour" class="rise rise-1 h-9 sm:h-10 w-auto mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]" />
+
+  <!-- Status pill -->
+  <div class="rise rise-2 inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-4 py-1.5 mb-7">
+    <span class="status-dot inline-block w-2 h-2 rounded-full bg-accent-300"></span>
+    <span class="text-xs font-semibold tracking-[0.18em] uppercase text-accent-200">Sedang Dalam Pemeliharaan</span>
+  </div>
+
+  <!-- Heading -->
+  <h1 class="rise rise-2 font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.15] text-balance max-w-2xl" style="text-shadow:0 2px 24px rgba(0,0,0,0.4);">
+    Website Kami Sedang <span class="text-accent-300">Berbenah</span>
+  </h1>
+
+  <!-- Subtitle -->
+  <p class="rise rise-3 mt-6 text-base sm:text-lg leading-relaxed text-white/80 max-w-xl text-pretty">
+    Mohon maaf atas ketidaknyamanannya. Kami sedang meningkatkan layanan agar
+    persiapan ibadah Umrah dan Haji Anda semakin nyaman. Insya Allah kami akan
+    segera kembali.
+  </p>
+
+  <!-- CTA -->
+  <div class="rise rise-4 mt-9 flex flex-col sm:flex-row items-center gap-3">
+    <a href="https://wa.me/6281314542357?text=Assalamualaikum%2C%20saya%20ingin%20bertanya%20mengenai%20layanan%20Nahdi%20Tour"
+       target="_blank" rel="noopener"
+       class="btn-gold inline-flex items-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-semibold">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
+      Hubungi Kami via WhatsApp
+    </a>
+    <span class="text-sm text-white/50">atau kunjungi kami di media sosial</span>
+  </div>
+
+  <!-- Social -->
+  <div class="rise rise-5 mt-7 flex items-center gap-2.5">
+    <a aria-label="Instagram" href="#" class="soc w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/15 text-white/75">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+    </a>
+    <a aria-label="Facebook" href="#" class="soc w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/15 text-white/75">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+    <a aria-label="TikTok" href="#" class="soc w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/15 text-white/75">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 7.3a5.5 5.5 0 0 1-3.3-1.1V15a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v2.7a2.8 2.8 0 1 0 1.9 2.7V2h2.7a5.5 5.5 0 0 0 3.3 5z"/></svg>
+    </a>
+    <a aria-label="YouTube" href="#" class="soc w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/15 text-white/75">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <p class="rise rise-5 absolute bottom-6 inset-x-0 text-xs text-white/45 px-6">
+    © 2023 Nahdi Tour — merek milik PT Nahdi Duta Wisata
+  </p>
+
+</main>
+
+</body>
+</html>
