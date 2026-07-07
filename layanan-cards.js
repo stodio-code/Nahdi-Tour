@@ -70,8 +70,8 @@
     pahala:   { nama: 'Pahala Wisata',   logo: 'assets/mitra/pahala-wisata.png',    izin: 'Hajj & Umroh Services' },
     haramain: { nama: 'HaramainKU',      logo: 'assets/mitra/haramainku.png',       izin: 'PT Kartika Utama · terverifikasi' },
     allia:    { nama: 'Allia',           logo: 'assets/mitra/allia.png',            izin: 'Haji & Umrah sesuai Sunnah' },
-    sahabat:  { nama: 'Sahabat Haji',              logo: '', izin: 'Mitra travel terverifikasi' },
-    binDawood:{ nama: 'Bin Dawood Tour and Travel', logo: '', izin: 'Mitra travel terverifikasi' },
+    sahabat:  { nama: 'Sahabat Haji',    logo: 'assets/mitra/sahabat-haji.png',     izin: 'Mitra travel terverifikasi' },
+    binDawood:{ nama: 'Bin Dawood Tour and Travel', logo: 'assets/mitra/Bin-Dawood-Travel.png',                       izin: 'Mitra travel terverifikasi' },
     dwins:    { nama: 'Dwins Travel',    logo: 'assets/mitra/dwins-travel.png',     izin: 'Mitra travel terverifikasi' },
   };
 
