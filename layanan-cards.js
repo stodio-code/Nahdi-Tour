@@ -28,8 +28,8 @@
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS[name] + '</svg>' +
     '</span>';
 
-  // ---- Data paket (placeholder — silakan sesuaikan) ----
-  const FASILITAS_BADAL = [
+  // ---- Data paket ----
+  const FASILITAS_BADAL_HAJI = [
     ['video',    'Video Dokumentasi'],
     ['file',     'Sertifikat PDF'],
     ['gift',     'Souvenir Sajadah'],
@@ -39,9 +39,19 @@
     ['sparkles', 'Bisa Titip Doa'],
   ];
 
-  const FASILITAS_REGULER = [
+  const FASILITAS_BADAL_UMROH = [
+    ['video',    'Video Dokumentasi'],
+    ['file',     'Sertifikat PDF'],
+    ['gift',     'Souvenir Sajadah'],
+    ['book',     'Pelaksanaan Sesuai Sunnah'],
+    ['user',     'Hanya Badal 1 Jiwa'],
+    ['sparkles', 'Bisa Titip Doa'],
+  ];
+
+  // Fasilitas paket Umrah reguler — sama untuk semua mitra, kecuali baris hotel.
+  const fasilitasUmrah = (hotelLabel) => [
     ['plane',    'Tiket Pesawat PP'],
-    ['bed',      'Hotel Makkah & Madinah'],
+    ['bed',      hotelLabel],
     ['utensils', 'Makan 3x Sehari'],
     ['stamp',    'Visa & Perlengkapan'],
     ['user',     'Mutawif Berpengalaman'],
@@ -60,9 +70,9 @@
     pahala:   { nama: 'Pahala Wisata',   logo: 'assets/mitra/pahala-wisata.png',    izin: 'Hajj & Umroh Services' },
     haramain: { nama: 'HaramainKU',      logo: 'assets/mitra/haramainku.png',       izin: 'PT Kartika Utama · terverifikasi' },
     allia:    { nama: 'Allia',           logo: 'assets/mitra/allia.png',            izin: 'Haji & Umrah sesuai Sunnah' },
-    sahabat:  { nama: 'Sahabat Haji',    logo: '',                                  izin: 'Mitra travel terverifikasi' },
-    binDawood:{ nama: 'Bin Dawood',      logo: '',                                  izin: 'Mitra travel terverifikasi' },
-    dwins:    { nama: 'Dwins',           logo: 'assets/mitra/dwins-travel.png',     izin: 'Mitra travel terverifikasi' },
+    sahabat:  { nama: 'Sahabat Haji',              logo: '', izin: 'Mitra travel terverifikasi' },
+    binDawood:{ nama: 'Bin Dawood Tour and Travel', logo: '', izin: 'Mitra travel terverifikasi' },
+    dwins:    { nama: 'Dwins Travel',    logo: 'assets/mitra/dwins-travel.png',     izin: 'Mitra travel terverifikasi' },
   };
 
   // ---- Foto Tanah Suci (dipakai sebagai header kartu) ----
@@ -85,80 +95,85 @@
     umrahItikafMutiara:     'assets/brosur/umroh-itikaf-mutiara-sunnah.png',
     umrahTurkiDwins:        'assets/brosur/umroh-turki-dwins.png',
     umrahDubaiDwins:        'assets/brosur/umroh-dubai-dwins.png',
+    badalHaji:              'assets/brosur/badal-haji-nahdi-tour.png',
+    badalUmroh:             'assets/brosur/badal-umroh-nahdi-tour.png',
   };
 
   const PAKET_DATA = {
     badal: [
-      { id: 'badal-1', judul: 'Badal Haji', foto: FOTO.kaabaClock, fasilitas: FASILITAS_BADAL, mitra: MITRA.elMarwa, harga: '35 Juta' },
-      { id: 'badal-2', judul: 'Badal Haji', foto: FOTO.kaabaMinaret, fasilitas: FASILITAS_BADAL, mitra: MITRA.mutiara, harga: '35 Juta' },
-      { id: 'badal-3', judul: 'Badal Haji', foto: FOTO.madinah, fasilitas: FASILITAS_BADAL, mitra: MITRA.allia, harga: '35 Juta' },
+      {
+        id: 'badal-1', judul: 'Badal Haji', foto: FOTO.kaabaClock,
+        fasilitas: FASILITAS_BADAL_HAJI,
+        mitra: MITRA.nahdi, harga: 'Rp37,5 juta', download: BROSUR.badalHaji,
+      },
+      {
+        id: 'badal-2', judul: 'Badal Umroh', foto: FOTO.kaabaMinaret2,
+        fasilitas: FASILITAS_BADAL_UMROH,
+        mitra: MITRA.nahdi, harga: 'Rp3,5 juta', download: BROSUR.badalUmroh,
+      },
     ],
     reguler: [
-      { id: 'reguler-1', judul: 'Umrah Akhir Tahun', foto: FOTO.kaabaClock2, fasilitas: FASILITAS_REGULER, mitra: MITRA.uhud, harga: 'Rp?', download: BROSUR.umrahAkhirTahunUhud },
-      { id: 'reguler-2', judul: 'Umrah Akhir Tahun', foto: FOTO.kaabaMinaret2, fasilitas: FASILITAS_REGULER, mitra: MITRA.mutiara, harga: 'Rp?', download: BROSUR.umrahAkhirTahunMutiara },
-      { id: 'reguler-3', judul: 'Umrah Akhir Tahun', foto: FOTO.madinah, fasilitas: FASILITAS_REGULER, mitra: MITRA.dwins, harga: 'Rp?', download: BROSUR.umrahAkhirTahunDwins },
-      { id: 'reguler-4', judul: 'Umrah Ramadhan', foto: FOTO.kaabaClock, fasilitas: FASILITAS_REGULER, mitra: MITRA.mutiara, harga: 'Rp43,5 juta' },
-      { id: 'reguler-5', judul: 'Umrah Ramadhan', foto: FOTO.kaabaMinaret, fasilitas: FASILITAS_REGULER, mitra: MITRA.dwins, harga: 'Rp?' },
-      { id: 'reguler-6', judul: 'Umrah & Wisata Halal Turki', foto: FOTO.kaabaClock2, fasilitas: FASILITAS_REGULER, mitra: MITRA.mutiara, harga: 'Rp?' },
-      { id: 'reguler-7', judul: 'Umrah & Wisata Halal Turki', foto: FOTO.kaabaMinaret2, fasilitas: FASILITAS_REGULER, mitra: MITRA.dwins, harga: 'Rp?', download: BROSUR.umrahTurkiDwins },
-      { id: 'reguler-8', judul: 'Umrah & Wisata Halal Dubai', foto: FOTO.madinah, fasilitas: FASILITAS_REGULER, mitra: MITRA.mutiara, harga: 'Rp?' },
-      { id: 'reguler-9', judul: 'Umrah & Wisata Halal Dubai', foto: FOTO.kaabaClock, fasilitas: FASILITAS_REGULER, mitra: MITRA.dwins, harga: 'Rp?', download: BROSUR.umrahDubaiDwins },
-      { id: 'reguler-10', judul: "Umrah I'tikaf", foto: FOTO.kaabaMinaret, fasilitas: FASILITAS_REGULER, mitra: MITRA.mutiara, harga: 'Rp?', download: BROSUR.umrahItikafMutiara },
+      {
+        id: 'reguler-1', judul: 'Umrah Akhir Tahun', foto: FOTO.kaabaMinaret2,
+        fasilitas: fasilitasUmrah('Anjum Hotel (Makkah) & Darul Iman Al Haram (Madinah)'),
+        mitra: MITRA.uhud, harga: 'Rp65,5 juta', download: BROSUR.umrahAkhirTahunUhud,
+      },
+      {
+        id: 'reguler-2', judul: 'Umrah Akhir Tahun', foto: FOTO.madinah,
+        fasilitas: fasilitasUmrah('Royal Majestik (Makkah) & Deyar Al Eiman (Madinah)'),
+        mitra: { ...MITRA.dwins, nama: 'Dwins Travel (Paket Reguler)' }, harga: 'Rp29,5 juta', download: BROSUR.umrahAkhirTahunDwins,
+      },
+      {
+        id: 'reguler-3', judul: 'Umrah Akhir Tahun', foto: FOTO.kaabaClock,
+        fasilitas: fasilitasUmrah('Movenpick Hajar (Makkah) & Deyar Aleiman (Madinah)'),
+        mitra: MITRA.mutiara, harga: 'Rp43,3 juta', download: BROSUR.umrahAkhirTahunMutiara,
+      },
+      {
+        id: 'reguler-4', judul: 'Umrah Plus Dubai', foto: FOTO.kaabaMinaret,
+        fasilitas: fasilitasUmrah('Le Meridien Tower (Makkah) & Dar Al Naem (Madinah)'),
+        mitra: MITRA.dwins, harga: 'Rp35,5 juta', download: BROSUR.umrahDubaiDwins,
+      },
+      {
+        id: 'reguler-5', judul: 'Umrah Plus Turki Cappadocia', foto: FOTO.kaabaClock2,
+        fasilitas: fasilitasUmrah('Royal Majestik (Makkah) & Deyar Al Eiman (Madinah)'),
+        mitra: MITRA.dwins, harga: 'Rp38,9 juta', download: BROSUR.umrahTurkiDwins,
+      },
+      {
+        id: 'reguler-6', judul: "Umrah I'tikaf Ramadhan", foto: FOTO.madinah,
+        fasilitas: fasilitasUmrah('Wahat Ajyad (Makkah) & ODST / Triple One (Madinah)'),
+        mitra: MITRA.mutiara, harga: 'Rp38,9 juta', download: BROSUR.umrahItikafMutiara,
+      },
     ],
     khusus: [
       {
         id: 'khusus-1', judul: 'Haji Khusus', foto: FOTO.kaabaClock,
         fasilitas: [
-          ['hourglass', 'Masa Tunggu 5-7 tahun'],
-          ['stamp',     'Visa Haji Resmi'],
+          ['hourglass', 'Masa Tunggu 8-10 Tahun'],
           ['ticket',    'Langsung Dapat No. Porsi'],
           ['wallet',    'Total Biaya Pelunasan Ditetapkan di Tahun Keberangkatan'],
+          ['bed',       'Hotel Bintang 4-5 (Setaraf)'],
         ],
-        mitra: MITRA.sahabat, harga: '$ 1.000', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususSahabat,
+        mitra: MITRA.sahabat, harga: '$ 4.000', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususSahabat,
       },
       {
         id: 'khusus-2', judul: 'Haji Khusus', foto: FOTO.kaabaMinaret,
         fasilitas: [
-          ['hourglass', 'Masa Tunggu 5-7 tahun'],
-          ['stamp',     'Visa Haji Resmi'],
-          ['tent',      'Tenda Mina AC'],
-          ['building',  'Apartment Transit'],
-          ['utensils',  'Makan 3x Sehari'],
+          ['bed',      'Jeddah — Rosemond Hotel (Setaraf)'],
+          ['bed',      'Makkah — Fairmont Hotel (Setaraf)'],
+          ['bed',      'Madinah — Shahd by Sofitel (Setaraf)'],
+          ['building', 'Aziziah — Apartment Transit'],
         ],
-        mitra: MITRA.binDawood, harga: '$ 1.000', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususBinDawood,
+        mitra: MITRA.binDawood, harga: '$ 4.500', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususBinDawood,
       },
       {
         id: 'khusus-3', judul: 'Haji Khusus', foto: FOTO.kaabaClock2,
         fasilitas: [
-          ['hourglass', 'Masa Tunggu 5-7 tahun'],
+          ['hourglass', 'Masa Tunggu 7-9 Tahun'],
           ['stamp',     'Visa Haji Resmi'],
-          ['plane',     'Maskapai Garuda'],
-          ['bed',       'Hotel Makkah & Madinah'],
-          ['user',      'Mutawif Berpengalaman'],
+          ['bed',       'Makkah — Royal Majestik'],
+          ['bed',       'Madinah — Concord Al Khair'],
         ],
-        mitra: MITRA.uhud, harga: '$ 1.000', hargaLabel: 'DP per Orang',
-      },
-      {
-        id: 'khusus-4', judul: 'Haji Khusus', foto: FOTO.kaabaMinaret2,
-        fasilitas: [
-          ['hourglass', 'Masa Tunggu 5-7 tahun'],
-          ['stamp',     'Visa Haji Resmi'],
-          ['tent',      'Tenda Mina AC'],
-          ['utensils',  'Makan 3x Sehari'],
-          ['book',      'Manasik Gratis'],
-        ],
-        mitra: MITRA.haramain, harga: '$ 1.000', hargaLabel: 'DP per Orang',
-      },
-      {
-        id: 'khusus-5', judul: 'Haji Khusus', foto: FOTO.madinah,
-        fasilitas: [
-          ['hourglass', 'Masa Tunggu 5-7 tahun'],
-          ['stamp',     'Visa Haji Resmi'],
-          ['bed',       'Hotel Makkah & Madinah'],
-          ['utensils',  'Makan 3x Sehari'],
-          ['user',      'Mutawif Berpengalaman'],
-        ],
-        mitra: MITRA.dwins, harga: '$ 1.000', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususDwins,
+        mitra: { ...MITRA.dwins, nama: 'Dwins Travel (Paket Reguler)' }, harga: '$ 4.900', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususDwins,
       },
     ],
   };
