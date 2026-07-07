@@ -60,7 +60,7 @@
 
   // ---- Mitra travel partner (logo lockups di assets/mitra) ----
   const MITRA = {
-    nahdi:    { nama: 'Nahdi Tour',      logo: 'assets/logo-full-black.png',        izin: 'Berizin resmi sebagai BPW' },
+    nahdi:    { nama: 'Nahdi Tour',      logo: 'assets/mark-nahdi-tour.png',        izin: 'Berizin resmi sebagai BPW' },
     elMarwa:  { nama: 'El Marwa',        logo: 'assets/mitra/el-marwa.png',         izin: 'Mitra travel terverifikasi' },
     namira:   { nama: 'Namira',          logo: 'assets/mitra/namira.png',           izin: 'Izin Umrah 183 · Haji 693' },
     safir:    { nama: 'Safir Tour',      logo: 'assets/mitra/safir.png',            izin: 'Terpercaya sejak 2009' },
