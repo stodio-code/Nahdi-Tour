@@ -60,6 +60,9 @@
     pahala:   { nama: 'Pahala Wisata',   logo: 'assets/mitra/pahala-wisata.png',    izin: 'Hajj & Umroh Services' },
     haramain: { nama: 'HaramainKU',      logo: 'assets/mitra/haramainku.png',       izin: 'PT Kartika Utama · terverifikasi' },
     allia:    { nama: 'Allia',           logo: 'assets/mitra/allia.png',            izin: 'Haji & Umrah sesuai Sunnah' },
+    sahabat:  { nama: 'Sahabat Haji',    logo: '',                                  izin: 'Mitra travel terverifikasi' },
+    binDawood:{ nama: 'Bin Dawood',      logo: '',                                  izin: 'Mitra travel terverifikasi' },
+    dwins:    { nama: 'Dwins',           logo: 'assets/mitra/dwins-travel.png',     izin: 'Mitra travel terverifikasi' },
   };
 
   // ---- Foto Tanah Suci (dipakai sebagai header kartu) ----
@@ -71,6 +74,19 @@
     madinah:     'assets/wisata-halal.jpg',
   };
 
+  // ---- Brosur PDF/JPG mitra (assets/brosur) — kosongkan jika belum tersedia ----
+  const BROSUR = {
+    hajiKhususSahabat:    'assets/brosur/haji-khusus-sahabat-haji.png',
+    hajiKhususBinDawood:  'assets/brosur/haji-khusus-bin-dawood.png',
+    hajiKhususDwins:      'assets/brosur/haji-khusus-dwins.png',
+    umrahAkhirTahunUhud:    'assets/brosur/umroh-akhir-tahun-uhud.png',
+    umrahAkhirTahunMutiara: 'assets/brosur/umroh-akhir-tahun-mutiara-sunnah.png',
+    umrahAkhirTahunDwins:   'assets/brosur/umroh-akhir-tahun-dwins.png',
+    umrahItikafMutiara:     'assets/brosur/umroh-itikaf-mutiara-sunnah.png',
+    umrahTurkiDwins:        'assets/brosur/umroh-turki-dwins.png',
+    umrahDubaiDwins:        'assets/brosur/umroh-dubai-dwins.png',
+  };
+
   const PAKET_DATA = {
     badal: [
       { id: 'badal-1', judul: 'Badal Haji', foto: FOTO.kaabaClock, fasilitas: FASILITAS_BADAL, mitra: MITRA.elMarwa, harga: '35 Juta' },
@@ -78,19 +94,27 @@
       { id: 'badal-3', judul: 'Badal Haji', foto: FOTO.madinah, fasilitas: FASILITAS_BADAL, mitra: MITRA.allia, harga: '35 Juta' },
     ],
     reguler: [
-      { id: 'reguler-1', judul: 'Umrah Reguler', foto: FOTO.kaabaClock2, fasilitas: FASILITAS_REGULER, mitra: MITRA.namira, harga: '35 Juta' },
-      { id: 'reguler-2', judul: 'Umrah Reguler', foto: FOTO.kaabaMinaret2, fasilitas: FASILITAS_REGULER, mitra: MITRA.safir, harga: '35 Juta' },
-      { id: 'reguler-3', judul: 'Umrah Reguler', foto: FOTO.madinah, fasilitas: FASILITAS_REGULER, mitra: MITRA.pahala, harga: '35 Juta' },
+      { id: 'reguler-1', judul: 'Umrah Akhir Tahun', foto: FOTO.kaabaClock2, fasilitas: FASILITAS_REGULER, mitra: MITRA.uhud, harga: 'Rp?', download: BROSUR.umrahAkhirTahunUhud },
+      { id: 'reguler-2', judul: 'Umrah Akhir Tahun', foto: FOTO.kaabaMinaret2, fasilitas: FASILITAS_REGULER, mitra: MITRA.mutiara, harga: 'Rp?', download: BROSUR.umrahAkhirTahunMutiara },
+      { id: 'reguler-3', judul: 'Umrah Akhir Tahun', foto: FOTO.madinah, fasilitas: FASILITAS_REGULER, mitra: MITRA.dwins, harga: 'Rp?', download: BROSUR.umrahAkhirTahunDwins },
+      { id: 'reguler-4', judul: 'Umrah Ramadhan', foto: FOTO.kaabaClock, fasilitas: FASILITAS_REGULER, mitra: MITRA.mutiara, harga: 'Rp43,5 juta' },
+      { id: 'reguler-5', judul: 'Umrah Ramadhan', foto: FOTO.kaabaMinaret, fasilitas: FASILITAS_REGULER, mitra: MITRA.dwins, harga: 'Rp?' },
+      { id: 'reguler-6', judul: 'Umrah & Wisata Halal Turki', foto: FOTO.kaabaClock2, fasilitas: FASILITAS_REGULER, mitra: MITRA.mutiara, harga: 'Rp?' },
+      { id: 'reguler-7', judul: 'Umrah & Wisata Halal Turki', foto: FOTO.kaabaMinaret2, fasilitas: FASILITAS_REGULER, mitra: MITRA.dwins, harga: 'Rp?', download: BROSUR.umrahTurkiDwins },
+      { id: 'reguler-8', judul: 'Umrah & Wisata Halal Dubai', foto: FOTO.madinah, fasilitas: FASILITAS_REGULER, mitra: MITRA.mutiara, harga: 'Rp?' },
+      { id: 'reguler-9', judul: 'Umrah & Wisata Halal Dubai', foto: FOTO.kaabaClock, fasilitas: FASILITAS_REGULER, mitra: MITRA.dwins, harga: 'Rp?', download: BROSUR.umrahDubaiDwins },
+      { id: 'reguler-10', judul: "Umrah I'tikaf", foto: FOTO.kaabaMinaret, fasilitas: FASILITAS_REGULER, mitra: MITRA.mutiara, harga: 'Rp?', download: BROSUR.umrahItikafMutiara },
     ],
     khusus: [
       {
         id: 'khusus-1', judul: 'Haji Khusus', foto: FOTO.kaabaClock,
         fasilitas: [
-          ['hourglass', 'Masa Tunggu 8-10 tahun'],
-          ['wallet',    'Total Biaya Pelunasan Ditetapkan di Tahun Keberangkatan'],
+          ['hourglass', 'Masa Tunggu 5-7 tahun'],
+          ['stamp',     'Visa Haji Resmi'],
           ['ticket',    'Langsung Dapat No. Porsi'],
+          ['wallet',    'Total Biaya Pelunasan Ditetapkan di Tahun Keberangkatan'],
         ],
-        mitra: MITRA.uhud, harga: '$ 4.000',
+        mitra: MITRA.sahabat, harga: '$ 1.000', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususSahabat,
       },
       {
         id: 'khusus-2', judul: 'Haji Khusus', foto: FOTO.kaabaMinaret,
@@ -100,25 +124,41 @@
           ['tent',      'Tenda Mina AC'],
           ['building',  'Apartment Transit'],
           ['utensils',  'Makan 3x Sehari'],
-          ['plane',     'Maskapai Garuda'],
-          ['bed',       'Hotel Makkah Anjum Hotel'],
-          ['bed',       'Hotel Makkah Emaar Elite'],
         ],
-        mitra: MITRA.haramain, harga: '$ 4.300',
+        mitra: MITRA.binDawood, harga: '$ 1.000', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususBinDawood,
       },
       {
-        id: 'khusus-3', judul: 'Paket Gold Haji Khusus', foto: FOTO.kaabaClock2,
+        id: 'khusus-3', judul: 'Haji Khusus', foto: FOTO.kaabaClock2,
         fasilitas: [
           ['hourglass', 'Masa Tunggu 5-7 tahun'],
           ['stamp',     'Visa Haji Resmi'],
-          ['plane',     'Maskapai Qatar Airways'],
-          ['plane',     'Maskapai Emirates'],
-          ['bed',       'Hotel Makkah Pulman Zamzam'],
-          ['bed',       'Hotel Makkah Movenpick'],
-          ['bed',       'Hotel Madinah Nozol Royal'],
-          ['bed',       'Hotel Madinah Movenpick'],
+          ['plane',     'Maskapai Garuda'],
+          ['bed',       'Hotel Makkah & Madinah'],
+          ['user',      'Mutawif Berpengalaman'],
         ],
-        mitra: MITRA.alAnshar, harga: '$ 14.250',
+        mitra: MITRA.uhud, harga: '$ 1.000', hargaLabel: 'DP per Orang',
+      },
+      {
+        id: 'khusus-4', judul: 'Haji Khusus', foto: FOTO.kaabaMinaret2,
+        fasilitas: [
+          ['hourglass', 'Masa Tunggu 5-7 tahun'],
+          ['stamp',     'Visa Haji Resmi'],
+          ['tent',      'Tenda Mina AC'],
+          ['utensils',  'Makan 3x Sehari'],
+          ['book',      'Manasik Gratis'],
+        ],
+        mitra: MITRA.haramain, harga: '$ 1.000', hargaLabel: 'DP per Orang',
+      },
+      {
+        id: 'khusus-5', judul: 'Haji Khusus', foto: FOTO.madinah,
+        fasilitas: [
+          ['hourglass', 'Masa Tunggu 5-7 tahun'],
+          ['stamp',     'Visa Haji Resmi'],
+          ['bed',       'Hotel Makkah & Madinah'],
+          ['utensils',  'Makan 3x Sehari'],
+          ['user',      'Mutawif Berpengalaman'],
+        ],
+        mitra: MITRA.dwins, harga: '$ 1.000', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususDwins,
       },
     ],
   };
@@ -128,6 +168,14 @@
     '<li class="flex items-start gap-2.5">' + icon(ic) +
       '<span class="text-sm text-slate700 leading-snug">' + label + '</span>' +
     '</li>';
+
+  // Tombol brosur: link download (jika file tersedia) atau keterangan "Coming Soon".
+  const brosurHTML = (p) => {
+    if (p.download) {
+      return '<a href="' + p.download + '" download class="btn-outline inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold">Download Brosur</a>';
+    }
+    return '<span class="btn-outline inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold" aria-disabled="true" title="Brosur belum tersedia">Brosur Segera Hadir</span>';
+  };
 
   const cardHTML = (p, key) => {
     const satuan = '';
@@ -140,7 +188,7 @@
 
           <div class="mt-4 flex items-center gap-3">
             <span class="shrink-0 w-12 h-12 rounded-full bg-white border border-slate200 flex items-center justify-center overflow-hidden p-1.5">
-              <img src="${p.mitra.logo}" alt="${p.mitra.nama}" class="max-w-full max-h-full object-contain" />
+              ${p.mitra.logo ? `<img src="${p.mitra.logo}" alt="${p.mitra.nama}" class="max-w-full max-h-full object-contain" />` : `<span class="font-display font-bold text-sm text-primary-700">${p.mitra.nama.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase()}</span>`}
             </span>
             <span class="min-w-0">
               <span class="block text-[15px] font-semibold text-primary-900 leading-tight truncate">${p.mitra.nama}</span>
@@ -152,7 +200,7 @@
           </div>
 
           <div class="mt-5 pt-5 border-t border-slate200">
-            <span class="block text-sm text-slate500">Per Orang Mulai dari</span>
+            <span class="block text-sm text-slate500">${p.hargaLabel || 'Per Orang Mulai dari'}</span>
             <span class="block font-display font-extrabold text-2xl text-primary-900 whitespace-nowrap">${p.harga}${satuan}</span>
           </div>
         </div>
@@ -171,7 +219,7 @@
         </button>
         <div class="paket-actions mt-5 pt-5 border-t border-slate200 flex flex-col gap-2.5">
           <a href="Nahdi Tour.html#konsultasi" class="btn-primary inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold">Konsultasi Sekarang</a>
-          <a href="#" class="btn-outline inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold">Kunjungi Mitra Travel</a>
+          ${brosurHTML(p)}
         </div>
       </div>
     </article>`;

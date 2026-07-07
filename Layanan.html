@@ -75,6 +75,7 @@
   .btn-outline { background:#fff; color:#24286D; border:1.5px solid #C5CFD7; transition: background .2s ease, color .2s ease, border-color .2s ease; }
   .btn-outline:hover { background:#F4F5F7; color:#24286D; border-color:#96A0A7; }
   .btn-outline:active { background:#EBF0F4; border-color:#6A737A; }
+  .btn-outline[aria-disabled="true"] { opacity:.55; cursor:not-allowed; pointer-events:none; }
 
   /* Mobile-only toggle that expands the fasilitas panel.
      Hidden by default (desktop uses the hover popover); shown only where
@@ -377,7 +378,7 @@
       <div class="relative px-7 sm:px-10 lg:px-14 py-8 lg:py-12">
         <div class="max-w-2xl">
           <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.12] text-balance text-white" style="text-shadow:0 2px 18px rgba(0,0,0,0.35);">Temukan Paket Terbaik Anda</h1>
-          <p class="mt-5 text-base sm:text-lg text-white/85 leading-relaxed max-w-xl">Berbagai pilihan paket umrah, haji, hingga Badal Umrah &amp; Haji dengan layanan amanah, dan sesuai syari'ah.</p>
+          <p class="mt-5 text-base sm:text-lg text-white/85 leading-relaxed max-w-xl">Beragam pilihan Umrah, Haji, dan Badal dengan layanan amanah sesuai syari'ah, serta GRATIS biaya pindah PIN/Travel untuk pemilik porsi haji khusus.</p>
         </div>
       </div>
     </div>
@@ -391,26 +392,26 @@
       <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">
         Semua paket
       </button>
-      <button type="button" class="filter-chip" data-filter="badal" aria-pressed="false">
-        Badal Umrah &amp; Haji
-      </button>
-      <button type="button" class="filter-chip" data-filter="reguler" aria-pressed="false">
-        Umrah &amp; Haji Reguler
-      </button>
       <button type="button" class="filter-chip" data-filter="khusus" aria-pressed="false">
         Haji Khusus
+      </button>
+      <button type="button" class="filter-chip" data-filter="reguler" aria-pressed="false">
+        Umrah
+      </button>
+      <button type="button" class="filter-chip" data-filter="badal" aria-pressed="false">
+        Badal Haji dan Umrah
       </button>
     </div>
   </div>
 </section>
 
-<!-- ===== BADAL UMRAH & HAJI ===== -->
-<section class="bg-white" data-paket-section="badal" data-screen-label="Badal Umrah &amp; Haji">
+<!-- ===== HAJI KHUSUS ===== -->
+<section class="bg-white" data-paket-section="khusus" data-screen-label="Haji Khusus">
   <div class="max-w-[1120px] mx-auto px-5 lg:px-8 pt-7 lg:pt-8 pb-4">
-    <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-primary-900">Badal Umrah &amp; Haji</h2>
+    <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-primary-900">Haji Khusus</h2>
 
-    <div class="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-paket-grid="badal">
-      <!-- cards rendered by JS from PAKET_DATA.badal -->
+    <div class="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-paket-grid="khusus">
+      <!-- cards rendered by JS from PAKET_DATA.khusus -->
     </div>
   </div>
 </section>
@@ -418,7 +419,7 @@
 <!-- ===== UMRAH & HAJI REGULER ===== -->
 <section class="bg-white" data-paket-section="reguler" data-screen-label="Umrah &amp; Haji Reguler">
   <div class="max-w-[1120px] mx-auto px-5 lg:px-8 pt-12 lg:pt-14 pb-4">
-    <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-primary-900">Umrah &amp; Haji Reguler</h2>
+    <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-primary-900">Umrah</h2>
 
     <div class="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-paket-grid="reguler">
       <!-- cards rendered by JS from PAKET_DATA.reguler -->
@@ -426,13 +427,13 @@
   </div>
 </section>
 
-<!-- ===== HAJI KHUSUS ===== -->
-<section class="bg-white" data-paket-section="khusus" data-screen-label="Haji Khusus">
+<!-- ===== BADAL UMRAH & HAJI ===== -->
+<section class="bg-white" data-paket-section="badal" data-screen-label="Badal Haji dan Umrah">
   <div class="max-w-[1120px] mx-auto px-5 lg:px-8 pt-12 lg:pt-14 pb-16">
-    <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-primary-900">Haji Khusus</h2>
+    <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-primary-900">Badal Haji dan Umrah</h2>
 
-    <div class="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-paket-grid="khusus">
-      <!-- cards rendered by JS from PAKET_DATA.khusus -->
+    <div class="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-paket-grid="badal">
+      <!-- cards rendered by JS from PAKET_DATA.badal -->
     </div>
   </div>
 </section>
