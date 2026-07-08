@@ -592,12 +592,21 @@
   <div class="max-w-[1120px] mx-auto px-5 lg:px-8 py-16">
     <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
       <div class="reveal order-2 lg:order-1 flex justify-center lg:justify-start">
-        <image-slot id="pendiri" style="width:100%;max-width:406px;height:271px;" shape="rounded" radius="24" fit="cover" placeholder="Foto pendiri Nahdi Tour"></image-slot>
+        <image-slot id="pendiri" style="width:100%;max-width:406px;height:271px;" shape="rounded" radius="24" fit="cover" src="assets/pendiri-abu-aisyah-yap.webp" placeholder="Foto pendiri Nahdi Tour"></image-slot>
       </div>
       <div class="reveal order-1 lg:order-2">
         <h2 class="font-display font-extrabold text-[24pt] text-primary-900">Tentang Pendiri</h2>
-        <p class="mt-6 text-slate600 leading-relaxed text-[14pt]">[Nama Pendiri] (lahir 29 Juni 1959) adalah seorang pengusaha dan tokoh yang berpengalaman dalam industri perjalanan ibadah di Indonesia.</p>
-        <p class="mt-4 text-slate600 leading-relaxed text-[14pt]">Beliau dikenal sebagai sosok yang menaruh perhatian besar pada kualitas pelayanan Haji dan Umrah, dengan mengedepankan amanah, profesionalisme, dan kenyamanan jamaah dalam setiap perjalanan ibadah.</p>
+        <p class="mt-6 text-slate600 leading-relaxed text-[14pt]">Nahdi Tour lahir dari perjalanan panjang Abu Aisyah Yap dalam mendampingi jamaah Haji dan Umrah. Selama bertahun-tahun berkecimpung di dunia perjalanan ibadah, beliau menyaksikan secara langsung berbagai harapan, pertanyaan, hingga kekhawatiran yang dirasakan calon tamu Allah.</p>
+        <p class="mt-4 text-slate600 leading-relaxed text-[14pt]">Pengalaman itulah yang menumbuhkan keyakinan bahwa setiap jamaah berhak mendapatkan pendampingan yang jujur, pelayanan yang amanah, serta informasi yang jelas sebelum memutuskan berangkat ke Tanah Suci.</p>
+        <div id="pendiriMore" class="hidden">
+          <p class="mt-4 text-slate600 leading-relaxed text-[14pt]">Dengan semangat tersebut, Abu Aisyah Yap mendirikan Nahdi Tour sebagai mitra perjalanan Haji dan Umrah yang mengedepankan kepercayaan, transparansi, dan pelayanan sepenuh hati. Nahdi Tour menjalin kemitraan dengan travel Haji dan Umrah berizin resmi yang memiliki komitmen terhadap pelayanan berkualitas serta bimbingan ibadah sesuai Al-Qur'an dan As-Sunnah.</p>
+          <p class="mt-4 text-slate600 leading-relaxed text-[14pt]">Bagi beliau, mengantarkan seseorang menuju Baitullah bukan sekadar pekerjaan, tetapi sebuah amanah yang akan dipertanggungjawabkan di hadapan Allah. Karena itu, setiap calon jamaah akan didampingi dengan sepenuh hati agar dapat memilih program yang sesuai dengan kebutuhannya dan menjalankan ibadah dengan rasa tenang, nyaman, serta penuh kekhusyukan.</p>
+          <p class="mt-4 text-slate600 leading-relaxed text-[14pt]">Semoga melalui Nahdi Tour, semakin banyak kaum muslimin dimudahkan untuk memenuhi panggilan Allah dan meraih Haji maupun Umrah yang diterima di sisi-Nya.</p>
+        </div>
+        <button type="button" id="pendiriToggle" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700 hover:text-primary-900 transition-colors" aria-expanded="false" aria-controls="pendiriMore">
+          <span>Baca Selengkapnya</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transition:transform .25s ease;"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -864,6 +873,23 @@
   };
   document.querySelectorAll('[data-gallery]').forEach(initGallery);
 
+})();
+</script>
+<script>
+/* ===== Tentang Pendiri — toggle "Baca Selengkapnya" ===== */
+(() => {
+  const btn = document.getElementById('pendiriToggle');
+  const more = document.getElementById('pendiriMore');
+  if (!btn || !more) return;
+  const label = btn.querySelector('span');
+  const chevron = btn.querySelector('svg');
+  btn.addEventListener('click', () => {
+    const willOpen = more.classList.contains('hidden');
+    more.classList.toggle('hidden', !willOpen);
+    btn.setAttribute('aria-expanded', String(willOpen));
+    label.textContent = willOpen ? 'Tampilkan Lebih Sedikit' : 'Baca Selengkapnya';
+    chevron.style.transform = willOpen ? 'rotate(180deg)' : '';
+  });
 })();
 </script>
 
