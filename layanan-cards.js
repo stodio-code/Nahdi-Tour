@@ -21,6 +21,8 @@
     plane:     '<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
     bed:       '<path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/>',
     badge:     '<path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/>',
+    shield:    '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+    heartPulse:'<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.49 4.04 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4 .5-2 .5 1h5.27"/>',
   };
 
   const icon = (name, cls) =>
@@ -86,7 +88,7 @@
 
   // ---- Brosur PDF/JPG mitra (assets/brosur) — kosongkan jika belum tersedia ----
   const BROSUR = {
-    hajiKhususSahabat:    'assets/brosur/haji-khusus-sahabat-haji.png',
+    hajiKhususSahabat:    'assets/brosur/haji-khusus-2027-sahabat-haji.pdf',
     hajiKhususBinDawood:  'assets/brosur/haji-khusus-bin-dawood.png',
     hajiKhususDwins:      'assets/brosur/haji-khusus-dwins.png',
     umrahAkhirTahunUhud:    'assets/brosur/umroh-akhir-tahun-uhud.png',
@@ -148,11 +150,29 @@
       {
         id: 'khusus-1', judul: 'Haji Khusus', foto: FOTO.kaabaClock,
         fasilitas: [
-          ['hourglass', 'Masa Tunggu 8-10 Tahun'],
-          ['ticket',    'Langsung Dapat No. Porsi'],
-          ['wallet',    'Total Biaya Pelunasan Ditetapkan di Tahun Keberangkatan'],
-          ['bed',       'Hotel Bintang 4-5 (Setaraf)'],
+          ['hourglass',  'Masa Tunggu 8-10 Tahun'],
+          ['ticket',     'Langsung Dapat No. Porsi'],
+          ['wallet',     'Total Biaya Pelunasan Ditetapkan di Tahun Keberangkatan'],
+          ['user',       'Pendampingan sejak pindah PIN, manasik, keberangkatan hingga pulang'],
+          ['tent',       'Tarwiyah & Nafar Tsani'],
+          ['building',   'Maktab VIP'],
+          ['sheep',      'Hadyu Tamattu'],
+          ['heartPulse', 'MCU & Perlengkapan Jamaah'],
+          ['bed',        'Hotel Bintang 5 di Makkah & Madinah'],
         ],
+        extra: {
+          pindahPin: 'Bagi Anda yang telah memiliki nomor porsi Haji Khusus dan berencana pindah travel, kami siap membantu seluruh proses administrasinya hingga selesai.',
+          penalti: 'Biaya penalti pindah PIN hingga <strong>USD 500/jamaah</strong> dari travel sebelumnya kami tanggung.',
+          harga: [
+            ['Silver', 'USD 12.950', 'Quad'],
+            ['Gold',   'USD 14.250', 'Quad'],
+          ],
+          pembimbing: [
+            ['2025', 'Ustadz Dr. Abdullah Roy, M.A.'],
+            ['2026', 'Ustadz Kholid Syamhudi, Lc. & Ustadz Dr. Zaenal Abidin, Lc., M.M.'],
+            ['2027', 'Ustadz Abu Haidar As Sundawy'],
+          ],
+        },
         mitra: MITRA.sahabat, harga: '$ 4.000', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususSahabat,
       },
       {
@@ -183,6 +203,47 @@
     '<li class="flex items-start gap-2.5">' + icon(ic) +
       '<span class="text-sm text-slate700 leading-snug">' + label + '</span>' +
     '</li>';
+
+  // Blok konten tambahan (opsional) — dipakai paket dengan detail lebih kaya
+  // seperti Haji Khusus: layanan pindah PIN, harga bertingkat, dan pembimbing.
+  const paketExtraHTML = (x) => {
+    if (!x) return '';
+    const hargaRows = (x.harga || []).map(([tier, price, room]) => {
+      const gold = /gold/i.test(tier);
+      return `
+        <div class="flex items-center justify-between rounded-lg border ${gold ? 'border-accent-200 bg-accent-50' : 'border-slate200'} px-3.5 py-2.5">
+          <span class="text-sm font-bold ${gold ? 'text-accent-600' : 'text-slate700'}">${tier}</span>
+          <span class="font-display font-extrabold text-[15px] text-primary-900 whitespace-nowrap">${price}<span class="text-[12px] font-medium text-slate500"> / ${room}</span></span>
+        </div>`;
+    }).join('');
+    const ustadzRows = (x.pembimbing || []).map(([th, nama]) => `
+      <li class="flex items-start gap-2.5">
+        <span class="shrink-0 mt-0.5 inline-flex items-center justify-center min-w-[40px] h-5 px-1.5 rounded-full bg-primary-50 text-primary-700 text-[11px] font-bold tabular-nums">${th}</span>
+        <span class="text-[13px] text-slate700 leading-snug">${nama}</span>
+      </li>`).join('');
+    const shieldIcon = `<span class="fasilitas-icon text-primary-600 shrink-0" style="margin-top:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS.shield}</svg></span>`;
+    return `
+      ${x.pindahPin ? `
+      <div class="mt-4 pt-4 border-t border-slate200">
+        <p class="font-display font-bold text-[15px] text-primary-900">Khusus Pindah PIN / Porsi</p>
+        <p class="mt-2 text-[13px] text-slate600 leading-relaxed">${x.pindahPin}</p>
+        ${x.penalti ? `
+        <div class="mt-3 flex items-start gap-2.5 rounded-lg bg-primary-50 border border-primary-100 px-3.5 py-3">
+          ${shieldIcon}
+          <p class="text-[13px] text-primary-900 leading-snug">${x.penalti}</p>
+        </div>` : ''}
+      </div>` : ''}
+      ${hargaRows ? `
+      <div class="mt-4 pt-4 border-t border-slate200">
+        <p class="font-display font-bold text-[15px] text-primary-900">Harga Haji Khusus 2027</p>
+        <div class="mt-3 flex flex-col gap-2">${hargaRows}</div>
+      </div>` : ''}
+      ${ustadzRows ? `
+      <div class="mt-4 pt-4 border-t border-slate200">
+        <p class="font-display font-bold text-[15px] text-primary-900">Dibimbing Ustadz Ahlus Sunnah</p>
+        <ul class="mt-3 flex flex-col gap-2.5">${ustadzRows}</ul>
+      </div>` : ''}`;
+  };
 
   // Tombol brosur: link download (jika file tersedia) atau keterangan "Coming Soon".
   const brosurHTML = (p) => {
@@ -227,13 +288,14 @@
           <ul class="mt-4 flex flex-col gap-3">
             ${p.fasilitas.map(fasilitasItem).join('')}
           </ul>
+          ${paketExtraHTML(p.extra)}
         </div>
         <button type="button" class="paket-toggle" aria-expanded="false">
           <span>Lihat fasilitas &amp; layanan</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </button>
         <div class="paket-actions mt-5 pt-5 border-t border-slate200 flex flex-col gap-2.5">
-          <a href="Nahdi Tour.html#konsultasi" class="btn-primary inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold">Konsultasi Sekarang</a>
+          <a href="index.html#konsultasi" class="btn-primary inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold">Konsultasi Sekarang</a>
           ${brosurHTML(p)}
         </div>
       </div>

@@ -153,7 +153,9 @@
     content:""; position:absolute; top:0; bottom:0; left:-20px; width:20px;
   }
   .paket-pop.flip::after { left:auto; right:-20px; }
-  .paket-pop ul { max-height:56vh; overflow-y:auto; }
+  /* Area fasilitas + detail tambahan menggulir sebagai satu kesatuan;
+     tombol CTA (.paket-actions) tetap terlihat di bawah popover. */
+  .paket-pop .paket-fasilitas { max-height:56vh; overflow-y:auto; margin-right:-6px; padding-right:6px; }
 
   @media (hover: none), (max-width: 767px) {
     /* Touch / mobile: the whole .paket-card becomes one cohesive container,
@@ -183,6 +185,7 @@
     .paket-pop::before,
     .paket-pop::after { display:none; }
     .paket-pop ul { max-height:none; overflow:visible; }
+    .paket-pop .paket-fasilitas { max-height:none; overflow:visible; margin-right:0; padding-right:0; }
     /* Cegah transform popover desktop bocor saat kartu :focus-within / di-tap
        di mobile (tanpa ini panel tergeser naik dan menimpa konten kartu). */
     .paket-card:hover .paket-pop,
