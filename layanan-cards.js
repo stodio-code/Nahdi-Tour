@@ -24,6 +24,8 @@
     shield:    '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
     heartPulse:'<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.49 4.04 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4 .5-2 .5 1h5.27"/>',
     calendar:  '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/>',
+    headphones:'<path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a9 9 0 0 1 18 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>',
+    train:     '<rect width="16" height="16" x="4" y="3" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><path d="M8 15h.01"/><path d="M16 15h.01"/>',
   };
 
   const icon = (name, cls) =>
@@ -71,7 +73,7 @@
     alAnshar: { nama: 'Al-Anshar',       logo: 'assets/mitra/al-anshar.png',        izin: 'Madani Travel · terverifikasi' },
     mutiara:  { nama: 'Mutiara Sunnah',  logo: 'assets/mitra/mutiara-sunnah.png',   izin: 'Izin PPIU No. U.193 / 2021' },
     pahala:   { nama: 'Pahala Wisata',   logo: 'assets/mitra/pahala-wisata.png',    izin: 'Hajj & Umroh Services' },
-    haramain: { nama: 'HaramainKU',      logo: 'assets/mitra/haramainku.png',       izin: 'PT Kartika Utama · terverifikasi' },
+    haramain: { nama: 'HaramainKU',      logo: 'uploads/haramainku-nahditour.jpg',  izin: 'Izin Haji Kemenag No. 308-2002' },
     allia:    { nama: 'Allia',           logo: 'assets/mitra/allia.png',            izin: 'Haji & Umrah sesuai Sunnah' },
     sahabat:  { nama: 'Sahabat Haji',    logo: 'assets/mitra/sahabat-haji.png',     izin: 'Mitra travel terverifikasi' },
     binDawood:{ nama: 'Bin Dawood Tour and Travel', logo: 'assets/mitra/Bin-Dawood-Travel.png',                       izin: 'Mitra travel terverifikasi' },
@@ -91,7 +93,7 @@
   const BROSUR = {
     hajiKhususSahabat:    'assets/brosur/haji-khusus-2027-sahabat-haji.pdf',
     hajiKhususBinDawood:  'assets/brosur/haji-khusus-bin-dawood.png',
-    hajiKhususDwins:      'assets/brosur/haji-khusus-dwins.png',
+    hajiKhususHaramain:   'assets/brosur/flyer-haji-khusus-haramainku.jpeg',
     umrahAkhirTahunUhud:    'assets/brosur/umroh-akhir-tahun-uhud.png',
     umrahSilverMutiara:     'assets/brosur/umroh-silver-akhir-tahun-ms.jpeg',
     umrahExecutiveMutiara:  'assets/brosur/umroh-executive-akhir-tahun-ms.jpeg',
@@ -240,14 +242,32 @@
         mitra: MITRA.binDawood, harga: '$ 4.500', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususBinDawood,
       },
       {
-        id: 'khusus-3', judul: 'Haji Khusus', foto: FOTO.kaabaClock2,
+        id: 'khusus-3', judul: 'Haji Khusus — Bisa Dicicil', foto: FOTO.kaabaClock2,
         fasilitas: [
-          ['hourglass', 'Masa Tunggu 7-9 Tahun'],
-          ['stamp',     'Visa Haji Resmi'],
-          ['bed',       'Makkah — Royal Majestik'],
-          ['bed',       'Madinah — Concord Al Khair'],
+          ['plane',      'Saudia Airlines (Direct Flight)'],
+          ['sparkles',   'VIP Lounge Keberangkatan'],
+          ['stamp',      'Visa Haji Resmi Saudi'],
+          ['tent',       'Tenda Maktab VIP'],
+          ['bed',        'Hotel Bintang 5 Makkah & Madinah + Transit Makkah'],
+          ['train',      'Kereta Cepat (1 Trip)'],
+          ['sheep',      'Hadyu 1 Ekor Domba'],
+          ['headphones', 'Audio Receiver & Perlengkapan'],
+          ['book',       'Manasik Haji Terstruktur'],
         ],
-        mitra: { ...MITRA.dwins, nama: 'Dwins Travel (Paket Reguler)' }, harga: '$ 4.900', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususDwins,
+        extra: {
+          benefitsTitle: 'Keunggulan Program Cicilan Syariah',
+          benefits: [
+            'Setoran awal hanya $1.000 USD',
+            'Porsi Haji Khusus resmi langsung didapat',
+            'Angsuran tetap dalam rupiah mulai 1,7 jutaan/bulan',
+            'Nilai angsuran dikunci sampai lunas',
+            'Uang muka tetap utuh menjadi voucher diskon $1.000 USD untuk pelunasan paket Haji Khusus HaramainKU',
+            'Maskapai & hotel premium',
+            'Rangkaian ibadah sesuai tuntunan Nabi ﷺ',
+            'Bimbingan ibadah intensif & Pesantren Haji',
+          ],
+        },
+        mitra: MITRA.haramain, harga: 'Rp1,7 juta', hargaLabel: 'Angsuran per Bulan mulai', download: BROSUR.hajiKhususHaramain,
       },
     ],
   };
@@ -296,6 +316,13 @@
         </div>`;
       }).join('');
       out += section(x.hargaTitle || 'Harga', `<div class="mt-3 flex flex-col gap-2">${rows}</div>`);
+    }
+
+    // Benefits — daftar keunggulan/program (checklist ikon badge).
+    if (x.benefits && x.benefits.length) {
+      const rows = x.benefits.map((b) =>
+        `<li class="flex items-start gap-2.5">${icon('badge', 'text-primary-600')}<span class="text-[13px] text-slate700 leading-snug">${b}</span></li>`).join('');
+      out += section(x.benefitsTitle || 'Keunggulan Program', `<ul class="mt-3 flex flex-col gap-2.5">${rows}</ul>`);
     }
 
     // Pembimbing — string biasa, atau [tahun, nama] dengan badge tahun.
