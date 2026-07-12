@@ -26,6 +26,8 @@
     calendar:  '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/>',
     headphones:'<path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a9 9 0 0 1 18 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>',
     train:     '<rect width="16" height="16" x="4" y="3" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><path d="M8 15h.01"/><path d="M16 15h.01"/>',
+    bus:       '<path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/>',
+    droplet:   '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
   };
 
   const icon = (name, cls) =>
@@ -98,6 +100,7 @@
     umrahSilverMutiara:     'assets/brosur/umroh-silver-akhir-tahun-ms.jpeg',
     umrahExecutiveMutiara:  'assets/brosur/umroh-executive-akhir-tahun-ms.jpeg',
     umrahAkhirTahunDwins:   'assets/brosur/umroh-akhir-tahun-dwins.png',
+    umrahAkhirTahunElMarwa: 'assets/brosur/umroh-elmarwa-akhir-tahun.jpg',
     umrahItikafMutiara:     'assets/brosur/umroh-itikaf-mutiara-sunnah.png',
     umrahTurkiDwins:        'assets/brosur/umroh-turki-dwins.png',
     umrahDubaiDwins:        'assets/brosur/umroh-dubai-dwins.png',
@@ -183,6 +186,56 @@
           ],
         },
         mitra: MITRA.mutiara, harga: 'Rp43,3 juta', download: BROSUR.umrahExecutiveMutiara,
+      },
+      {
+        id: 'reguler-3m', judul: 'Umrah Akhir Tahun', foto: FOTO.kaabaMinaret,
+        fasilitas: [
+          ['hourglass', 'Program Umroh 9 Hari'],
+          ['plane',     'Tiket Pesawat Internasional Garuda Indonesia'],
+          ['ticket',    'Tiket Confirmed'],
+          ['bed',       'Hotel Madinah & Makkah'],
+          ['bus',       'Bus Full AC'],
+          ['stamp',     'Visa Umroh'],
+          ['train',     'Tiket Kereta Cepat'],
+          ['sparkles',  'VIP Lounge Soekarno-Hatta'],
+          ['utensils',  'Snack Box, Nasi Arab & Al Baik'],
+          ['droplet',   'Air Zamzam 5 Liter'],
+          ['book',      'Ziarah (jika diizinkan)'],
+        ],
+        extra: {
+          tiersTitle: 'Pilihan Paket & Harga',
+          tiers: [
+            {
+              nama: 'Silver',
+              hotel: [
+                ['Makkah', 'Maysan Al Mashaer (Bintang 4)'],
+                ['Madinah', 'Emaar Elite Al Madina (Bintang 4)'],
+              ],
+              harga: [
+                ['Quad', 'Rp 42.500.000'],
+                ['Triple', 'Rp 44.800.000'],
+                ['Double', 'Rp 49.300.000'],
+                ['Anak (khusus Silver)', 'Rp 33.500.000'],
+                ['Bayi / Infant (tanpa kasur)', 'Rp 22.000.000'],
+              ],
+            },
+            {
+              nama: 'Gold',
+              hotel: [
+                ['Makkah', 'Pullman Zamzam (Bintang 5)'],
+                ['Madinah', 'Worth Peninsula Madinah (Bintang 5)'],
+              ],
+              harga: [
+                ['Quad', 'Rp 48.800.000'],
+                ['Triple', 'Rp 51.900.000'],
+                ['Double', 'Rp 58.800.000'],
+              ],
+            },
+          ],
+          pembimbingTitle: 'Pembimbing Jamaah',
+          pembimbing: ['Ustadz Ahlussunnah'],
+        },
+        mitra: MITRA.elMarwa, harga: 'Rp42,5 juta', download: BROSUR.umrahAkhirTahunElMarwa,
       },
       {
         id: 'reguler-4', judul: 'Umrah Plus Dubai', foto: FOTO.kaabaMinaret,
@@ -316,6 +369,25 @@
         </div>`;
       }).join('');
       out += section(x.hargaTitle || 'Harga', `<div class="mt-3 flex flex-col gap-2">${rows}</div>`);
+    }
+
+    // Tiers — pilihan paket bertingkat (mis. Silver/Gold), tiap tier punya
+    // hotel & daftar harga sendiri. Tier "Gold" diberi aksen emas.
+    if (x.tiers && x.tiers.length) {
+      const blocks = x.tiers.map((t) => {
+        const gold = /gold/i.test(t.nama);
+        const badge = `<span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-bold ${gold ? 'bg-accent-50 text-accent-600 border border-accent-200' : 'bg-slate100 text-slate600 border border-slate200'}">${t.nama}</span>`;
+        const hotelRows = (t.hotel || []).map(([kota, nama]) =>
+          `<li class="flex items-start gap-2.5">${icon('bed')}<span class="text-[13px] text-slate700 leading-snug"><span class="text-slate500">${kota}:</span> <span class="font-semibold text-primary-900">${nama}</span></span></li>`).join('');
+        const hargaRows = (t.harga || []).map(([label, price]) =>
+          `<div class="flex items-center justify-between rounded-lg border border-slate200 px-3.5 py-2.5"><span class="text-sm font-semibold text-slate700">${label}</span><span class="font-display font-extrabold text-[15px] text-primary-900 whitespace-nowrap">${price}</span></div>`).join('');
+        return `<div class="mt-4 first:mt-3">
+          <div class="flex items-center gap-2.5">${badge}<span class="h-px flex-1 bg-slate200"></span></div>
+          ${hotelRows ? `<ul class="mt-3 flex flex-col gap-2">${hotelRows}</ul>` : ''}
+          ${hargaRows ? `<div class="mt-3 flex flex-col gap-2">${hargaRows}</div>` : ''}
+        </div>`;
+      }).join('');
+      out += section(x.tiersTitle || 'Pilihan Paket & Harga', blocks);
     }
 
     // Benefits — daftar keunggulan/program (checklist ikon badge).
