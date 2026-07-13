@@ -80,6 +80,7 @@
     sahabat:  { nama: 'Sahabat Haji',    logo: 'assets/mitra/sahabat-haji.png',     izin: 'Mitra travel terverifikasi' },
     binDawood:{ nama: 'Bin Dawood Tour and Travel', logo: 'assets/mitra/Bin-Dawood-Travel.png',                       izin: 'Mitra travel terverifikasi' },
     dwins:    { nama: 'Dwins Travel',    logo: 'assets/mitra/dwins-travel.png',     izin: 'Mitra travel terverifikasi' },
+    pibTravel:{ nama: 'PIB Travel',      logo: 'assets/mitra/pib-travel.webp',      izin: 'Mitra travel terverifikasi' },
   };
 
   // ---- Foto Tanah Suci (dipakai sebagai header kartu) ----
@@ -112,6 +113,7 @@
     umrahItikafMutiara:     'assets/brosur/umroh-itikaf-mutiarasunnah2027.jpeg',
     umrahItikafElMarwa:     'assets/brosur/umroh-itikaf-elmarwa.jpeg',
     umrahTurkiDwins:        'assets/brosur/umroh-turki-dwins.png',
+    umrahKonsorsiumPIB:     'assets/brosur/flyer-umroh-konsorsium.jpeg',
     umrahDubaiDwins:        'assets/brosur/umroh-dubai-dwins.png',
     badalHaji:              'assets/brosur/badal-haji-nahdi-tour.png',
     badalUmroh:             'assets/brosur/badal-umroh-nahdi-tour.png',
@@ -245,6 +247,33 @@
           pembimbing: ['Ustadz Ahlussunnah'],
         },
         mitra: MITRA.elMarwa, harga: 'Rp42,5 juta', download: BROSUR.umrahAkhirTahunElMarwa,
+      },
+      {
+        id: 'reguler-3p', judul: 'Umrah Akhir Tahun', foto: FOTO.kaabaMinaret2,
+        fasilitas: [
+          ['calendar',  'Keberangkatan: 02 November 2026'],
+          ['hourglass', 'Program Umroh 9 Hari'],
+          ['plane',     'Qatar Airways (JED–JED) — Ticket Confirmed'],
+          ['bus',       'Bus Exclusive'],
+          ['stamp',     'Visa Umroh & Perlengkapan'],
+          ['utensils',  'Makan 3x Sehari'],
+          ['user',      'Pembimbing & Muthawif'],
+          ['droplet',   'Air Zamzam 5 Liter'],
+          ['train',     'Kereta Cepat Madinah–Makkah'],
+          ['book',      'City Tour'],
+        ],
+        extra: {
+          hotel: [['Makkah', 'Maysan Al Masheer ★4 (±350m)'], ['Madinah', 'Al Saha ★4 (±170m)']],
+          hargaTitle: 'Harga Paket',
+          harga: [
+            ['Quad',   'Rp 35.900.000'],
+            ['Triple', 'Rp 37.900.000'],
+            ['Double', 'Rp 41.900.000'],
+          ],
+          pembimbingTitle: 'Pembimbing Jamaah',
+          pembimbing: ['Ustadz Khalid Basalamah'],
+        },
+        mitra: MITRA.pibTravel, harga: 'Rp35,9 juta', download: BROSUR.umrahKonsorsiumPIB,
       },
       {
         id: 'reguler-4', judul: 'Umrah Plus Dubai', foto: FOTO.dubai,
