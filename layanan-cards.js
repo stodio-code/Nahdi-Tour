@@ -84,11 +84,19 @@
 
   // ---- Foto Tanah Suci (dipakai sebagai header kartu) ----
   const FOTO = {
-    kaabaClock:  'assets/kaaba-masjidil-haram.jpg',
-    kaabaClock2: 'uploads/hakam-magdea-fardana-ansie-NZzkVzuEVSc-unsplash.jpg',
-    kaabaMinaret: 'uploads/pexels-kazi-ashikuzzaman-430197805-34495333.jpg',
+    kaabaClock:    'assets/kaaba-masjidil-haram.jpg',
+    kaabaClock2:   'uploads/hakam-magdea-fardana-ansie-NZzkVzuEVSc-unsplash.jpg',
+    kaabaMinaret:  'uploads/pexels-kazi-ashikuzzaman-430197805-34495333.jpg',
     kaabaMinaret2: 'uploads/pexels-rushdi-fatani-782816372-27608158.jpg',
-    madinah:     'assets/wisata-halal.jpg',
+    madinah:       'assets/wisata-halal.jpg',
+    dubai:         'uploads/Dubai-atlantis.jpg',
+    turkiye:       'uploads/Turkiye-masjid.jpg',
+    arafah:        'uploads/foto-arafah.jpg',
+    gunungUhud:    'uploads/gunung-uhud.jpg',
+    nightMecca:    'uploads/night-mecca.jpg',
+    nightMadinah:  'uploads/night-madinah.jpg',
+    frombehind1:   'uploads/gambar-badal-haji.jpg',
+    frombehind2:   'uploads/gambar-badal-umroh.jpg',
   };
 
   // ---- Brosur PDF/JPG mitra (assets/brosur) — kosongkan jika belum tersedia ----
@@ -112,19 +120,19 @@
   const PAKET_DATA = {
     badal: [
       {
-        id: 'badal-1', judul: 'Badal Haji', foto: FOTO.kaabaClock,
+        id: 'badal-1', judul: 'Badal Haji', foto: FOTO.frombehind1,
         fasilitas: FASILITAS_BADAL_HAJI,
         mitra: MITRA.nahdi, harga: 'Rp37,5 juta', download: BROSUR.badalHaji,
       },
       {
-        id: 'badal-2', judul: 'Badal Umroh', foto: FOTO.kaabaMinaret2,
+        id: 'badal-2', judul: 'Badal Umroh', foto: FOTO.frombehind2,
         fasilitas: FASILITAS_BADAL_UMROH,
         mitra: MITRA.nahdi, harga: 'Rp3,5 juta', download: BROSUR.badalUmroh,
       },
     ],
     reguler: [
       {
-        id: 'reguler-1', judul: 'Umrah Akhir Tahun', foto: FOTO.kaabaMinaret2,
+        id: 'reguler-1', judul: 'Umrah Akhir Tahun', foto: FOTO.gunungUhud,
         fasilitas: fasilitasUmrah('Anjum Hotel (Makkah) & Darul Iman Al Haram (Madinah)'),
         mitra: MITRA.uhud, harga: 'Rp65,5 juta', download: BROSUR.umrahAkhirTahunUhud,
       },
@@ -239,17 +247,17 @@
         mitra: MITRA.elMarwa, harga: 'Rp42,5 juta', download: BROSUR.umrahAkhirTahunElMarwa,
       },
       {
-        id: 'reguler-4', judul: 'Umrah Plus Dubai', foto: FOTO.kaabaMinaret,
+        id: 'reguler-4', judul: 'Umrah Plus Dubai', foto: FOTO.dubai,
         fasilitas: fasilitasUmrah('Le Meridien Tower (Makkah) & Dar Al Naem (Madinah)'),
         mitra: MITRA.dwins, harga: 'Rp35,5 juta', download: BROSUR.umrahDubaiDwins,
       },
       {
-        id: 'reguler-5', judul: 'Umrah Plus Turki Cappadocia', foto: FOTO.kaabaClock2,
+        id: 'reguler-5', judul: 'Umrah Plus Turki Cappadocia', foto: FOTO.turkiye,
         fasilitas: fasilitasUmrah('Royal Majestik (Makkah) & Deyar Al Eiman (Madinah)'),
         mitra: MITRA.dwins, harga: 'Rp38,9 juta', download: BROSUR.umrahTurkiDwins,
       },
       {
-        id: 'reguler-6', judul: "Umrah I'tikaf Ramadhan", foto: FOTO.madinah,
+        id: 'reguler-6', judul: "Umrah I'tikaf Ramadhan", foto: FOTO.nightMecca,
         fasilitas: [
           ['calendar',  'Keberangkatan: 27 Februari 2027'],
           ['plane',     'Tiket Ekonomi PP — Oman Air (JED–MED/JED)'],
@@ -285,7 +293,7 @@
         mitra: MITRA.mutiara, harga: 'Rp38,9 juta', download: BROSUR.umrahItikafMutiara,
       },
       {
-        id: 'reguler-6m', judul: "Umrah I'tikaf Madinah", foto: FOTO.kaabaMinaret2,
+        id: 'reguler-6m', judul: "Umrah I'tikaf Madinah", foto: FOTO.nightMadinah,
         fasilitas: [
           ['calendar',  'Keberangkatan: 1 Maret 2027'],
           ['hourglass', 'Program Umroh 12 Hari'],
@@ -311,7 +319,7 @@
     ],
     khusus: [
       {
-        id: 'khusus-1', judul: 'Haji Khusus', foto: FOTO.kaabaClock,
+        id: 'khusus-1', judul: 'Haji Khusus', foto: FOTO.arafah,
         fasilitas: [
           ['hourglass',  'Masa Tunggu 8-10 Tahun'],
           ['ticket',     'Langsung Dapat No. Porsi'],
@@ -341,7 +349,7 @@
         mitra: MITRA.sahabat, harga: '$ 4.000', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususSahabat,
       },
       {
-        id: 'khusus-2', judul: 'Haji Khusus', foto: FOTO.kaabaMinaret,
+        id: 'khusus-2', judul: 'Haji Khusus', foto: FOTO.arafah,
         fasilitas: [
           ['bed',      'Jeddah — Rosemond Hotel (Setaraf)'],
           ['bed',      'Makkah — Fairmont Hotel (Setaraf)'],
@@ -351,7 +359,7 @@
         mitra: MITRA.binDawood, harga: '$ 4.500', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususBinDawood,
       },
       {
-        id: 'khusus-3', judul: 'Haji Khusus — Bisa Dicicil', foto: FOTO.kaabaClock2,
+        id: 'khusus-3', judul: 'Haji Khusus — Bisa Dicicil', foto: FOTO.arafah,
         fasilitas: [
           ['plane',      'Saudia Airlines (Direct Flight)'],
           ['sparkles',   'VIP Lounge Keberangkatan'],
