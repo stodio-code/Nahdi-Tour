@@ -135,7 +135,30 @@
     reguler: [
       {
         id: 'reguler-1', judul: 'Umrah Akhir Tahun', foto: FOTO.gunungUhud,
-        fasilitas: fasilitasUmrah('Anjum Hotel (Makkah) & Darul Iman Al Haram (Madinah)'),
+        fasilitas: [
+          ['hourglass', 'Durasi 9 Hari'],
+          ['calendar',  'Keberangkatan: 21 Desember 2026'],
+          ['calendar',  'Kepulangan: 28 Desember 2026'],
+          ['plane',     'Maskapai Garuda Indonesia'],
+          ['train',     'Transportasi Kereta Ekonomi'],
+          ['sparkles',  'City Tour Plus Thaif (Telefric)'],
+        ],
+        extra: {
+          hotel: [['Makkah', 'Anjum'], ['Madinah', 'Dar Al Eiman Al Haram']],
+          hargaTitle: 'Harga Uhud Tour Pusat',
+          harga: [
+            ['Quad',   'Rp 65.500.000'],
+            ['Triple', 'Rp 69.750.000'],
+            ['Double', 'Rp 78.200.000'],
+            ['Anak (opsional)',   'Rp 41.950.000'],
+            ['Infant (opsional)', 'Rp 19.000.000'],
+          ],
+          benefitsTitle: 'Info Penerbangan',
+          benefits: [
+            'Keberangkatan: GA 968 · 21 Des · CGK–MED · 09.15–15.05',
+            'Kepulangan: GA 981 · 16 Des · JED–CGK · 19.40–09.25+1',
+          ],
+        },
         mitra: MITRA.uhud, harga: 'Rp65,5 juta', download: BROSUR.umrahAkhirTahunUhud,
       },
       {
@@ -378,14 +401,24 @@
         mitra: MITRA.sahabat, harga: '$ 4.000', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususSahabat,
       },
       {
-        id: 'khusus-2', judul: 'Haji Khusus', foto: FOTO.arafah,
+        id: 'khusus-2', judul: 'Haji Khusus — Paket Azalea Signature', foto: FOTO.arafah,
         fasilitas: [
-          ['bed',      'Jeddah — Rosemond Hotel (Setaraf)'],
-          ['bed',      'Makkah — Fairmont Hotel (Setaraf)'],
-          ['bed',      'Madinah — Shahd by Sofitel (Setaraf)'],
-          ['building', 'Aziziah — Apartment Transit'],
+          ['plane',      'Penerbangan Langsung dari Jakarta'],
+          ['train',      'Kereta Cepat Haramain Express'],
+          ['badge',      'Kuota Resmi Pemerintah RI'],
+          ['bed',        'Hotel Berbintang Dekat Masjidil Haram & Masjid Nabawi'],
+          ['tent',       'Maktab A (± 300m dari Jamarat)'],
+          ['bus',        'Transportasi Nyaman & Eksklusif'],
+          ['user',       'Bimbingan Ustadz & Mutawif Berpengalaman'],
+          ['book',       'Kajian Ilmu yang Bermanfaat'],
+          ['sparkles',   'Napak Tilas Sejarah Nabi'],
+          ['badge',      'Tersedia Upgrade Seat Business Class (selama tersedia)'],
         ],
-        mitra: MITRA.binDawood, harga: '$ 4.500', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususBinDawood,
+        extra: {
+          pembimbingTitle: 'Pembimbing Jamaah',
+          pembimbing: ['Ustadz Syafiq Riza Basalamah'],
+        },
+        mitra: MITRA.binDawood, harga: '$ 19.750', hargaLabel: 'Harga Mulai (USD)', download: BROSUR.hajiKhususBinDawood,
       },
       {
         id: 'khusus-3', judul: 'Haji Khusus — Bisa Dicicil', foto: FOTO.arafah,
