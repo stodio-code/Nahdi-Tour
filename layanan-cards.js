@@ -401,7 +401,7 @@
         mitra: MITRA.sahabat, harga: '$ 4.000', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususSahabat,
       },
       {
-        id: 'khusus-2', judul: 'Haji Khusus — Paket Azalea Signature', foto: FOTO.arafah,
+        id: 'khusus-2', judul: 'Haji Khusus', foto: FOTO.arafah,
         fasilitas: [
           ['plane',      'Penerbangan Langsung dari Jakarta'],
           ['train',      'Kereta Cepat Haramain Express'],
