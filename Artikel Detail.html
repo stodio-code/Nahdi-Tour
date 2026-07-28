@@ -354,11 +354,8 @@
   if (!grid) return;
   const related = [
     { judul: 'Tata Cara Umrah Lengkap untuk Jamaah Pertama Kali', kat: 'Umrah', tgl: '24 Juni 2026', foto: 'assets/kaaba-masjidil-haram.jpg' },
-    { judul: '10 Barang Penting yang Wajib Ada di Koper Umrah Anda', kat: 'Tips', tgl: '22 Juni 2026', foto: 'assets/step-3-berangkat.jpg' },
-    { judul: 'Update Regulasi Visa Umrah Terbaru Tahun 2026', kat: 'Informasi', tgl: '20 Juni 2026', foto: 'assets/wisata-halal.jpg' },
-    { judul: 'Memahami Rukun dan Wajib Umrah dengan Benar', kat: 'Umrah', tgl: '18 Juni 2026', foto: 'assets/step-2-rekomendasi.jpg' },
-    { judul: 'Menjaga Kesehatan dan Stamina Selama di Tanah Suci', kat: 'Kesehatan', tgl: '14 Juni 2026', foto: 'assets/wisata-halal.jpg' },
-    { judul: 'Jadwal Keberangkatan Musim Umrah 1447 Hijriah', kat: 'Jadwal', tgl: '12 Juni 2026', foto: 'assets/kaaba-masjidil-haram.jpg' },
+    { judul: 'Antrian Haji Khusus: Berapa Lama Masa Tunggu, Biaya, dan Cara Daftar Resmi', kat: 'Informasi', tgl: '20 Juli 2026', foto: 'assets/tenda-mina-haji.webp', href: 'antrian-haji-khusus.html' },
+    { judul: 'Cara Pindah PIN Haji Khusus ke Travel Lain: Panduan Lengkap Syarat, Prosedur & Biaya', kat: 'Haji Khusus', tgl: '27 Juli 2026', foto: 'assets/kabah-jamaah-masjidil-haram.webp', href: 'cara-pindah-pin-haji-khusus.html' },
   ];
   // Sembunyikan artikel yang sedang dibuka agar tidak merekomendasikan dirinya sendiri.
   const current = new URLSearchParams(location.search).get('judul');
@@ -378,9 +375,11 @@
     </div>`;
   grid.innerHTML = list.map(skeletonHTML).join('');
 
+  const hrefOf = (a) => a.href || `Artikel Detail.html?judul=${encodeURIComponent(a.judul)}&kat=${encodeURIComponent(a.kat)}&tgl=${encodeURIComponent(a.tgl)}&foto=${encodeURIComponent(a.foto)}`;
+
   const renderReal = () => {
     grid.innerHTML = list.map((a, i) => `
-    <a href="Artikel Detail.html?judul=${encodeURIComponent(a.judul)}&kat=${encodeURIComponent(a.kat)}&tgl=${encodeURIComponent(a.tgl)}&foto=${encodeURIComponent(a.foto)}" class="artikel-card" aria-label="${a.judul}">
+    <a href="${hrefOf(a)}" class="artikel-card" aria-label="${a.judul}">
       <image-slot id="rel-${i}" style="width:100%;aspect-ratio:16/11;" shape="rect" fit="cover" src="${a.foto}" placeholder="Gambar artikel"></image-slot>
       <div class="p-6 flex flex-col flex-1">
         <h3 class="artikel-title font-display font-bold text-lg leading-snug text-primary-900">${a.judul}</h3>
