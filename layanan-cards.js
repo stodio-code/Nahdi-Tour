@@ -98,6 +98,10 @@
     nightMadinah:  'uploads/night-madinah.jpg',
     frombehind1:   'uploads/gambar-badal-haji.jpg',
     frombehind2:   'uploads/gambar-badal-umroh.jpg',
+    // Preview brosur (crop bagian atas, rasio 4:3) untuk header kartu Haji Khusus.
+    brosurSahabat:   'assets/card-haji-sahabat.webp',
+    brosurBinDawood: 'assets/card-haji-bin-dawood.webp',
+    brosurHaramain:  'assets/card-haji-haramainku.webp',
   };
 
   // ---- Brosur PDF/JPG mitra (assets/brosur) — kosongkan jika belum tersedia ----
@@ -371,7 +375,7 @@
     ],
     khusus: [
       {
-        id: 'khusus-1', judul: 'Haji Khusus', foto: FOTO.arafah,
+        id: 'khusus-1', judul: 'Haji Khusus', foto: FOTO.brosurSahabat,
         fasilitas: [
           ['hourglass',  'Masa Tunggu 8-10 Tahun'],
           ['ticket',     'Langsung Dapat No. Porsi'],
@@ -401,7 +405,7 @@
         mitra: MITRA.sahabat, harga: '$ 4.000', hargaLabel: 'DP per Orang', download: BROSUR.hajiKhususSahabat,
       },
       {
-        id: 'khusus-2', judul: 'Haji Khusus', foto: FOTO.arafah,
+        id: 'khusus-2', judul: 'Haji Khusus', foto: FOTO.brosurBinDawood,
         fasilitas: [
           ['plane',      'Penerbangan Langsung dari Jakarta'],
           ['train',      'Kereta Cepat Haramain Express'],
@@ -421,7 +425,7 @@
         mitra: MITRA.binDawood, harga: '$ 19.750', hargaLabel: 'Harga Mulai (USD)', download: BROSUR.hajiKhususBinDawood,
       },
       {
-        id: 'khusus-3', judul: 'Haji Khusus — Bisa Dicicil', foto: FOTO.arafah,
+        id: 'khusus-3', judul: 'Haji Khusus — Bisa Dicicil', foto: FOTO.brosurHaramain,
         fasilitas: [
           ['plane',      'Saudia Airlines (Direct Flight)'],
           ['sparkles',   'VIP Lounge Keberangkatan'],
