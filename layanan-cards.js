@@ -102,6 +102,13 @@
     brosurSahabat:   'assets/card-haji-sahabat.webp',
     brosurBinDawood: 'assets/card-haji-bin-dawood.webp',
     brosurHaramain:  'assets/card-haji-haramainku.webp',
+    // Preview brosur (crop bagian atas, rasio 4:3) untuk header kartu Umrah Akhir Tahun.
+    brosurUhudAkhirTahun:    'assets/card-umrah-uhud-akhirtahun.webp',
+    brosurDwinsAkhirTahun:   'assets/card-umrah-dwins-akhirtahun.webp',
+    brosurMsSilver:          'assets/card-umrah-ms-silver.webp',
+    brosurMsExecutive:       'assets/card-umrah-ms-executive.webp',
+    brosurElMarwaAkhirTahun: 'assets/card-umrah-elmarwa-akhirtahun.webp',
+    brosurPibAkhirTahun:     'assets/card-umrah-pib-akhirtahun.webp',
   };
 
   // ---- Brosur PDF/JPG mitra (assets/brosur) — kosongkan jika belum tersedia ----
@@ -138,7 +145,7 @@
     ],
     reguler: [
       {
-        id: 'reguler-1', judul: 'Umrah Akhir Tahun', foto: FOTO.gunungUhud,
+        id: 'reguler-1', judul: 'Umrah Akhir Tahun', foto: FOTO.brosurUhudAkhirTahun,
         fasilitas: [
           ['hourglass', 'Durasi 9 Hari'],
           ['calendar',  'Keberangkatan: 21 Desember 2026'],
@@ -166,12 +173,12 @@
         mitra: MITRA.uhud, harga: 'Rp65,5 juta', download: BROSUR.umrahAkhirTahunUhud,
       },
       {
-        id: 'reguler-2', judul: 'Umrah Akhir Tahun', foto: FOTO.madinah,
+        id: 'reguler-2', judul: 'Umrah Akhir Tahun', foto: FOTO.brosurDwinsAkhirTahun,
         fasilitas: fasilitasUmrah('Royal Majestik (Makkah) & Deyar Al Eiman (Madinah)'),
         mitra: { ...MITRA.dwins, nama: 'Dwins Travel (Paket Reguler)' }, harga: 'Rp29,5 juta', download: BROSUR.umrahAkhirTahunDwins,
       },
       {
-        id: 'reguler-3', judul: 'Umrah Silver Akhir Tahun', foto: FOTO.kaabaClock,
+        id: 'reguler-3', judul: 'Umrah Silver Akhir Tahun', foto: FOTO.brosurMsSilver,
         fasilitas: [
           ['calendar',  'Keberangkatan: 28 Desember 2026'],
           ['plane',     'Maskapai Garuda Indonesia (JED–JED)'],
@@ -199,7 +206,7 @@
         mitra: MITRA.mutiara, harga: 'Rp39,5 juta', download: BROSUR.umrahSilverMutiara,
       },
       {
-        id: 'reguler-3e', judul: 'Umrah Executive Akhir Tahun', foto: FOTO.kaabaClock2,
+        id: 'reguler-3e', judul: 'Umrah Executive Akhir Tahun', foto: FOTO.brosurMsExecutive,
         fasilitas: [
           ['calendar',  'Keberangkatan: 22 Desember 2026'],
           ['plane',     'Maskapai Garuda Indonesia (MED–JED)'],
@@ -226,7 +233,7 @@
         mitra: MITRA.mutiara, harga: 'Rp43,3 juta', download: BROSUR.umrahExecutiveMutiara,
       },
       {
-        id: 'reguler-3m', judul: 'Umrah Akhir Tahun', foto: FOTO.kaabaMinaret,
+        id: 'reguler-3m', judul: 'Umrah Akhir Tahun', foto: FOTO.brosurElMarwaAkhirTahun,
         fasilitas: [
           ['hourglass', 'Program Umroh 9 Hari'],
           ['plane',     'Tiket Pesawat Internasional Garuda Indonesia'],
@@ -276,7 +283,7 @@
         mitra: MITRA.elMarwa, harga: 'Rp42,5 juta', download: BROSUR.umrahAkhirTahunElMarwa,
       },
       {
-        id: 'reguler-3p', judul: 'Umrah Akhir Tahun', foto: FOTO.kaabaMinaret2,
+        id: 'reguler-3p', judul: 'Umrah Akhir Tahun', foto: FOTO.brosurPibAkhirTahun,
         fasilitas: [
           ['calendar',  'Keberangkatan: 02 November 2026'],
           ['hourglass', 'Program Umroh 9 Hari'],
