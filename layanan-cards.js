@@ -96,6 +96,7 @@
     gunungUhud:    'uploads/gunung-uhud.jpg',
     nightMecca:    'uploads/night-mecca.jpg',
     nightMadinah:  'uploads/night-madinah.jpg',
+    itikafMakkah:  'assets/tawaf-masjidil-haram-malam.webp',
     frombehind1:   'uploads/gambar-badal-haji.jpg',
     frombehind2:   'uploads/gambar-badal-umroh.jpg',
     // Preview brosur (crop bagian atas, rasio 4:3) untuk header kartu Haji Khusus.
@@ -123,6 +124,7 @@
     umrahAkhirTahunElMarwa: 'assets/brosur/umroh-elmarwa-akhir-tahun.jpg',
     umrahItikafMutiara:     'assets/brosur/umroh-itikaf-mutiarasunnah2027.jpeg',
     umrahItikafElMarwa:     'assets/brosur/umroh-itikaf-elmarwa.jpeg',
+    umrahItikafPib:         'assets/brosur/PIB-Travel-Umroh-itikaf-Ramadhan-2027.jpeg',
     umrahTurkiDwins:        'assets/brosur/umroh-turki-dwins.png',
     umrahKonsorsiumPIB:     'assets/brosur/flyer-umroh-konsorsium.jpeg',
     umrahDubaiDwins:        'assets/brosur/umroh-dubai-dwins.png',
@@ -318,6 +320,34 @@
         id: 'reguler-5', judul: 'Umrah Plus Turki Cappadocia', foto: FOTO.turkiye,
         fasilitas: fasilitasUmrah('Royal Majestik (Makkah) & Deyar Al Eiman (Madinah)'),
         mitra: MITRA.dwins, harga: 'Rp38,9 juta', download: BROSUR.umrahTurkiDwins,
+      },
+      {
+        id: 'reguler-7', judul: 'Paket Umroh Itikaf Ramadhan', foto: FOTO.itikafMakkah,
+        fasilitas: [
+          ['calendar',  'Berangkat Februari 2027 — Pulang Awal Syawal'],
+          ['hourglass', "Program Umroh 17 Hari (I'tikaf Ramadhan)"],
+          ['user',      'Dibimbing langsung Ustadz Luthfi Abdul Jabbar, Lc. (Direktur & Owner PIB Travel)'],
+          ['plane',     'HANYA Maskapai Direct (Garuda / Saudia)'],
+          ['bed',       'Hotel dekat Masjidil Haram & Masjid Nabawi'],
+          ['sparkles',  'Fasilitas nyaman — jamaah lebih fokus ibadah'],
+        ],
+        extra: {
+          hotel: [['Makkah', 'Dekat Masjidil Haram (bervariatif)'], ['Madinah', 'Dekat Masjid Nabawi (bervariatif)']],
+          hargaTitle: 'Harga Paket',
+          harga: [
+            ['Mulai dari (hotel bervariatif)', 'Rp 40.500.000'],
+          ],
+          benefitsTitle: "Keunggulan I'tikaf Ramadhan",
+          benefits: [
+            'Program 17 hari penuh — berangkat Februari, pulang awal Syawal',
+            'HANYA maskapai direct (Garuda / Saudia)',
+            'Hotel dekat Masjidil Haram & Masjid Nabawi',
+            'Fasilitas nyaman agar jamaah lebih fokus ibadah',
+          ],
+          pembimbingTitle: 'Pembimbing Jamaah',
+          pembimbing: ['Ustadz Luthfi Abdul Jabbar, Lc. (Direktur & Owner PIB Travel)'],
+        },
+        mitra: MITRA.pibTravel, harga: 'Rp40,5 juta', download: BROSUR.umrahItikafPib,
       },
       {
         id: 'reguler-6', judul: "Umrah I'tikaf Ramadhan", foto: FOTO.nightMecca,
