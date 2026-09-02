@@ -583,6 +583,11 @@
     return '<span class="btn-outline inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold" aria-disabled="true" title="Brosur belum tersedia">Brosur Segera Hadir</span>';
   };
 
+  const waKonsultasiHref = (judul) => {
+    const namaPaket = judul.replace(/^Paket\s+/i, '');
+    return 'https://wa.me/6281314542357?text=' + encodeURIComponent('Assalamualaikum Pak Yap - Nahdi Tour, saya ingin konsultasi paket ' + namaPaket + '.');
+  };
+
   const cardHTML = (p, key) => {
     const satuan = '';
     return `
@@ -625,7 +630,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </button>
         <div class="paket-actions mt-5 pt-5 border-t border-slate200 flex flex-col gap-2.5">
-          <a href="index.html#konsultasi" class="btn-primary inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold">Konsultasi Sekarang</a>
+          <a href="${waKonsultasiHref(p.judul)}" target="_blank" rel="noopener noreferrer" class="btn-primary inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold">Konsultasi Sekarang</a>
           ${brosurHTML(p)}
         </div>
       </div>
