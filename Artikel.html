@@ -283,23 +283,15 @@
   <div class="max-w-[1120px] mx-auto px-5 lg:px-8">
     <div id="artikelFilter" class="filter-row filter-fade-r flex items-center gap-2.5 overflow-x-auto pt-7 pb-4">
       <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">Semua artikel</button>
-      <button type="button" class="filter-chip" data-filter="panduan" aria-pressed="false">Panduan Ibadah</button>
       <button type="button" class="filter-chip" data-filter="tips" aria-pressed="false">Tips Perjalanan</button>
       <button type="button" class="filter-chip" data-filter="info" aria-pressed="false">Informasi Terbaru</button>
     </div>
   </div>
 </section>
 
-<!-- ===== PANDUAN IBADAH ===== -->
-<section class="bg-white" data-artikel-section="panduan" data-screen-label="Panduan Ibadah">
-  <div class="max-w-[1120px] mx-auto px-5 lg:px-8 pt-7 lg:pt-8 pb-2">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-artikel-grid="panduan"></div>
-  </div>
-</section>
-
 <!-- ===== TIPS PERJALANAN ===== -->
 <section class="bg-white" data-artikel-section="tips" data-screen-label="Tips Perjalanan">
-  <div class="max-w-[1120px] mx-auto px-5 lg:px-8 pt-8 lg:pt-9 pb-2">
+  <div class="max-w-[1120px] mx-auto px-5 lg:px-8 pt-7 lg:pt-8 pb-2">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-artikel-grid="tips"></div>
   </div>
 </section>
@@ -351,9 +343,6 @@
 /* ===== Render artikel cards ===== */
 (() => {
   const DATA = {
-    panduan: [
-      { judul: 'Tata Cara Umrah Lengkap untuk Jamaah Pertama Kali', kat: 'Umrah', tgl: '24 Juni 2026', foto: 'assets/kaaba-masjidil-haram.jpg' },
-    ],
     tips: [
       { judul: 'Umrah Mandiri atau Bersama Travel? Bandingkan Biaya Riilnya Sendiri', kat: 'Tips', tgl: '8 September 2026', foto: 'assets/jamaah-tiba-jeddah.webp', href: 'umrah-mandiri-vs-travel/' },
       { judul: 'Panduan Cerdas Belanja Oleh-Oleh Umrah: Berapa Realistis Anggaran Riyal Tanpa Kena Denda Overweight Koper?', kat: 'Tips', tgl: '2 September 2026', foto: 'assets/rindu-kurma.webp', href: 'panduan-belanja-oleh-oleh-umrah.html' },
