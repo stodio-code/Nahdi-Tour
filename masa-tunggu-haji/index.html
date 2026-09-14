@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<!-- ===== SEO: Primary meta ===== -->
+<title>Menghitung Usia di Padang Arafah: Komparasi Masa Tunggu Haji Reguler vs Haji Khusus | Nahdi Tour</title>
+<meta name="description" content="Simulator interaktif masa tunggu haji: hitung proyeksi usia Anda saat wukuf di Arafah pada jalur reguler maupun haji khusus, lengkap dengan dampak menunda pendaftaran." />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="Nahdi Tour" />
+<link rel="canonical" href="https://nahditour.com/masa-tunggu-haji/" />
+<link rel="icon" type="image/png" href="../assets/favicon-nahdi-tour.png" />
+
+<!-- ===== SEO: Open Graph ===== -->
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Nahdi Tour" />
+<meta property="og:title" content="Menghitung Usia di Padang Arafah: Komparasi Masa Tunggu Haji Reguler vs Haji Khusus" />
+<meta property="og:description" content="Haji adalah ibadah fisik. Hitung sendiri proyeksi usia Anda saat wukuf di Arafah, dan lihat berapa tahun usia yang hilang setiap kali pendaftaran ditunda." />
+<meta property="og:url" content="https://nahditour.com/masa-tunggu-haji/" />
+<meta property="og:image" content="https://nahditour.com/assets/jabal-rahmah-arafah.webp" />
+<meta property="og:locale" content="id_ID" />
+<meta property="article:published_time" content="2026-09-14" />
+<meta property="article:section" content="Haji Khusus" />
+
+<!-- ===== SEO: Twitter Card ===== -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Menghitung Usia di Padang Arafah: Komparasi Masa Tunggu Haji Reguler vs Haji Khusus" />
+<meta name="twitter:description" content="Simulator interaktif untuk memproyeksikan usia Anda saat wukuf di Arafah pada jalur haji reguler maupun haji khusus." />
+<meta name="twitter:image" content="https://nahditour.com/assets/jabal-rahmah-arafah.webp" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+<!-- ===== Structured Data ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://nahditour.com/masa-tunggu-haji/" },
+  "headline": "Menghitung Usia di Padang Arafah: Komparasi Realistis Masa Tunggu Haji Reguler vs Haji Khusus",
+  "description": "Analisis dan simulator interaktif untuk memproyeksikan usia jamaah saat wukuf di Arafah, membandingkan masa tunggu haji reguler per provinsi dengan haji khusus melalui PIHK resmi.",
+  "image": "https://nahditour.com/assets/jabal-rahmah-arafah.webp",
+  "inLanguage": "id-ID",
+  "datePublished": "2026-09-14",
+  "dateModified": "2026-09-14",
+  "author": { "@type": "Organization", "name": "Nahdi Tour", "url": "https://nahditour.com" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nahdi Tour",
+    "logo": { "@type": "ImageObject", "url": "https://nahditour.com/assets/logo-nahdi-tour-trim.png" }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Beranda", "item": "https://nahditour.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Artikel", "item": "https://nahditour.com/Artikel.html" },
+    { "@type": "ListItem", "position": 3, "name": "Komparasi Masa Tunggu Haji" }
+  ]
+}
+</script>
+
+<style>
+/* ============================================================
+   DESIGN TOKENS: Nahdi Tour Design System
+   ============================================================ */
+:root {
+  --p-50:  #EBF4FF;
+  --p-100: #DBE8FF;
+  --p-200: #BFCFFF;
+  --p-300: #9EB0FF;
+  --p-500: #616FD5;
+  --p-600: #4B56BA;
+  --p-700: #394198;
+  --p-800: #24286D;
+  --p-900: #111341;
+  --p-950: #05061F;
+
+  --g-50:  #FFF4D5;
+  --g-200: #F1D087;
+  --g-300: #DAB255;
+  --g-400: #BD9116;
+  --g-700: #6B4500;
+
+  --n-0:   #FFFFFF;
+  --n-25:  #F8FAFC;
+  --n-50:  #F1F5F9;
+  --n-200: #E5E7EB;
+  --n-400: #96A0A7;
+  --n-500: #6A737A;
+  --n-600: #4E575D;
+  --n-700: #363E44;
+  --n-800: #1B2328;
+
+  --ok-bg:   #ECFDF5;
+  --ok-bd:   #A7E8CB;
+  --ok-fg:   #10603F;
+  --warn-bg: #FFF7ED;
+  --warn-bd: #F3B98F;
+  --warn-fg: #8A3B00;
+  --danger-bg: #FEF2F2;
+  --danger-bd: #F5B5B5;
+  --danger-fg: #9B1C1C;
+
+  --radius-sm: 8px;
+  --radius:    12px;
+  --radius-lg: 16px;
+  --border:    1px solid #E5E7EB;
+  --shadow:    0 4px 14px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 30px rgba(17,19,65,0.10);
+  --tap:       44px;
+
+  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body:    Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--n-800);
+  background: var(--n-0);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--p-700); }
+button { font: inherit; cursor: pointer; }
+input, select, button { font-family: inherit; }
+:focus-visible { outline: 2px solid var(--p-600); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; color: var(--p-900); margin: 0; }
+
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+.wrap-narrow { width: 100%; max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+/* ===== HEADER ===== */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: var(--border);
+}
+.nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+.nav-logo img { height: 28px; width: auto; }
+.nav-links { display: none; list-style: none; margin: 0; padding: 0; gap: 4px; }
+.nav-links a {
+  display: inline-flex; align-items: center; min-height: var(--tap);
+  padding: 8px 14px; border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 500; color: var(--n-700); text-decoration: none;
+  transition: background .2s ease, color .2s ease;
+}
+.nav-links a:hover { background: var(--n-50); color: var(--p-800); }
+.nav-links a[aria-current="page"] { background: var(--p-50); color: var(--p-900); font-weight: 600; }
+.nav-cta {
+  display: none; align-items: center; min-height: var(--tap);
+  padding: 10px 18px; border-radius: var(--radius-sm);
+  background: var(--p-600); color: #fff; font-size: 14px; font-weight: 600;
+  text-decoration: none; transition: background .2s ease;
+}
+.nav-cta:hover { background: var(--p-700); }
+@media (min-width: 860px) { .nav-links { display: flex; } .nav-cta { display: inline-flex; } }
+
+.progress-track { position: sticky; top: 64px; z-index: 40; height: 3px; background: transparent; }
+.progress-bar { height: 100%; width: 0; background: var(--p-600); box-shadow: 0 0 8px rgba(75,86,186,.5); transition: width .1s ease-out; }
+
+/* ===== HERO ===== */
+.hero { padding: 32px 0 8px; background: linear-gradient(180deg, var(--p-50) 0%, #fff 100%); }
+.breadcrumb { font-size: 14px; color: var(--n-500); margin-bottom: 18px; }
+.breadcrumb a { color: var(--p-700); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px;
+  background: var(--p-900); color: #fff;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+}
+.badge .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--g-300); }
+.hero h1 { font-size: clamp(27px, 5.2vw, 43px); line-height: 1.15; font-weight: 800; margin: 20px 0 0; }
+.hero .sub { font-size: clamp(16px, 2.2vw, 19px); color: var(--n-600); margin: 16px 0 0; line-height: 1.65; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 20px; font-size: 14px; color: var(--n-500); }
+.meta .sep { color: var(--n-200); }
+.meta .ico { display: inline-flex; align-items: center; gap: 6px; }
+
+figure { margin: 28px 0 0; }
+.hero-figure img { width: 100%; border-radius: var(--radius-lg); border: var(--border); }
+figcaption { margin-top: 12px; font-size: 13px; color: var(--n-500); text-align: center; line-height: 1.6; }
+
+/* ===== ARTICLE ===== */
+.article { padding: 8px 0 24px; }
+.article h2 {
+  font-size: clamp(21px, 3.4vw, 28px); line-height: 1.3; font-weight: 800;
+  margin: 44px 0 14px; display: flex; align-items: flex-start; gap: 12px;
+}
+.article h2 .num {
+  flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 999px;
+  background: var(--p-50); color: var(--p-700);
+  font-size: 15px; font-weight: 800; margin-top: 2px;
+}
+.article h3 { font-size: clamp(17px, 2.6vw, 20px); font-weight: 700; color: var(--p-800); margin: 28px 0 8px; }
+.article p { font-size: 17px; line-height: 1.85; color: var(--n-600); margin: 0 0 18px; }
+.article strong { color: var(--p-800); font-weight: 600; }
+.article a { font-weight: 500; text-decoration: underline; text-decoration-color: var(--p-300); text-underline-offset: 3px; }
+.article ul { padding-left: 22px; margin: 0 0 18px; }
+.article li { font-size: 17px; line-height: 1.8; color: var(--n-600); margin-bottom: 8px; }
+blockquote {
+  margin: 26px 0; padding: 6px 0 6px 20px;
+  border-left: 3px solid var(--g-300);
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 19px; line-height: 1.6; color: var(--p-800);
+}
+.callout {
+  background: var(--g-50); border: 1px solid var(--g-200); border-radius: var(--radius);
+  padding: 18px 20px; margin: 26px 0; color: var(--g-700); font-size: 15px; line-height: 1.75;
+}
+.callout .t {
+  display: block; font-family: var(--font-display); font-weight: 800;
+  font-size: 12px; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px;
+}
+.callout strong { color: var(--g-700); }
+
+.tbl-wrap { overflow-x: auto; border: var(--border); border-radius: var(--radius); margin: 24px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 520px; }
+th, td { text-align: left; padding: 13px 16px; border-bottom: 1px solid #EEF1F5; vertical-align: top; }
+thead th { background: var(--p-50); color: var(--p-800); font-family: var(--font-display); font-weight: 700; font-size: 14px; }
+tbody td { color: var(--n-600); }
+tbody td strong { color: var(--p-800); }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(even) td { background: #FAFCFF; }
+
+/* ===== SIMULATOR ===== */
+.sim {
+  border: var(--border); border-radius: var(--radius-lg); background: var(--n-25);
+  box-shadow: var(--shadow); padding: 22px; margin: 32px 0;
+}
+.sim-title { font-size: 20px; font-weight: 800; margin: 0 0 4px; }
+.sim-desc { font-size: 14px; color: var(--n-500); margin: 0 0 22px; line-height: 1.6; }
+
+fieldset { border: 0; padding: 0; margin: 0 0 24px; }
+legend {
+  font-family: var(--font-display); font-weight: 700; font-size: 15px;
+  color: var(--p-900); padding: 0; margin-bottom: 4px;
+}
+.field-hint { font-size: 13px; color: var(--n-500); margin: 0 0 12px; }
+
+.slider-row { display: flex; align-items: center; gap: 14px; }
+.slider-row input[type="range"] {
+  flex: 1; height: var(--tap); accent-color: var(--p-600); background: transparent; cursor: pointer;
+}
+.age-chip {
+  flex-shrink: 0; min-width: 104px; text-align: center;
+  padding: 9px 12px; border-radius: var(--radius-sm);
+  background: var(--p-900); color: #fff;
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.slider-scale { display: flex; justify-content: space-between; font-size: 12px; color: var(--n-400); margin-top: -4px; }
+
+.segmented { display: flex; gap: 8px; flex-wrap: wrap; }
+.segmented button {
+  flex: 1 1 auto; min-width: 104px; min-height: var(--tap);
+  padding: 10px 14px; border-radius: var(--radius-sm);
+  border: var(--border); background: var(--n-0); color: var(--p-800);
+  font-size: 14px; font-weight: 600;
+  transition: background .18s ease, border-color .18s ease, color .18s ease;
+}
+.segmented button:hover { background: var(--p-50); border-color: var(--p-200); }
+.segmented button[aria-pressed="true"] {
+  background: var(--p-700); border-color: var(--p-700); color: #fff;
+  box-shadow: 0 1px 3px rgba(17,19,65,.18);
+}
+
+.select-wrap { position: relative; }
+.select-wrap select {
+  width: 100%; min-height: var(--tap);
+  padding: 12px 42px 12px 14px; border-radius: var(--radius-sm);
+  border: var(--border); background: var(--n-0); color: var(--p-900);
+  font-size: 15px; font-weight: 600; appearance: none; cursor: pointer;
+}
+.select-wrap select:hover { border-color: var(--p-200); }
+.select-wrap .caret {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  pointer-events: none; color: var(--p-700);
+}
+
+/* Comparison columns */
+.compare { display: grid; gap: 14px; margin-top: 8px; }
+@media (min-width: 800px) { .compare { grid-template-columns: 1fr 1fr; } }
+
+.col {
+  border: var(--border); border-radius: var(--radius); background: var(--n-0);
+  box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column;
+}
+.col.featured { border-color: var(--p-200); box-shadow: var(--shadow-lg); }
+.col-head { padding: 16px 18px; border-bottom: var(--border); }
+.col.featured .col-head { background: var(--p-900); border-bottom-color: var(--p-800); }
+.col-kicker { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--n-500); }
+.col.featured .col-kicker { color: var(--g-200); }
+.col-name { font-family: var(--font-display); font-size: 17px; font-weight: 800; color: var(--p-900); margin-top: 3px; }
+.col.featured .col-name { color: #fff; }
+.col-body { padding: 4px 18px 0; flex: 1; }
+
+.stat { padding: 13px 0; border-bottom: 1px dashed #EEF1F5; }
+.stat:last-child { border-bottom: 0; }
+.stat .k { font-size: 13px; color: var(--n-500); display: block; }
+.stat .v {
+  font-family: var(--font-display); font-weight: 800; font-size: 21px;
+  color: var(--p-900); font-variant-numeric: tabular-nums; display: block; margin-top: 2px; line-height: 1.25;
+}
+.stat .v small { font-size: 13px; font-weight: 600; color: var(--n-500); }
+.stat.headline .v { font-size: 30px; }
+.col.featured .stat.headline .v { color: var(--p-700); }
+
+.age-flag {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 6px;
+  padding: 5px 11px; border-radius: 999px; font-size: 12px; font-weight: 700; line-height: 1.4;
+}
+.age-flag.ok { background: var(--ok-bg); color: var(--ok-fg); border: 1px solid var(--ok-bd); }
+.age-flag.warn { background: var(--warn-bg); color: var(--warn-fg); border: 1px solid var(--warn-bd); }
+.age-flag.danger { background: var(--danger-bg); color: var(--danger-fg); border: 1px solid var(--danger-bd); }
+
+.col-note {
+  margin: 0; padding: 14px 18px; border-top: var(--border);
+  background: var(--n-25); font-size: 13.5px; line-height: 1.65; color: var(--n-600);
+}
+.col.featured .col-note { background: #FBFCFF; }
+.col-note strong { color: var(--p-800); }
+.col-note .nt {
+  display: block; font-family: var(--font-display); font-weight: 800;
+  font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--n-500); margin-bottom: 5px;
+}
+
+/* Insight box */
+.insight {
+  margin-top: 16px; border-radius: var(--radius); padding: 18px 20px;
+  background: linear-gradient(140deg, var(--p-950) 0%, #14185A 60%, var(--p-800) 100%);
+  color: #fff;
+}
+.insight h4 {
+  color: var(--g-200); font-size: 11.5px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px;
+}
+.insight p { margin: 0 0 10px; font-size: 15px; line-height: 1.75; color: rgba(255,255,255,.86); }
+.insight p:last-child { margin-bottom: 0; }
+.insight strong { color: #fff; font-weight: 700; }
+.insight .big {
+  font-family: var(--font-display); font-weight: 800; font-size: 27px;
+  color: var(--g-200); display: block; margin-bottom: 6px; font-variant-numeric: tabular-nums; line-height: 1.2;
+}
+
+.sim-foot { font-size: 12px; color: var(--n-400); margin-top: 16px; line-height: 1.65; }
+.sim-foot a { color: var(--p-700); }
+
+/* CTA */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: var(--tap); padding: 15px 24px; border-radius: var(--radius);
+  font-family: var(--font-display); font-weight: 700; font-size: 15px;
+  text-decoration: none; text-align: center; border: 1px solid transparent;
+  transition: background .2s ease, transform .15s ease;
+}
+.btn-gold { background: var(--g-300); color: var(--p-900); }
+.btn-gold:hover { background: var(--g-200); transform: translateY(-1px); }
+.cta-wrap { margin-top: 18px; }
+.cta-wrap .btn { width: 100%; }
+
+.cta-final {
+  background: linear-gradient(140deg, var(--p-950) 0%, #14185A 55%, var(--p-800) 100%);
+  border-radius: var(--radius-lg); color: #fff; padding: 30px 24px; margin: 36px 0;
+}
+.cta-final h2 { color: #fff; font-size: clamp(20px, 3.2vw, 26px); margin: 12px 0 10px; display: block; }
+.cta-final p { color: rgba(255,255,255,.78); font-size: 15.5px; line-height: 1.7; margin: 0 0 20px; }
+.cta-final .kicker {
+  display: inline-flex; padding: 5px 13px; border-radius: 999px;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16);
+  color: var(--p-100); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+}
+
+.site-footer { border-top: var(--border); background: var(--n-0); margin-top: 40px; }
+.foot { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 30px 0; text-align: center; }
+.foot img { height: 28px; width: auto; }
+.foot p { font-size: 12px; color: var(--n-500); margin: 0; line-height: 1.7; }
+@media (min-width: 760px) { .foot { flex-direction: row; justify-content: space-between; text-align: left; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="wrap nav" aria-label="Navigasi utama">
+    <a class="nav-logo" href="../index.html#beranda" aria-label="Nahdi Tour, kembali ke beranda">
+      <img src="../assets/logo-nahdi-tour-trim.png" alt="Nahdi Tour" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#beranda">Beranda</a></li>
+      <li><a href="../Layanan.html">Layanan</a></li>
+      <li><a href="../Tentang Kami.html">Tentang Kami</a></li>
+      <li><a href="../Artikel.html" aria-current="page">Artikel</a></li>
+    </ul>
+    <a class="nav-cta" href="https://wa.me/6281314542357?text=Assalamualaikum%20Pak%20Yap%20-%20Nahdi%20Tour%2C%20saya%20ingin%20konsultasi%20paket%20umrah%20%2F%20haji." target="_blank" rel="noopener noreferrer">Konsultasi Sekarang</a>
+  </nav>
+</header>
+
+<div class="progress-track" aria-hidden="true"><div class="progress-bar" id="readProgress"></div></div>
+
+<main>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap-narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../Artikel.html">Artikel</a> <span aria-hidden="true">/</span> Komparasi Masa Tunggu Haji
+    </nav>
+
+    <span class="badge"><span class="dot" aria-hidden="true"></span>Haji Khusus &amp; Simulator</span>
+
+    <h1>Menghitung Usia di Padang Arafah: Komparasi Realistis Masa Tunggu Haji Reguler vs Haji Khusus</h1>
+    <p class="sub">Haji bukan sekadar urusan administrasi dan nomor porsi. Ia adalah ibadah fisik yang menuntut kekuatan tubuh. Pertanyaannya sederhana: berapa usia Anda nanti saat berdiri di Arafah?</p>
+
+    <div class="meta">
+      <span>Haji Khusus</span>
+      <span class="sep" aria-hidden="true">|</span>
+      <time datetime="2026-09-14">14 September 2026</time>
+      <span class="sep" aria-hidden="true">|</span>
+      <span class="ico">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        6 menit baca
+      </span>
+      <span class="sep" aria-hidden="true">|</span>
+      <span class="ico">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/></svg>
+        Termasuk simulator usia
+      </span>
+    </div>
+
+    <figure class="hero-figure">
+      <img src="../assets/jabal-rahmah-arafah.webp" alt="Jamaah haji berihram memadati bebatuan Jabal Rahmah di Padang Arafah saat wukuf" width="1200" height="1600" fetchpriority="high" style="aspect-ratio:16/10;object-fit:cover;object-position:50% 42%;" />
+      <figcaption>Wukuf di Arafah adalah puncak rangkaian haji sekaligus ujian ketahanan fisik. Medan berbatu, suhu tinggi, dan kepadatan jamaah menuntut stamina yang tidak selalu tersedia di usia lanjut.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== ARTICLE ===== -->
+<article class="article">
+  <div class="wrap-narrow">
+
+    <p>Ketika seseorang mendaftar haji reguler hari ini, yang ia terima bukanlah tiket keberangkatan, melainkan sebuah nomor porsi dan sebuah tanggal di masa depan yang letaknya sangat jauh. Di banyak provinsi, jaraknya melampaui dua dekade. Pada rentang waktu sepanjang itu, ada satu variabel yang bergerak tanpa bisa dinegosiasikan: <strong>usia tubuh kita sendiri</strong>.</p>
+    <p>Tulisan ini tidak dimaksudkan untuk menakut-nakuti, apalagi meremehkan jalur reguler yang telah mengantarkan jutaan jamaah Indonesia ke Tanah Suci. Tujuannya satu saja, yaitu memindahkan sebuah keputusan penting dari wilayah asumsi ke wilayah hitungan. Di tengah halaman tersedia simulator yang bisa Anda gunakan untuk memproyeksikan usia Anda sendiri saat tiba di Arafah.</p>
+
+    <h2><span class="num" aria-hidden="true">1</span><span>Haji Adalah Ibadah Fisik, Bukan Hanya Administratif</span></h2>
+    <p>Diskusi tentang haji di Indonesia sering berhenti pada dua hal, yaitu biaya dan panjang antrean. Padahal ada dimensi ketiga yang justru paling menentukan kualitas ibadah seseorang di sana, yaitu <strong>kesiapan fisik</strong>.</p>
+    <p>Mari kita lihat apa yang sebenarnya dituntut dari tubuh seorang jamaah dalam rentang lima hari puncak haji:</p>
+    <ul>
+      <li><strong>Wukuf di Arafah.</strong> Berdiam dari tergelincirnya matahari hingga terbenam, di tenda, pada suhu yang kerap menembus 40 derajat Celsius.</li>
+      <li><strong>Mabit di Muzdalifah.</strong> Bermalam di ruang terbuka beralas tikar, memungut kerikil, sering kali tanpa fasilitas memadai dan dalam kondisi sangat padat.</li>
+      <li><strong>Mabit dan lontar jamrah di Mina.</strong> Inilah bagian terberat. Jarak dari tenda menuju Jamarat bisa mencapai empat sampai tujuh kilometer pulang pergi, ditempuh berjalan kaki, diulang selama dua hingga tiga hari berturut-turut, di tengah arus ratusan ribu manusia.</li>
+      <li><strong>Tawaf ifadah dan sai.</strong> Tujuh putaran mengelilingi Kabah ditambah tujuh lintasan Safa ke Marwah, yang totalnya setara berjalan beberapa kilometer lagi.</li>
+    </ul>
+    <p>Rangkaian itu bukan perjalanan wisata. Ia mendekati beban sebuah kegiatan fisik intensif yang dijalani berhari-hari tanpa jeda pemulihan yang cukup. Seorang jamaah berusia 45 tahun dan jamaah berusia 70 tahun menghadapi medan yang persis sama, dengan kapasitas tubuh yang sangat berbeda.</p>
+
+    <blockquote>Antrean haji tidak menunggu tubuh kita. Selama nomor porsi mengendap, satu hal terus berjalan tanpa bisa dihentikan, yaitu usia.</blockquote>
+
+    <p>Pemerintah sendiri menaruh perhatian serius pada hal ini. Kementerian Agama menjalankan program <strong>Haji Ramah Lansia</strong>, dengan kategori lansia mengacu pada jamaah berusia 65 tahun ke atas. Keberadaan program tersebut adalah pengakuan resmi bahwa struktur usia jamaah Indonesia memang bergeser menua, dan bahwa hal itu menimbulkan konsekuensi operasional yang nyata di lapangan.</p>
+
+    <h2><span class="num" aria-hidden="true">2</span><span>Aritmetika Antrean yang Sering Diabaikan</span></h2>
+    <p>Masa tunggu haji reguler terbentuk dari perbandingan yang timpang antara jumlah pendaftar dan kuota tahunan yang diberikan Arab Saudi. Karena kuota bersifat terbatas sementara pendaftar terus bertambah setiap tahun, antrean memanjang secara kumulatif.</p>
+    <p>Yang penting dipahami, angka masa tunggu bukan angka nasional tunggal. Ia <strong>berbeda jauh antarprovinsi</strong>, bahkan antarkabupaten dan kota, karena kuota dialokasikan proporsional terhadap jumlah penduduk muslim di daerah tersebut. Inilah sebabnya seorang pendaftar di satu provinsi bisa berangkat dua puluh tahun lebih cepat dibanding pendaftar di provinsi lain pada tahun pendaftaran yang sama.</p>
+    <p>Di sisi lain terdapat jalur <strong>haji khusus</strong>, yang diselenggarakan oleh Penyelenggara Ibadah Haji Khusus atau PIHK berizin resmi Kementerian Agama. Jalur ini memiliki alokasi kuota tersendiri berdasarkan Undang-Undang Nomor 8 Tahun 2019, dengan jumlah pendaftar yang jauh lebih sedikit sehingga antreannya jauh lebih pendek. Konsekuensinya juga jelas dan perlu dinyatakan terus terang, yaitu <strong>biayanya berkali lipat lebih tinggi</strong> dibanding jalur reguler.</p>
+
+    <div class="callout">
+      <span class="t">Dua jalur, dua konsekuensi</span>
+      Perbandingan dalam artikel ini <strong>bukan soal mana yang lebih baik secara mutlak</strong>. Jalur reguler jauh lebih terjangkau namun menuntut kesabaran lintas dekade. Jalur khusus memangkas penantian secara drastis namun menuntut kesiapan dana yang jauh lebih besar. Yang ingin kami bantu hitung hanyalah satu variabel yang sering luput, yaitu <strong>usia Anda saat akhirnya berdiri di Arafah</strong>.
+    </div>
+
+    <h2><span class="num" aria-hidden="true">3</span><span>Simulator Proyeksi Usia di Arafah</span></h2>
+    <p>Silakan atur usia Anda saat ini, rencana kapan mendaftar, dan provinsi domisili pendaftaran. Simulator akan memproyeksikan tahun keberangkatan dan usia Anda saat wukuf pada kedua jalur secara berdampingan.</p>
+
+    <section class="sim" aria-labelledby="simTitle">
+      <h3 class="sim-title" id="simTitle">Simulator Masa Tunggu dan Usia Wukuf</h3>
+      <p class="sim-desc">Perhitungan berbasis estimasi masa tunggu yang berlaku umum. Hasil bersifat proyeksi perencanaan, bukan kepastian jadwal.</p>
+
+      <fieldset>
+        <legend>Usia Anda Saat Ini</legend>
+        <p class="field-hint">Geser untuk menyesuaikan, rentang 20 sampai 65 tahun.</p>
+        <div class="slider-row">
+          <input type="range" id="ageRange" min="20" max="65" step="1" value="35" aria-label="Usia Anda saat ini dalam tahun" />
+          <output class="age-chip" id="ageChip" for="ageRange">35 Tahun</output>
+        </div>
+        <div class="slider-scale" aria-hidden="true"><span>20</span><span>65</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Rencana Waktu Mendaftar</legend>
+        <p class="field-hint">Setiap penundaan menambah usia Anda saat keberangkatan dengan jumlah yang sama.</p>
+        <div class="segmented" id="delaySeg" role="group" aria-label="Pilihan waktu mendaftar">
+          <button type="button" data-delay="0" aria-pressed="true">Daftar Tahun Ini</button>
+          <button type="button" data-delay="3" aria-pressed="false">Tunda 3 Tahun</button>
+          <button type="button" data-delay="5" aria-pressed="false">Tunda 5 Tahun</button>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Provinsi Pendaftaran</legend>
+        <p class="field-hint">Menentukan baseline antrean jalur reguler.</p>
+        <div class="select-wrap">
+          <select id="provSelect" aria-label="Pilih provinsi pendaftaran">
+            <option value="28">DKI Jakarta, estimasi 28 tahun</option>
+            <option value="30" selected>Jawa Barat, estimasi 30 tahun</option>
+            <option value="33">Jawa Tengah, estimasi 33 tahun</option>
+            <option value="35">Jawa Timur, estimasi 35 tahun</option>
+            <option value="34">DI Yogyakarta, estimasi 34 tahun</option>
+            <option value="29">Banten, estimasi 29 tahun</option>
+            <option value="33">Aceh, estimasi 33 tahun</option>
+            <option value="26">Sumatera Barat, estimasi 26 tahun</option>
+            <option value="22">Sumatera Utara, estimasi 22 tahun</option>
+            <option value="38">Kalimantan Selatan, estimasi 38 tahun</option>
+            <option value="40">Sulawesi Selatan, estimasi 40 tahun</option>
+            <option value="36">Nusa Tenggara Barat, estimasi 36 tahun</option>
+          </select>
+          <span class="caret" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </div>
+      </fieldset>
+
+      <div class="compare">
+        <!-- Reguler -->
+        <section class="col" aria-labelledby="regName">
+          <header class="col-head">
+            <span class="col-kicker">Jalur A</span>
+            <h4 class="col-name" id="regName">Haji Reguler</h4>
+          </header>
+          <div class="col-body">
+            <div class="stat">
+              <span class="k">Estimasi masa tunggu</span>
+              <span class="v" id="regWait">30 tahun</span>
+            </div>
+            <div class="stat">
+              <span class="k">Perkiraan tahun berangkat</span>
+              <span class="v" id="regYear">2056</span>
+            </div>
+            <div class="stat headline">
+              <span class="k">Proyeksi usia saat wukuf</span>
+              <span class="v" id="regAge">65 tahun</span>
+              <span class="age-flag danger" id="regFlag">Lansia</span>
+            </div>
+          </div>
+          <p class="col-note">
+            <span class="nt">Catatan ketahanan fisik</span>
+            <span id="regNote"></span>
+          </p>
+        </section>
+
+        <!-- Khusus -->
+        <section class="col featured" aria-labelledby="khsName">
+          <header class="col-head">
+            <span class="col-kicker">Jalur B</span>
+            <h4 class="col-name" id="khsName">Haji Khusus melalui PIHK</h4>
+          </header>
+          <div class="col-body">
+            <div class="stat">
+              <span class="k">Estimasi antrean nasional</span>
+              <span class="v" id="khsWait">5 sampai 8 tahun</span>
+            </div>
+            <div class="stat">
+              <span class="k">Perkiraan tahun berangkat</span>
+              <span class="v" id="khsYear">2031 sampai 2034</span>
+            </div>
+            <div class="stat headline">
+              <span class="k">Proyeksi usia saat wukuf</span>
+              <span class="v" id="khsAge">40 sampai 43 tahun</span>
+              <span class="age-flag ok" id="khsFlag">Usia produktif</span>
+            </div>
+          </div>
+          <p class="col-note">
+            <span class="nt">Keunggulan fasilitas</span>
+            Maktab di Mina berada pada zona dekat Jamarat sehingga jarak tempuh harian jauh lebih pendek. Ditambah tenda ber-AC, konsumsi terjaga, bus antarkota eksklusif, serta pendampingan pembimbing dengan rasio jamaah yang jauh lebih kecil.
+          </p>
+        </section>
+      </div>
+
+      <div class="insight" id="insightBox">
+        <h4>Dampak Keputusan Anda</h4>
+        <span class="big" id="insightBig"></span>
+        <p id="insightMain"></p>
+        <p id="insightSub"></p>
+      </div>
+
+      <div class="cta-wrap">
+        <a class="btn btn-gold" id="ctaBtn" href="#" target="_blank" rel="noopener noreferrer">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.24.68-1.42 1.32-1.95 1.36-.5.05-.98.23-3.3-.7-2.8-1.1-4.58-3.96-4.72-4.15-.14-.19-1.13-1.5-1.13-2.86 0-1.36.71-2.03.96-2.31.25-.28.55-.35.73-.35.18 0 .37 0 .53.01.17.01.4-.06.62.48.24.56.81 1.94.88 2.08.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.17.28.74 1.22 1.59 1.98 1.1.98 2.02 1.28 2.3 1.42.28.14.44.12.6-.07.17-.19.7-.81.88-1.09.18-.28.37-.23.62-.14.25.09 1.6.76 1.87.9.28.14.46.21.53.32.07.12.07.65-.17 1.33Z"/></svg>
+          Konsultasikan Pendaftaran Haji Khusus Bersama Abu Aisyah Yap
+        </a>
+      </div>
+
+      <p class="sim-foot">*Seluruh angka masa tunggu adalah estimasi umum untuk keperluan perencanaan, bukan jadwal resmi. Masa tunggu sesungguhnya berbeda tiap kabupaten dan kota, serta berubah mengikuti kuota tahunan dari Arab Saudi. Angka yang mengikat adalah data resmi Kementerian Agama. Silakan verifikasi melalui <a href="https://haji.kemenag.go.id" target="_blank" rel="noopener noreferrer">haji.kemenag.go.id</a> atau aplikasi Pusaka Kemenag menggunakan nomor porsi Anda.</p>
+    </section>
+
+    <h2><span class="num" aria-hidden="true">4</span><span>Membaca Hasil Simulasi Secara Jujur</span></h2>
+    <p>Angka yang muncul di simulator perlu dibaca dengan kepala dingin. Ada beberapa hal yang penting untuk diletakkan pada porsinya.</p>
+
+    <h3>Menunda pendaftaran adalah keputusan yang berbiaya</h3>
+    <p>Banyak calon jamaah menunda pendaftaran karena merasa dananya belum siap sepenuhnya. Padahal untuk jalur reguler, yang dibutuhkan di awal hanyalah setoran awal untuk memperoleh nomor porsi, sementara pelunasan baru dilakukan menjelang tahun keberangkatan. Menunda pendaftaran tiga tahun tidak memundurkan keberangkatan tiga tahun saja, melainkan juga <strong>menambah tiga tahun usia Anda saat menjalani seluruh rangkaian fisik di Tanah Suci</strong>.</p>
+
+    <h3>Jalur khusus bukan jalan pintas, melainkan kuota yang berbeda</h3>
+    <p>Perlu ditegaskan agar tidak menimbulkan salah paham. Haji khusus bukanlah cara menyerobot antrean reguler. Ia adalah kuota terpisah yang diatur undang-undang, dengan penyelenggara berizin resmi, dan tetap memiliki antrean tersendiri. Yang membedakan adalah rasio pendaftar terhadap kuota yang jauh lebih kecil, sehingga waktu tunggunya lebih pendek.</p>
+
+    <h3>Biaya adalah pembeda terbesar dan tidak boleh disembunyikan</h3>
+    <p>Selisih biaya antara kedua jalur sangat signifikan, bisa mencapai beberapa kali lipat. Karena itu jalur khusus tidak relevan bagi semua orang, dan tidak sepatutnya dipaksakan. Bagi sebagian keluarga, jalur reguler dengan pendaftaran sedini mungkin justru merupakan strategi paling rasional. Bagi sebagian yang lain, terutama mereka yang saat ini sudah berusia di atas lima puluh tahun, selisih biaya tersebut sebanding dengan selisih dua dekade usia.</p>
+
+    <h3>Mendaftarkan anak dan cucu sejak dini</h3>
+    <p>Salah satu langkah paling bijak yang dapat diambil hari ini adalah mendaftarkan anggota keluarga yang masih muda. Seorang anak berusia dua belas tahun yang didaftarkan sekarang berpeluang berangkat pada usia empat puluhan, yaitu pada puncak kesiapan fisiknya. Ini adalah bentuk perencanaan lintas generasi yang biayanya paling ringan namun dampaknya paling besar.</p>
+
+    <h2><span class="num" aria-hidden="true">5</span><span>Penutup: Memindahkan Keputusan dari Asumsi ke Hitungan</span></h2>
+    <p>Tidak ada seorang pun yang dapat memastikan usianya sendiri. Umur adalah rahasia Allah, dan tidak ada simulator yang mampu menghitungnya. Yang berada dalam jangkauan ikhtiar kita hanyalah satu hal, yaitu memilih untuk tidak menunda apa yang memang bisa dimulai hari ini.</p>
+    <p>Jika hasil simulasi menunjukkan Anda akan tiba di Arafah pada usia yang masih prima, itu kabar yang melegakan dan pertahankan rencananya. Jika sebaliknya, anggaplah angka tersebut sebagai undangan untuk mengevaluasi strategi, entah dengan mempercepat pendaftaran, mempertimbangkan jalur khusus, atau menyiapkan kebugaran fisik jauh hari sebelum keberangkatan.</p>
+    <p>Untuk memperdalam konteks, Anda dapat membaca panduan kami mengenai <a href="../antrian-haji-khusus.html">antrean haji khusus, biaya, dan cara pendaftaran resmi</a> serta <a href="../cara-pindah-pin-haji-khusus.html">prosedur pindah PIN haji khusus antarpenyelenggara</a>.</p>
+
+    <div class="cta-final">
+      <span class="kicker">Konsultasi Tanpa Tekanan</span>
+      <h2>Diskusikan Rencana Haji Anda</h2>
+      <p>Bawa hasil simulasi Anda kepada kami. Tim Nahdi Tour, bersama Abu Aisyah Yap, siap membantu memetakan opsi yang paling masuk akal bagi kondisi usia dan anggaran keluarga Anda. Bila jalur reguler ternyata lebih tepat, itu pula yang akan kami sampaikan.</p>
+      <a class="btn btn-gold" href="https://wa.me/6281314542357?text=Assalamualaikum%20Pak%20Yap%20-%20Nahdi%20Tour%2C%20saya%20ingin%20berkonsultasi%20mengenai%20rencana%20pendaftaran%20haji%20saya." target="_blank" rel="noopener noreferrer">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.24.68-1.42 1.32-1.95 1.36-.5.05-.98.23-3.3-.7-2.8-1.1-4.58-3.96-4.72-4.15-.14-.19-1.13-1.5-1.13-2.86 0-1.36.71-2.03.96-2.31.25-.28.55-.35.73-.35.18 0 .37 0 .53.01.17.01.4-.06.62.48.24.56.81 1.94.88 2.08.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.17.28.74 1.22 1.59 1.98 1.1.98 2.02 1.28 2.3 1.42.28.14.44.12.6-.07.17-.19.7-.81.88-1.09.18-.28.37-.23.62-.14.25.09 1.6.76 1.87.9.28.14.46.21.53.32.07.12.07.65-.17 1.33Z"/></svg>
+        Konsultasi via WhatsApp
+      </a>
+    </div>
+
+  </div>
+</article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot">
+    <a href="../index.html#beranda" aria-label="Nahdi Tour, kembali ke beranda">
+      <img src="../assets/logo-nahdi-tour-trim.png" alt="Nahdi Tour" />
+    </a>
+    <p>&copy; 2023 Nahdi Tour &nbsp;|&nbsp; Merek milik PT Nahdi Duta Wisata &nbsp;|&nbsp; (BPW) NIB: 9123456789123</p>
+  </div>
+</footer>
+
+<script>
+/* ===== Reading progress ===== */
+(() => {
+  const bar = document.getElementById('readProgress');
+  const article = document.querySelector('.article');
+  if (!bar || !article) return;
+  const update = () => {
+    const rect = article.getBoundingClientRect();
+    const navH = 67;
+    const total = rect.height - (window.innerHeight - navH);
+    const scrolled = navH - rect.top;
+    const pct = total > 0 ? Math.max(0, Math.min(1, scrolled / total)) : (rect.top <= navH ? 1 : 0);
+    bar.style.width = (pct * 100) + '%';
+  };
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+})();
+
+/* ============================================================
+   SIMULATOR MASA TUNGGU HAJI
+   ============================================================ */
+(() => {
+  'use strict';
+
+  const TAHUN_INI  = new Date().getFullYear();
+  const KHUSUS_MIN = 5;
+  const KHUSUS_MAX = 8;
+  const WA         = '6281314542357';
+
+  const $ = (id) => document.getElementById(id);
+  const ageRange  = $('ageRange');
+  const ageChip   = $('ageChip');
+  const delaySeg  = $('delaySeg');
+  const provSel   = $('provSelect');
+
+  let usia  = 35;
+  let tunda = 0;
+
+  /* Kategori usia mengacu pada pengelompokan lansia Kemenag (65 tahun ke atas) */
+  function kategoriUsia(u) {
+    if (u >= 65) return { label: 'Lansia, kategori risiko tinggi', cls: 'danger' };
+    if (u >= 60) return { label: 'Memasuki usia lanjut',            cls: 'warn'   };
+    if (u >= 50) return { label: 'Pra-lansia',                      cls: 'warn'   };
+    return          { label: 'Usia produktif',                      cls: 'ok'     };
+  }
+
+  function catatanFisik(u) {
+    if (u >= 85) {
+      return 'Proyeksi usia ini <strong>melampaui angka harapan hidup rata-rata penduduk Indonesia</strong> yang berada di kisaran 72 sampai 74 tahun. Secara realistis, jalur reguler di daerah ini tidak lagi memungkinkan bagi Anda untuk berangkat sendiri. Nomor porsi pada kondisi seperti ini umumnya berakhir pada mekanisme <strong>pelimpahan porsi kepada ahli waris</strong> yang diatur Kementerian Agama.';
+    }
+    if (u >= 70) {
+      return 'Pada usia ini, rangkaian mabit di Mina dan perjalanan menuju Jamarat umumnya tidak lagi dapat ditempuh secara mandiri. Kemungkinan besar diperlukan kursi roda, pendamping khusus, serta skema <strong>badal</strong> untuk sebagian rukun.';
+    }
+    if (u >= 65) {
+      return 'Anda akan masuk kategori <strong>lansia</strong> menurut pengelompokan Kemenag. Jarak tempuh harian menuju Jamarat sejauh empat sampai tujuh kilometer pulang pergi menjadi tantangan berat, dan risiko kelelahan serta dehidrasi meningkat tajam.';
+    }
+    if (u >= 60) {
+      return 'Stamina pada rentang usia ini umumnya masih memadai, namun padatnya Mina dan panjangnya jarak menuju Jamarat menuntut persiapan kebugaran yang serius sejak jauh hari serta pengelolaan penyakit bawaan.';
+    }
+    if (u >= 50) {
+      return 'Kondisi fisik pada umumnya masih baik untuk menjalani seluruh rangkaian secara mandiri. Tetap perlu latihan jalan kaki rutin dan pemeriksaan kesehatan menyeluruh sebelum keberangkatan.';
+    }
+    return 'Anda berada pada rentang usia yang ideal untuk menjalani seluruh rangkaian manasik secara mandiri dan khusyuk, termasuk bagian terberatnya di Mina dan Jamarat.';
+  }
+
+  function setFlag(el, kat) {
+    el.className = 'age-flag ' + kat.cls;
+    el.textContent = kat.label;
+  }
+
+  function render() {
+    const tungguReg    = parseInt(provSel.value, 10);
+    const provTeks     = provSel.options[provSel.selectedIndex].text.split(',')[0];
+    const tahunDaftar  = TAHUN_INI + tunda;
+
+    /* Jalur reguler */
+    const tahunRegBrgkt = tahunDaftar + tungguReg;
+    const usiaRegWukuf  = usia + tunda + tungguReg;
+    const katReg        = kategoriUsia(usiaRegWukuf);
+
+    $('regWait').textContent = tungguReg + ' tahun';
+    $('regYear').textContent = tahunRegBrgkt;
+    $('regAge').textContent  = usiaRegWukuf + ' tahun';
+    setFlag($('regFlag'), katReg);
+    $('regNote').innerHTML = catatanFisik(usiaRegWukuf);
+
+    /* Jalur khusus */
+    const khsThnMin  = tahunDaftar + KHUSUS_MIN;
+    const khsThnMax  = tahunDaftar + KHUSUS_MAX;
+    const khsUsiaMin = usia + tunda + KHUSUS_MIN;
+    const khsUsiaMax = usia + tunda + KHUSUS_MAX;
+    const katKhs     = kategoriUsia(khsUsiaMax);
+
+    $('khsWait').textContent = KHUSUS_MIN + ' sampai ' + KHUSUS_MAX + ' tahun';
+    $('khsYear').textContent = khsThnMin + ' sampai ' + khsThnMax;
+    $('khsAge').textContent  = khsUsiaMin + ' sampai ' + khsUsiaMax + ' tahun';
+    setFlag($('khsFlag'), katKhs);
+
+    /* Kotak insight */
+    const selisihUsia = usiaRegWukuf - khsUsiaMax;
+    const usiaTanpaTunda = usia + tungguReg;
+    const big  = $('insightBig');
+    const main = $('insightMain');
+    const sub  = $('insightSub');
+
+    big.textContent = 'Selisih ' + selisihUsia + ' tahun usia';
+    main.innerHTML = 'Melalui jalur reguler di ' + provTeks + ', Anda diproyeksikan berdiri di Arafah pada usia <strong>' +
+      usiaRegWukuf + ' tahun</strong>. Melalui jalur khusus, proyeksinya <strong>' + khsUsiaMin + ' sampai ' + khsUsiaMax +
+      ' tahun</strong>. Selisihnya bukan sekadar angka di atas kertas, melainkan perbedaan kapasitas tubuh saat menempuh Mina dan Jamarat.';
+
+    if (tunda > 0) {
+      const katTanpaTunda = kategoriUsia(usiaTanpaTunda);
+      let teks = 'Dengan menunda pendaftaran selama <strong>' + tunda + ' tahun</strong>, usia Anda saat wukuf pada jalur reguler bergeser dari ' +
+        usiaTanpaTunda + ' tahun menjadi <strong>' + usiaRegWukuf + ' tahun</strong>.';
+      if (katTanpaTunda.cls !== katReg.cls) {
+        teks += ' Pergeseran ini memindahkan Anda dari kategori <strong>' + katTanpaTunda.label.toLowerCase() +
+          '</strong> ke kategori <strong>' + katReg.label.toLowerCase() + '</strong>.';
+      } else {
+        teks += ' Penundaan tersebut tidak dapat ditarik kembali setelah keputusan diambil.';
+      }
+      sub.innerHTML = teks;
+    } else {
+      const usiaTunda5 = usia + 5 + tungguReg;
+      sub.innerHTML = 'Anda memilih mendaftar tahun ini. Keputusan tersebut menyelamatkan <strong>5 tahun usia</strong> dibanding menunda sampai ' +
+        (TAHUN_INI + 5) + ', yang akan membuat Anda tiba di Arafah pada usia ' + usiaTunda5 + ' tahun.';
+    }
+
+    /* CTA WhatsApp dengan ringkasan simulasi */
+    const pesan =
+      'Assalamualaikum Pak Yap - Nahdi Tour, saya ingin berkonsultasi mengenai pendaftaran Haji Khusus.\n\n' +
+      'Berikut hasil simulasi saya:\n' +
+      '- Usia saat ini: ' + usia + ' tahun\n' +
+      '- Rencana mendaftar: ' + (tunda === 0 ? 'tahun ini (' + TAHUN_INI + ')' : 'menunda ' + tunda + ' tahun (' + tahunDaftar + ')') + '\n' +
+      '- Provinsi: ' + provTeks + '\n' +
+      '- Jalur reguler: berangkat sekitar ' + tahunRegBrgkt + ' pada usia ' + usiaRegWukuf + ' tahun\n' +
+      '- Jalur khusus: berangkat sekitar ' + khsThnMin + ' sampai ' + khsThnMax + ' pada usia ' + khsUsiaMin + ' sampai ' + khsUsiaMax + ' tahun\n\n' +
+      'Mohon dibantu penjelasan mengenai prosedur, biaya, dan ketersediaan kuotanya. Terima kasih.';
+    $('ctaBtn').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(pesan);
+  }
+
+  /* Kontrol */
+  ageRange.addEventListener('input', (e) => {
+    usia = parseInt(e.target.value, 10);
+    ageChip.textContent = usia + ' Tahun';
+    render();
+  });
+
+  delaySeg.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-delay]');
+    if (!btn) return;
+    tunda = parseInt(btn.dataset.delay, 10);
+    delaySeg.querySelectorAll('button').forEach((b) =>
+      b.setAttribute('aria-pressed', String(b === btn))
+    );
+    render();
+  });
+
+  provSel.addEventListener('change', render);
+
+  render();
+})();
+</script>
+
+</body>
+</html>
