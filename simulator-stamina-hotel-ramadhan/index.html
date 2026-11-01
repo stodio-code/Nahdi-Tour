@@ -44,7 +44,14 @@
   "image": "https://nahditour.com/assets/masjidil-haram-malam-ramadhan.webp",
   "inLanguage": "id-ID",
   "datePublished": "2026-10-29",
-  "dateModified": "2026-10-29",
+  "dateModified": "2026-11-01",
+  "citation": [
+    "https://www.wam.ae/en/article/bixy8i2-two-holy-mosques-welcome-over-122-million-visitors",
+    "https://saudigazette.com.sa/article/650470",
+    "https://pep.gov.sa/en/news/879",
+    "https://marhaba.qa/over-904000-pilgrims-perform-umrah-at-grand-mosque-on-early-days-of-ramadan/",
+    "https://www.zawya.com/en/business/transport-and-logistics/31mln-benefit-from-makkah-transport-services-in-first-third-of-ramadan-xrx92yps"
+  ],
   "author": { "@type": "Organization", "name": "Nahdi Tour", "url": "https://nahditour.com" },
   "publisher": {
     "@type": "Organization",
@@ -213,6 +220,37 @@ figure { margin: 28px 0 0; }
 figcaption { margin-top: 12px; font-size: 13px; color: var(--n-500); text-align: center; line-height: 1.6; }
 figcaption .credit { display: block; font-size: 11.5px; color: var(--n-400); margin-top: 4px; }
 figcaption .credit a { color: var(--n-500); }
+
+/* ===== DATA LAPANGAN ===== */
+.field-data { padding: 28px 0 4px; }
+.fd-kicker { font-family: var(--font-display); font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--g-400); }
+.fd-title { font-size: clamp(21px, 3.4vw, 28px); line-height: 1.3; font-weight: 800; margin: 6px 0 10px; }
+.fd-intro { font-size: 16px; line-height: 1.75; color: var(--n-600); margin: 0 0 18px; }
+.stat-grid { display: grid; gap: 12px; }
+@media (min-width: 600px) { .stat-grid { grid-template-columns: 1fr 1fr; } }
+.stat-card { border: var(--border); border-radius: var(--radius); background: var(--n-0); box-shadow: var(--shadow); padding: 16px 18px; }
+.stat-card.hl { background: var(--p-900); border-color: var(--p-800); }
+.stat-num { font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1.1; color: var(--p-900); font-variant-numeric: tabular-nums; }
+.stat-num small { font-size: 15px; font-weight: 700; color: var(--n-500); }
+.stat-card.hl .stat-num { color: var(--g-200); }
+.stat-card.hl .stat-num small { color: var(--p-200); }
+.stat-desc { margin: 8px 0 10px; font-size: 14px; line-height: 1.6; color: var(--n-600); }
+.stat-card.hl .stat-desc { color: rgba(255,255,255,.82); }
+.stat-src { font-size: 11.5px; font-weight: 600; color: var(--n-400); text-decoration: none; }
+.stat-src:hover { text-decoration: underline; }
+.stat-card.hl .stat-src { color: var(--p-200); }
+.fd-read {
+  background: var(--g-50); border: 1px solid var(--g-200); border-radius: var(--radius);
+  padding: 16px 18px; margin: 16px 0 0; color: var(--g-700); font-size: 14.5px; line-height: 1.7;
+}
+.fd-read .t { display: block; font-family: var(--font-display); font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+.fd-read ul { margin: 0; padding-left: 18px; }
+.fd-read li { margin-bottom: 6px; }
+.fd-read li:last-child { margin-bottom: 0; }
+.fd-read strong { color: var(--g-700); }
+.sources { margin: 14px 0 0; padding-left: 20px; font-size: 12.5px; line-height: 1.6; color: var(--n-500); }
+.sources li { margin-bottom: 4px; }
+.sources a { color: var(--p-700); word-break: break-word; }
 
 /* ===== SIMULATOR SHELL ===== */
 .tool { padding: 28px 0 8px; }
@@ -501,6 +539,8 @@ legend {
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/></svg>
         Simulator 4 pilar
       </span>
+      <span class="sep" aria-hidden="true">|</span>
+      <a href="#sumber-data" style="color:inherit">Data resmi otoritas Arab Saudi</a>
     </div>
 
     <figure class="hero-figure">
@@ -509,6 +549,55 @@ legend {
         <span class="credit">Foto: Indonesiagood via <a href="https://commons.wikimedia.org/wiki/File:Masjidil_Haram_(Umroh_Ramadhan_2023)-40.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>, lisensi <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</span>
       </figcaption>
     </figure>
+  </div>
+</section>
+
+<!-- ===== DATA LAPANGAN ===== -->
+<section class="field-data" aria-labelledby="fdTitle">
+  <div class="wrap-narrow">
+    <span class="fd-kicker">Data Lapangan Resmi</span>
+    <h2 class="fd-title" id="fdTitle">Seberapa Padat Masjidil Haram Saat Ramadhan? Ini Angka dari Otoritas Arab Saudi</h2>
+    <p class="fd-intro">Sebelum menghitung kondisi rombongan Anda, lihat dulu skala kepadatan yang dihadapi setiap jamaah Ramadhan. Seluruh angka berikut diumumkan otoritas pengelola Masjidil Haram dan Komisi Kerajaan untuk Kota Makkah, lalu diberitakan media resmi dan media regional.</p>
+
+    <div class="stat-grid">
+      <div class="stat-card hl">
+        <div class="stat-num">3,41 <small>juta jamaah</small></div>
+        <p class="stat-desc">memadati Masjidil Haram dalam <strong style="color:#fff">satu malam</strong>, yaitu malam ke-27 Ramadhan 1446 H (2025). Malam inilah yang paling diburu jamaah yang mengejar Lailatul Qadar.</p>
+        <a class="stat-src" href="#sumber-data">Sumber [2]</a>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">75,5 <small>juta</small></div>
+        <p class="stat-desc">kunjungan jamaah shalat di Masjidil Haram sepanjang Ramadhan 1446 H, ditambah <strong>16,5 juta pelaku umrah</strong> dalam satu bulan yang sama.</p>
+        <a class="stat-src" href="#sumber-data">Sumber [1]</a>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">904.000 <small>jamaah</small></div>
+        <p class="stat-desc">menunaikan umrah di Masjidil Haram hanya dalam <strong>satu hari</strong>, pada 4 Ramadhan 1447 H (2026). Ini angka harian tertinggi yang dilaporkan, padahal belum masuk 10 malam terakhir.</p>
+        <a class="stat-src" href="#sumber-data">Sumber [4]</a>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">31 <small>juta penumpang</small></div>
+        <p class="stat-desc">dilayani sistem transportasi Makkah di <strong>sepertiga pertama</strong> Ramadhan 1447 H, melalui lebih dari 700.000 perjalanan dan 2.300 bus. Jamaah hotel jauh bergantung penuh pada armada ini.</p>
+        <a class="stat-src" href="#sumber-data">Sumber [5]</a>
+      </div>
+    </div>
+
+    <div class="fd-read">
+      <span class="t">Cara membaca data ini</span>
+      <ul>
+        <li><strong>Kepadatan tidak merata.</strong> Puncaknya terjadi pada malam-malam ganjil 10 hari terakhir, saat pintu masjid lebih cepat ditutup karena penuh. Pada 10 hari pertama Ramadhan 1447 H saja, Masjidil Haram sudah menerima 23,8 juta kunjungan jamaah shalat dan 8,1 juta pelaku umrah [3].</li>
+        <li><strong>Lokasi hotel menentukan seberapa besar Anda terdampak.</strong> Jamaah hotel pelataran bisa berjalan langsung ke masjid, sementara jamaah hotel jauh harus berbagi armada bus dan titik turun dengan jutaan penumpang lain.</li>
+        <li><strong>Catatan kejujuran data:</strong> otoritas Arab Saudi mencatat jumlah kunjungan, bukan alasan pribadi jamaah gagal fokus beribadah. Angka di atas membuktikan skala kepadatan dan ketergantungan pada transportasi. Simulator di bawah menerjemahkan keduanya ke kondisi fisik dan pilihan hotel rombongan Anda.</li>
+      </ul>
+    </div>
+
+    <ol class="sources" id="sumber-data">
+      <li>WAM (kantor berita resmi UEA) mengutip General Authority for the Care of the Affairs of the Grand Mosque and the Prophet's Mosque, Maret 2025: <a href="https://www.wam.ae/en/article/bixy8i2-two-holy-mosques-welcome-over-122-million-visitors" target="_blank" rel="noopener noreferrer">Two Holy Mosques welcome over 122 million visitors in Ramadan</a>. Rincian juga dimuat <a href="https://english.aawsat.com/gulf/5127692-two-holy-mosques-welcome-over-122-million-visitors-during-ramadan" target="_blank" rel="noopener noreferrer">Asharq Al-Awsat</a>.</li>
+      <li>Saudi Gazette, pernyataan CEO otoritas pengelola dua masjid suci, Ghazi Al-Shahrani, Maret 2025: <a href="https://saudigazette.com.sa/article/650470" target="_blank" rel="noopener noreferrer">jumlah jamaah malam ke-27 Ramadhan 1446 H</a>. Media lain seperti <a href="https://www.arabnews.pk/node/2594984" target="_blank" rel="noopener noreferrer">Arab News</a> melaporkan angka hingga 4,2 juta dengan metode hitung berbeda.</li>
+      <li>General Authority for the Care of the Affairs of the Grand Mosque and the Prophet's Mosque, 1 Maret 2026: <a href="https://pep.gov.sa/en/news/879" target="_blank" rel="noopener noreferrer">statistik 10 hari pertama Ramadhan 1447 H</a>.</li>
+      <li>Marhaba, Ramadhan 1447 H: <a href="https://marhaba.qa/over-904000-pilgrims-perform-umrah-at-grand-mosque-on-early-days-of-ramadan/" target="_blank" rel="noopener noreferrer">Over 904,000 pilgrims perform Umrah at Grand Mosque on early days of Ramadan</a>.</li>
+      <li>Zawya, mengutip General Transport Center, Royal Commission for Makkah City and Holy Sites, Ramadhan 1447 H: <a href="https://www.zawya.com/en/business/transport-and-logistics/31mln-benefit-from-makkah-transport-services-in-first-third-of-ramadan-xrx92yps" target="_blank" rel="noopener noreferrer">31 million benefit from Makkah transport services in first third of Ramadan</a>.</li>
+    </ol>
   </div>
 </section>
 
