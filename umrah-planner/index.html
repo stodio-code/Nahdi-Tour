@@ -613,6 +613,52 @@ legend, .lbl {
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GX1CGTPR4T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GX1CGTPR4T');
+
+  /* Event tracking: tool_start, tool_complete, wa_click */
+  (function () {
+    var TOOL = location.pathname.replace(/^\/|\/$/g, '').split('/').pop() || 'tool';
+    var started = false, completed = false, visible = 0;
+    function send(name, extra) {
+      try { gtag('event', name, Object.assign({ tool_name: TOOL }, extra || {})); } catch (e) {}
+    }
+    function maybeComplete() {
+      if (started && !completed && visible > 0) { completed = true; send('tool_complete'); }
+    }
+    function onInteract(e) {
+      if (started || !e.isTrusted) return;
+      var t = e.target;
+      if (!t || !t.closest || !t.closest('main')) return;
+      if (!t.closest('button, input, select, textarea, [role="tab"], [role="button"]')) return;
+      started = true; send('tool_start'); maybeComplete();
+    }
+    ['click', 'input', 'change'].forEach(function (ev) { document.addEventListener(ev, onInteract, true); });
+
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href*="wa.me"]') : null;
+      if (!a) return;
+      var loc = a.closest('header') ? 'header' : a.closest('footer') ? 'footer' : a.closest('main') ? 'main' : 'other';
+      send('wa_click', { link_location: loc, link_id: a.id || '' });
+    }, true);
+
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!('IntersectionObserver' in window)) return;
+      /* tool_complete = user interacted AND the result/CTA block (WhatsApp button in main) is on screen */
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { visible += en.isIntersecting ? 1 : -1; });
+        if (visible < 0) visible = 0;
+        maybeComplete();
+      }, { threshold: 0.5 });
+      document.querySelectorAll('main a.btn-gold, main a.js-wa, #ctaBtn, #shareBtn').forEach(function (el) { io.observe(el); });
+    });
+  })();
+</script>
 </head>
 <body>
 
