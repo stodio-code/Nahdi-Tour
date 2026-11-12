@@ -68,14 +68,14 @@
   // ---- Mitra travel partner (logo lockups di assets/mitra) ----
   const MITRA = {
     nahdi:    { nama: 'Nahdi Tour',      logo: 'assets/mark-nahdi-tour.png',        izin: 'Berizin resmi sebagai BPW' },
-    elMarwa:  { nama: 'El Marwa',        logo: 'assets/mitra/el-marwa.png',         izin: 'Mitra travel terverifikasi' },
+    elMarwa:  { nama: 'El Marwa',        logo: 'assets/mitra/el-marwa.png',         izin: 'Mitra travel terverifikasi', paketLain: 'https://umrohmustajab.com/?ref=8785' },
     namira:   { nama: 'Namira',          logo: 'assets/mitra/namira.png',           izin: 'Izin Umrah 183 · Haji 693' },
     safir:    { nama: 'Safir Tour',      logo: 'assets/mitra/safir.png',            izin: 'Terpercaya sejak 2009' },
-    uhud:     { nama: 'Uhud Tour',       logo: 'assets/mitra/uhud-tour.png',        izin: 'Mitra travel terverifikasi' },
+    uhud:     { nama: 'Uhud Tour',       logo: 'assets/mitra/uhud-tour.png',        izin: 'Mitra travel terverifikasi', paketLain: 'https://abuaisyahyap.uhudtour.com/' },
     alAnshar: { nama: 'Al-Anshar',       logo: 'assets/mitra/al-anshar.png',        izin: 'Madani Travel · terverifikasi' },
-    mutiara:  { nama: 'Mutiara Sunnah',  logo: 'assets/mitra/mutiara-sunnah.png',   izin: 'Izin PPIU No. U.193 / 2021' },
+    mutiara:  { nama: 'Mutiara Sunnah',  logo: 'assets/mitra/mutiara-sunnah.png',   izin: 'Izin PPIU No. U.193 / 2021', paketLain: 'https://mutiarasunnah.co.id/?ref=782' },
     pahala:   { nama: 'Pahala Wisata',   logo: 'assets/mitra/pahala-wisata.png',    izin: 'Hajj & Umroh Services' },
-    haramain: { nama: 'HaramainKU',      logo: 'uploads/haramainku-nahditour.jpg',  izin: 'Izin Haji Kemenag No. 308-2002' },
+    haramain: { nama: 'HaramainKU',      logo: 'uploads/haramainku-nahditour.jpg',  izin: 'Izin Haji Kemenag No. 308-2002', paketLain: 'https://yap.haramainku.com/' },
     allia:    { nama: 'Allia',           logo: 'assets/mitra/allia.png',            izin: 'Haji & Umrah sesuai Sunnah' },
     sahabat:  { nama: 'Sahabat Haji',    logo: 'assets/mitra/sahabat-haji.png',     izin: 'Mitra travel terverifikasi' },
     binDawood:{ nama: 'Bin Dawood Tour and Travel', logo: 'assets/mitra/Bin-Dawood-Travel.png',                       izin: 'Mitra travel terverifikasi' },
@@ -575,8 +575,13 @@
     return out;
   };
 
-  // Tombol brosur: link download (jika file tersedia) atau keterangan "Coming Soon".
+  // Tombol kedua kartu: untuk mitra yang punya halaman paket sendiri (El Marwa, Mutiara Sunnah,
+  // Uhud Tour, HaramainKU) tampilkan "Paket lainnya dari travel ini"; selain itu link download
+  // brosur (jika file tersedia) atau keterangan "Coming Soon".
   const brosurHTML = (p) => {
+    if (p.mitra && p.mitra.paketLain) {
+      return '<a href="' + p.mitra.paketLain + '" target="_blank" rel="noopener" data-partner="' + p.mitra.nama + '" data-paket-id="' + p.id + '" data-paket="' + p.judul + '" class="btn-outline inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold">Paket lainnya dari travel ini</a>';
+    }
     if (p.download) {
       return '<a href="' + p.download + '" download class="btn-outline inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold">Download Brosur</a>';
     }
@@ -591,7 +596,7 @@
   const cardHTML = (p, key) => {
     const satuan = '';
     return `
-    <article class="paket-card" tabindex="0" aria-label="${p.judul} — arahkan kursor untuk lihat fasilitas">
+    <article class="paket-card" data-paket-id="${p.id}" data-paket-judul="${p.judul}" data-partner="${p.mitra.nama}" tabindex="0" aria-label="${p.judul} — arahkan kursor untuk lihat fasilitas">
       <div class="paket-card-inner">
         <image-slot id="paket-${p.id}" style="width:100%;aspect-ratio:4/3;" shape="rect" fit="cover" ${p.foto ? `src="${p.foto}"` : ''} placeholder="Foto paket"></image-slot>
         <div class="p-6 flex flex-col flex-1">
@@ -695,6 +700,33 @@
     const open = card.classList.toggle('is-open');
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     btn.querySelector('span').textContent = open ? 'Tutup fasilitas' : 'Lihat fasilitas & layanan';
+  });
+
+  // GA4: klik WhatsApp di halaman Layanan (format sama dengan wa_click di halaman tool).
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href*="wa.me"]');
+    if (!a || typeof window.gtag !== 'function') return;
+    const card = a.closest('[data-paket-id]');
+    const loc = a.closest('header') ? 'header' : a.closest('footer') ? 'footer' : card ? 'card' : 'main';
+    window.gtag('event', 'wa_click', {
+      page_name: 'layanan',
+      link_location: loc,
+      paket_id: card ? card.dataset.paketId : '',
+      paket_judul: card ? card.dataset.paketJudul : '',
+      partner_name: card ? card.dataset.partner : '',
+    });
+  }, true);
+
+  // GA4: klik "Paket lainnya dari travel ini" ke situs mitra.
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[data-partner]');
+    if (!a || typeof window.gtag !== 'function') return;
+    window.gtag('event', 'partner_click', {
+      partner_name: a.dataset.partner,
+      paket_id: a.dataset.paketId,
+      paket_judul: a.dataset.paket,
+      link_url: a.href,
+    });
   });
 
 })();
