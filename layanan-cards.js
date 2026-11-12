@@ -596,7 +596,7 @@
   const cardHTML = (p, key) => {
     const satuan = '';
     return `
-    <article class="paket-card" tabindex="0" aria-label="${p.judul} — arahkan kursor untuk lihat fasilitas">
+    <article class="paket-card" data-paket-id="${p.id}" data-paket-judul="${p.judul}" data-partner="${p.mitra.nama}" tabindex="0" aria-label="${p.judul} — arahkan kursor untuk lihat fasilitas">
       <div class="paket-card-inner">
         <image-slot id="paket-${p.id}" style="width:100%;aspect-ratio:4/3;" shape="rect" fit="cover" ${p.foto ? `src="${p.foto}"` : ''} placeholder="Foto paket"></image-slot>
         <div class="p-6 flex flex-col flex-1">
@@ -701,6 +701,21 @@
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     btn.querySelector('span').textContent = open ? 'Tutup fasilitas' : 'Lihat fasilitas & layanan';
   });
+
+  // GA4: klik WhatsApp di halaman Layanan (format sama dengan wa_click di halaman tool).
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href*="wa.me"]');
+    if (!a || typeof window.gtag !== 'function') return;
+    const card = a.closest('[data-paket-id]');
+    const loc = a.closest('header') ? 'header' : a.closest('footer') ? 'footer' : card ? 'card' : 'main';
+    window.gtag('event', 'wa_click', {
+      page_name: 'layanan',
+      link_location: loc,
+      paket_id: card ? card.dataset.paketId : '',
+      paket_judul: card ? card.dataset.paketJudul : '',
+      partner_name: card ? card.dataset.partner : '',
+    });
+  }, true);
 
   // GA4: klik "Paket lainnya dari travel ini" ke situs mitra.
   document.addEventListener('click', (e) => {
