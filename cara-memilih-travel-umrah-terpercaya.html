@@ -236,6 +236,15 @@
   .wa-ping { animation: waPing 2.4s cubic-bezier(0,0,.2,1) infinite; }
   @media (prefers-reduced-motion: reduce){ .wa-ping{ animation:none; display:none; } }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GX1CGTPR4T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GX1CGTPR4T');
+</script>
 </head>
 <body class="bg-white text-ink">
 
@@ -579,5 +588,6 @@
 
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
+<script src="share-card.js" defer></script>
 </body>
 </html>
