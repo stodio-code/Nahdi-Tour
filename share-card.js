@@ -12,7 +12,9 @@
 (() => {
   'use strict';
 
-  const AVATAR = 'assets/avatar-nahdi-tour.png';
+  // Path aset dihitung dari lokasi script ini, supaya tetap benar di halaman subfolder (mis. /umrah-planner/).
+  const SCRIPT_SRC = (document.currentScript && document.currentScript.src) || (location.origin + '/share-card.js');
+  const AVATAR = new URL('assets/avatar-nahdi-tour.png', SCRIPT_SRC).href;
   const BIO = "Bantu kamu rencanain umroh/haji supaya lebih hemat dan sesuai syariat. Yuk konsultasi, InsyaAllah dapat solusi!";
   const DOMAIN = 'nahditour.com';
   const W = 1080, H = 1920;               // ukuran Instagram Story
@@ -21,33 +23,42 @@
   // ---------- Data artikel (diambil dari halaman) ----------
   const $ = (s, r = document) => r.querySelector(s);
   const meta = (p) => { const m = document.querySelector('meta[property="' + p + '"], meta[name="' + p + '"]'); return m ? m.content : ''; };
+  const clean = (t) => (t || '').trim().replace(/\s+/g, ' ');
 
-  const article = $('main article');
-  const body = article && $('.artikel-body', article);
-  if (!article || !body) return;
+  // Dua jenis halaman:
+  //  1) Artikel biasa  : main article .artikel-body
+  //  2) Artikel + tool : main .hero (judul, meta, hero) + article.article > .wrap-narrow
+  // article.article = artikel di halaman tool (tool seperti Umrah Planner juga merender <article> sendiri).
+  const article = $('main article.article') || $('main article');
+  if (!article) return;
+  const body = $('.artikel-body', article);
+  const hero = body ? null : $('main .hero');
+  const anchor = body || $('.wrap-narrow', article) || article;   // tempat kotak penulis disisipkan
+  const scope = hero || article;                                   // tempat judul/meta/hero dicari
 
-  const titleEl = $('h1', article);
-  const title = (titleEl ? titleEl.textContent : meta('og:title') || document.title).trim().replace(/\s+/g, ' ');
+  // Judul: artikel biasa pakai <h1>; halaman tool pakai og:title (h1-nya berupa kalimat hook yang panjang).
+  const titleEl = body ? $('h1', article) : null;
+  const title = clean(titleEl ? titleEl.textContent : meta('og:title') || document.title.split(/\s[|—]\s/)[0]);
 
   const canonical = $('link[rel="canonical"]');
   const shareUrl = (canonical && canonical.href) || (location.origin + location.pathname);
 
-  // Hero: gambar pertama di <figure> artikel. Dipakai path same-origin supaya canvas tidak "tainted".
-  const heroImg = $('figure img', article) || $('img', article);
+  // Hero: gambar di <figure>. Dipakai URL same-origin supaya canvas tidak "tainted".
+  const heroImg = $('figure img', scope) || $('img', scope);
   let heroSrc = heroImg ? (heroImg.currentSrc || heroImg.src) : '';
-  if (!heroSrc && meta('og:image')) { try { heroSrc = new URL(meta('og:image')).pathname; } catch (e) {} }
+  if (!heroSrc && meta('og:image')) { try { heroSrc = location.origin + new URL(meta('og:image')).pathname; } catch (e) {} }
 
-  const headerText = ($('header', article) || article).textContent;
+  const headerText = ((body ? $('header', article) : scope) || article).textContent;
   const readMatch = headerText.match(/(\d+)\s*menit\s*baca/i);
   const readTime = readMatch ? readMatch[1] + ' menit baca'
-    : Math.max(1, Math.round(body.textContent.trim().split(/\s+/).length / 200)) + ' menit baca';
+    : Math.max(1, Math.round(($('main') || article).textContent.trim().split(/\s+/).length / 200)) + ' menit baca';
 
-  const katEl = $('#artKat', article);
-  const kategori = katEl ? katEl.textContent.trim() : '';
-  const badgeEl = $('span.rounded-full', article);
+  const katEl = body ? $('#artKat', article) : $('.meta > span', scope);
+  const kategori = katEl ? clean(katEl.textContent) : '';
+  const badgeEl = body ? $('span.rounded-full', article) : $('.badge', scope);
   const tags = [];
   [badgeEl && badgeEl.textContent, kategori].forEach((t) => {
-    t = (t || '').trim().replace(/\s+/g, ' ');
+    t = clean(t);
     if (t && !tags.some((x) => x.toLowerCase() === t.toLowerCase())) tags.push(t);
   });
 
@@ -58,6 +69,7 @@
   // ---------- CSS ----------
   const css = `
   .nt-author{margin-top:56px;padding-top:32px;border-top:1px solid #DCE6EE}
+  .nt-author img.nt-avatar{width:72px;height:72px;max-width:none;margin:0}
   .nt-tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
   .nt-tag{display:inline-flex;align-items:center;padding:9px 18px;border-radius:999px;background:#EBF5FD;color:#363E44;font-size:14px;font-weight:500;line-height:1.2}
   .nt-author-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -66,9 +78,9 @@
   .nt-share-btn:hover{background:${INK};color:#fff}
   .nt-share-btn:focus-visible{outline:3px solid #9EB0FF;outline-offset:2px}
   .nt-share-btn svg{width:18px;height:18px}
-  .nt-by{margin-top:18px;font:800 22px/1.3 'Plus Jakarta Sans','Inter',system-ui,sans-serif;color:${INK}}
-  .nt-by-sub{margin-top:6px;font-size:14px;color:#6A737A}
-  .nt-bio{margin-top:14px;font-size:16px;line-height:1.65;color:#363E44}
+  .nt-author .nt-by{margin:18px 0 0;font:800 22px/1.3 'Plus Jakarta Sans','Inter',system-ui,sans-serif;color:${INK}}
+  .nt-author .nt-by-sub{margin:6px 0 0;font:400 14px/1.5 'Inter',system-ui,sans-serif;color:#6A737A}
+  .nt-author .nt-bio{margin:14px 0 0;font:400 16px/1.65 'Inter',system-ui,sans-serif;color:#363E44}
   .nt-overlay{position:fixed;inset:0;z-index:9999;background:rgba(5,6,31,.72);display:flex;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .2s}
   .nt-overlay.is-open{opacity:1}
   .nt-sheet{width:100%;max-width:520px;max-height:100dvh;background:#16182b;color:#fff;border-radius:22px 22px 0 0;display:flex;flex-direction:column;transform:translateY(24px);transition:transform .2s}
@@ -119,7 +131,7 @@
     '<p class="nt-by">Ditulis oleh Nahdi Tour</p>' +
     '<p class="nt-by-sub">Biro perjalanan umrah &amp; haji</p>' +
     '<p class="nt-bio">' + esc(BIO) + '</p>';
-  body.insertAdjacentElement('afterend', box);
+  if (body) body.insertAdjacentElement('afterend', box); else anchor.appendChild(box);
 
   // ---------- Pembuat gambar (canvas) ----------
   const loadImg = (src) => new Promise((res) => {
@@ -266,7 +278,7 @@
 
   // ---------- Panel share ----------
   let overlay, imgBlob = null, imgFile = null, imgUrl = '', lastFocus = null, toastT;
-  const fileName = 'nahdi-tour-' + (location.pathname.split('/').pop() || 'artikel').replace(/\.html?$/, '') + '.png';
+  const fileName = 'nahdi-tour-' + (location.pathname.split('/').filter((x) => x && x !== 'index.html').pop() || 'artikel').replace(/\.html?$/, '') + '.png';
 
   const toast = (msg) => {
     let t = $('.nt-toast');

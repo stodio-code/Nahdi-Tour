@@ -634,7 +634,7 @@ legend, .lbl {
     function onInteract(e) {
       if (started || !e.isTrusted) return;
       var t = e.target;
-      if (!t || !t.closest || !t.closest('main')) return;
+      if (!t || !t.closest || !t.closest('main') || t.closest('.nt-author')) return; /* tombol Bagikan bukan interaksi tool */
       if (!t.closest('button, input, select, textarea, [role="tab"], [role="button"]')) return;
       started = true; send('tool_start'); maybeComplete();
     }
@@ -1685,5 +1685,6 @@ legend, .lbl {
 })();
 </script>
 
+<script src="../share-card.js" defer></script>
 </body>
 </html>
