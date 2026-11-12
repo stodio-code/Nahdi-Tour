@@ -580,7 +580,7 @@
   // brosur (jika file tersedia) atau keterangan "Coming Soon".
   const brosurHTML = (p) => {
     if (p.mitra && p.mitra.paketLain) {
-      return '<a href="' + p.mitra.paketLain + '" target="_blank" rel="noopener" class="btn-outline inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold">Paket lainnya dari travel ini</a>';
+      return '<a href="' + p.mitra.paketLain + '" target="_blank" rel="noopener" data-partner="' + p.mitra.nama + '" data-paket-id="' + p.id + '" data-paket="' + p.judul + '" class="btn-outline inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold">Paket lainnya dari travel ini</a>';
     }
     if (p.download) {
       return '<a href="' + p.download + '" download class="btn-outline inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold">Download Brosur</a>';
@@ -700,6 +700,18 @@
     const open = card.classList.toggle('is-open');
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     btn.querySelector('span').textContent = open ? 'Tutup fasilitas' : 'Lihat fasilitas & layanan';
+  });
+
+  // GA4: klik "Paket lainnya dari travel ini" ke situs mitra.
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[data-partner]');
+    if (!a || typeof window.gtag !== 'function') return;
+    window.gtag('event', 'partner_click', {
+      partner_name: a.dataset.partner,
+      paket_id: a.dataset.paketId,
+      paket_judul: a.dataset.paket,
+      link_url: a.href,
+    });
   });
 
 })();
