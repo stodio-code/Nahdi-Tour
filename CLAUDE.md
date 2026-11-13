@@ -14,6 +14,7 @@ Berlaku untuk artikel biasa (`nama-artikel.html` di root) maupun artikel + simul
    - artikel di subfolder: `<script src="../share-card.js" defer></script>`
 4. **Meta share.** Isi `og:title` (ringkas, dipakai sebagai judul kartu share untuk halaman tool), `og:image`, dan `<link rel="canonical">`.
 5. **Daftarkan kartunya** di objek `DATA` pada `Artikel.html` (`judul`, `kat`, `tgl`, `foto`, `href`), dan tambahkan URL-nya di `sitemap.xml`.
+   Kartu otomatis diurutkan dari `tgl` terbaru ke terlama, jadi posisinya di dalam `DATA` tidak berpengaruh. Tulis `tgl` dengan format "13 November 2026" (nama bulan Indonesia), karena format lain tidak bisa diurutkan dan akan jatuh ke paling bawah.
 6. **Jalankan pemeriksa** sebelum commit:
    ```
    node scripts/check-articles.mjs        # cek semua artikel di Artikel.html

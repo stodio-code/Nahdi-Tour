@@ -121,7 +121,24 @@
             mask-image: linear-gradient(to right, #000 86%, transparent 100%);
   }
   @media (min-width: 768px) { .filter-fade-r { -webkit-mask-image: none; mask-image: none; } }
-  [data-artikel-section].is-hidden { display: none; }
+  .artikel-card[hidden] { display: none; }
+
+  /* Gambar kartu diatur lewat CSS (bukan inline) supaya kartu lebar bisa berubah tata letak */
+  .artikel-card image-slot { display: block; width: 100%; aspect-ratio: 16/11; flex-shrink: 0; }
+  /* Kartu lebar: dipakai untuk artikel terbaru agar baris grid selalu penuh */
+  .artikel-card.is-wide { grid-column: span 2; }
+  .artikel-card.is-wide .artikel-title { font-size: 1.5rem; line-height: 1.3; -webkit-line-clamp: 4; }
+  @media (min-width: 768px) {
+    .artikel-card.is-wide { flex-direction: row; }
+    .artikel-card.is-wide image-slot { width: 56%; aspect-ratio: auto; height: auto; min-height: 280px; align-self: stretch; }
+    .artikel-card.is-wide > div { flex: 1; justify-content: center; padding: 2rem; }
+  }
+  .badge-new {
+    display: inline-flex; align-self: flex-start; align-items: center; gap: 6px; margin-bottom: 12px;
+    padding: 4px 11px; border-radius: 999px; background: #111341; color: #fff;
+    font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  }
+  .badge-new::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: #DAB255; }
 
   /* ===== Article card ===== */
   .artikel-card {
@@ -289,17 +306,10 @@
   </div>
 </section>
 
-<!-- ===== TIPS PERJALANAN ===== -->
-<section class="bg-white" data-artikel-section="tips" data-screen-label="Tips Perjalanan">
-  <div class="max-w-[1120px] mx-auto px-5 lg:px-8 pt-7 lg:pt-8 pb-2">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-artikel-grid="tips"></div>
-  </div>
-</section>
-
-<!-- ===== INFORMASI TERBARU ===== -->
-<section class="bg-white" data-artikel-section="info" data-screen-label="Informasi Terbaru">
-  <div class="max-w-[1120px] mx-auto px-5 lg:px-8 pt-8 lg:pt-9 pb-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-artikel-grid="info"></div>
+<!-- ===== DAFTAR ARTIKEL (terbaru ke terlama) ===== -->
+<section class="bg-white" data-screen-label="Daftar Artikel">
+  <div class="max-w-[1120px] mx-auto px-5 lg:px-8 pt-7 lg:pt-8 pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-artikel-grid></div>
   </div>
 </section>
 
@@ -369,14 +379,27 @@
     ],
   };
 
-  const hrefOf = (a) => a.href || ('Artikel Detail.html?judul=' + encodeURIComponent(a.judul) + '&kat=' + encodeURIComponent(a.kat) + '&tgl=' + encodeURIComponent(a.tgl) + '&foto=' + encodeURIComponent(a.foto || ''));
+  const BULAN = { januari: 0, februari: 1, maret: 2, april: 3, mei: 4, juni: 5, juli: 6, agustus: 7, september: 8, oktober: 9, november: 10, desember: 11 };
+  const toTime = (tgl) => {
+    const m = String(tgl).trim().toLowerCase().match(/^(\d{1,2})\s+([a-z]+)\s+(\d{4})$/);
+    return m && BULAN[m[2]] !== undefined ? new Date(+m[3], BULAN[m[2]], +m[1]).getTime() : 0;
+  };
+  // Semua artikel dalam satu daftar, urut dari terbaru ke terlama
+  const ITEMS = Object.keys(DATA)
+    .flatMap((sec) => DATA[sec].map((a) => Object.assign({ sec }, a)))
+    .sort((x, y) => toTime(y.tgl) - toTime(x.tgl));
+  window.__artikelCounts = ITEMS.reduce((c, a) => { c[a.sec] = (c[a.sec] || 0) + 1; c.all = (c.all || 0) + 1; return c; }, {});
 
-  const cardHTML = (a, id) => {
+  const hrefOf = (a) => a.href || ('Artikel Detail.html?judul=' + encodeURIComponent(a.judul) + '&kat=' + encodeURIComponent(a.kat) + '&tgl=' + encodeURIComponent(a.tgl) + '&foto=' + encodeURIComponent(a.foto || ''));
+  const slugOf = (a) => (a.href || a.judul).replace(/\.html$|\/$/g, '').replace(/[^a-z0-9]+/gi, '-').toLowerCase();
+
+  const cardHTML = (a, i) => {
     const srcAttr = a.foto ? ' src="' + a.foto + '"' : '';
     return `
-    <a href="${hrefOf(a)}" class="artikel-card" aria-label="${a.judul}">
-      <image-slot id="${id}" style="width:100%;aspect-ratio:16/11;" shape="rect" fit="cover"${srcAttr} placeholder="Gambar artikel"></image-slot>
+    <a href="${hrefOf(a)}" class="artikel-card" data-sec="${a.sec}" aria-label="${a.judul}">
+      <image-slot id="art-${slugOf(a)}" shape="rect" fit="cover"${srcAttr} placeholder="Gambar artikel"></image-slot>
       <div class="p-6 flex flex-col flex-1">
+        ${i === 0 ? '<span class="badge-new">Terbaru</span>' : ''}
         <h3 class="artikel-title font-display font-bold text-xl leading-snug text-primary-900">${a.judul}</h3>
         <div class="mt-auto pt-6 flex items-center gap-2 text-sm text-slate500">
           <span class="font-medium text-slate600">${a.kat}</span>
@@ -400,22 +423,38 @@
       </div>
     </div>`;
 
-  // 1) Show skeletons immediately (one per upcoming card, so layout doesn't jump)
-  Object.keys(DATA).forEach((key) => {
-    const grid = document.querySelector(`[data-artikel-grid="${key}"]`);
-    if (!grid) return;
-    grid.innerHTML = DATA[key].map(skeletonHTML).join('');
-  });
+  const grid = document.querySelector('[data-artikel-grid]');
+  if (!grid) return;
 
-  // 2) Swap in real cards once "loaded"
+  // Tata letak tanpa ruang kosong: bila jumlah kartu tidak habis dibagi jumlah kolom,
+  // kartu terbaru dibuat lebar (2 kolom). Pada 3 kolom bisa 2 kartu lebar: posisi 1 dan 3,
+  // sehingga urutan tanggal tetap terjaga (baris 1: [lebar][2], baris 2: [lebar][4]).
+  const layout = () => {
+    const cards = [...grid.querySelectorAll('.artikel-card')];
+    cards.forEach((c) => c.classList.remove('is-wide'));
+    const visible = cards.filter((c) => !c.hidden);
+    const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length;
+    const n = visible.length;
+    if (cols < 2 || n < cols) return;
+    const extra = (cols - (n % cols)) % cols;
+    for (let k = 0; k < extra; k++) {
+      const idx = k * cols - k;          // 0, lalu awal baris berikutnya (3 kolom: 0 dan 2)
+      if (visible[idx]) visible[idx].classList.add('is-wide');
+    }
+  };
+  window.__artikelLayout = layout;
+
+  // 1) Skeleton segera tampil (satu per kartu)
+  grid.innerHTML = ITEMS.map(skeletonHTML).join('');
+
+  // 2) Ganti dengan kartu asli
   const renderReal = () => {
-    Object.keys(DATA).forEach((key) => {
-      const grid = document.querySelector(`[data-artikel-grid="${key}"]`);
-      if (!grid) return;
-      grid.innerHTML = DATA[key].map((a, i) => cardHTML(a, `art-${key}-${i}`)).join('');
-    });
+    grid.innerHTML = ITEMS.map(cardHTML).join('');
+    layout();
     document.dispatchEvent(new CustomEvent('artikel:rendered'));
   };
+  let rt;
+  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(layout, 120); });
   window.addEventListener('load', () => setTimeout(renderReal, 750));
 })();
 </script>
@@ -425,37 +464,30 @@
   const bar = document.getElementById('artikelFilter');
   if (!bar) return;
   const chips = [...bar.querySelectorAll('.filter-chip')];
-  const sections = [...document.querySelectorAll('[data-artikel-section]')];
+  const grid = document.querySelector('[data-artikel-grid]');
   const NAV_OFFSET = 64 + 60;
+  let current = 'all';
 
-  const counts = {};
-  sections.forEach((s) => {
-    const grid = s.querySelector('[data-artikel-grid]');
-    counts[s.dataset.artikelSection] = grid ? grid.children.length : 0;
-  });
-  const total = Object.values(counts).reduce((a, b) => a + b, 0);
+  const counts = window.__artikelCounts || {};
   chips.forEach((chip) => {
-    const key = chip.dataset.filter;
-    const n = key === 'all' ? total : (counts[key] || 0);
     const badge = document.createElement('span');
     badge.className = 'chip-count';
-    badge.textContent = n;
+    badge.textContent = counts[chip.dataset.filter] || 0;
     chip.appendChild(badge);
   });
 
   const apply = (key, { scroll = false } = {}) => {
+    current = key;
     chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.filter === key)));
-    sections.forEach((s) => {
-      s.classList.toggle('is-hidden', !(key === 'all' || s.dataset.artikelSection === key));
-    });
-    if (scroll) {
-      const first = sections.find((s) => !s.classList.contains('is-hidden'));
-      if (first) {
-        const y = first.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
-        if (window.scrollY > y) window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
-      }
+    if (grid) grid.querySelectorAll('.artikel-card').forEach((c) => { c.hidden = !(key === 'all' || c.dataset.sec === key); });
+    if (window.__artikelLayout) window.__artikelLayout();
+    if (scroll && grid) {
+      const y = grid.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
+      if (window.scrollY > y) window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
     }
   };
+  // Filter tetap berlaku setelah kartu asli menggantikan skeleton
+  document.addEventListener('artikel:rendered', () => apply(current));
 
   bar.addEventListener('click', (e) => {
     const chip = e.target.closest('.filter-chip');
