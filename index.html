@@ -1553,7 +1553,7 @@
     { id:'vexp-1', name:'Eddy',           role:'Yogyakarta',     cat:'Umroh Reguler',   quote:'Perjalanan pertama yang tak terlupakan.', video:'XMchWkvrIkY' },
     { id:'vexp-2', name:'Annisa',         role:'Bandung',    cat:'Umroh Keluarga',  quote:'Berangkat bareng suami, hati jadi tenang.', video:'xOn1fsGHXw4' },
     { id:'vexp-3', name:'Ibu Een',        role:'Jakarta',   cat:'Umroh Plus',       quote:'Hotel dekat, mutawif berpengalaman.', video:'G-36Z_1DmBU' },
-    { id:'vexp-4', name:'Budi Soeharta',  role:'Depok',      cat:'Umroh Grup',      quote:'Rombongan 24 jamaah, semua terlayani.', video:'HXbc0Y-s9ck' },
+    { id:'vexp-4', name:'Ustadz Pamuji Hadi Waluyo', role:'Jakarta', cat:'Testimoni Jamaah', quote:'', video:'7No2xpPUDoQ' },
     { id:'vexp-5', name:'Dinar & Rini',   role:'Jakarta',    cat:'Haji Khusus 2026',  quote:'Dibimbing jujur dari awal sampai pulang.', video:'WucTHyRXbpw' },
     { id:'vexp-6', name:'Ustadz Arif',    role:'Surabaya',   cat:'Haji Khusus 2026',   quote:'Kepastian harga & jadwal, benar-benar berkelas.', video:'cZJMklmO3ec' },
     { id:'vexp-7', name:'Dwipa Jumadi',   role:'Bekasi',     cat:'Haji Khusus 2026',  quote:'Pelayanan sangat detail & ramah, ibadah jadi lebih khusyuk.', video:'8BGORkz1sO0' },
@@ -1592,8 +1592,8 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         </div>
         <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6">
-          <p class="font-display font-bold text-white text-lg sm:text-xl leading-snug text-balance">"${v.quote}"</p>
-          <div class="mt-3 flex items-center gap-2.5">
+          ${v.quote ? `<p class="font-display font-bold text-white text-lg sm:text-xl leading-snug text-balance">"${v.quote}"</p>` : ''}
+          <div class="${v.quote ? 'mt-3 ' : ''}flex items-center gap-2.5">
             <span class="w-8 h-px bg-accent-300"></span>
             <p class="text-sm text-white/90"><span class="font-semibold text-white">${v.name}</span> · ${v.role}</p>
           </div>
