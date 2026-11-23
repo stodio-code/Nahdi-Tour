@@ -1478,8 +1478,7 @@
           <path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v.5A2.5 2.5 0 0 1 4.5 18H4v2h.5A4.5 4.5 0 0 0 9 15.5V9a2 2 0 0 0 0-2zM19 7h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v.5A2.5 2.5 0 0 1 14.5 18H14v2h.5A4.5 4.5 0 0 0 19 15.5V9a2 2 0 0 0 0-2z"/>
         </svg>
         <p class="mt-4 text-[15px] sm:text-base leading-relaxed text-slate700 flex-1">${t.text}</p>
-        <div class="mt-7 flex items-center gap-4">
-          <image-slot id="testi-avatar-${i}" class="shrink-0 ring-2 ring-white rounded-full shadow-sm" style="width:56px;height:56px;" shape="circle" fit="cover" ${t.photo ? `src="${t.photo}"` : ''} placeholder="Foto"></image-slot>
+        <div class="mt-7">
           <div class="min-w-0">
             <p class="font-display font-bold text-primary-900 text-[15px] leading-tight truncate">${t.name}</p>
             <p class="text-xs text-slate500 leading-snug mt-1">${t.role}</p>
@@ -1551,9 +1550,9 @@
 
   // -------- VIDEO EXPERIENCE CAROUSEL --------
   const vexp = [
-    { id:'vexp-1', name:'H. Ibrahim',     role:'Bekasi',     cat:'Umroh Reguler',   quote:'Perjalanan pertama yang tak terlupakan.', video:'XMchWkvrIkY' },
+    { id:'vexp-1', name:'Eddy',           role:'Yogyakarta',     cat:'Umroh Reguler',   quote:'Perjalanan pertama yang tak terlupakan.', video:'XMchWkvrIkY' },
     { id:'vexp-2', name:'Annisa',         role:'Bandung',    cat:'Umroh Keluarga',  quote:'Berangkat bareng suami, hati jadi tenang.', video:'xOn1fsGHXw4' },
-    { id:'vexp-3', name:'Yulia',          role:'Semarang',   cat:'Umroh Plus',       quote:'Hotel dekat, mutawif berpengalaman.', video:'G-36Z_1DmBU' },
+    { id:'vexp-3', name:'Ibu Een',        role:'Jakarta',   cat:'Umroh Plus',       quote:'Hotel dekat, mutawif berpengalaman.', video:'G-36Z_1DmBU' },
     { id:'vexp-4', name:'Budi Soeharta',  role:'Depok',      cat:'Umroh Grup',      quote:'Rombongan 24 jamaah, semua terlayani.', video:'HXbc0Y-s9ck' },
     { id:'vexp-5', name:'Dinar & Rini',   role:'Jakarta',    cat:'Haji Khusus 2026',  quote:'Dibimbing jujur dari awal sampai pulang.', video:'WucTHyRXbpw' },
     { id:'vexp-6', name:'Ustadz Arif',    role:'Surabaya',   cat:'Haji Khusus 2026',   quote:'Kepastian harga & jadwal, benar-benar berkelas.', video:'cZJMklmO3ec' },
