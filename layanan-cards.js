@@ -318,11 +318,6 @@
         mitra: MITRA.haramain, harga: 'Rp34,9 juta',
       },
       {
-        id: 'reguler-4', judul: 'Umrah Plus Dubai', foto: FOTO.dubai,
-        fasilitas: fasilitasUmrah('Le Meridien Tower (Makkah) & Dar Al Naem (Madinah)'),
-        mitra: MITRA.dwins, harga: 'Rp35,5 juta', download: BROSUR.umrahDubaiDwins,
-      },
-      {
         id: 'reguler-5', judul: 'Umrah Plus Turki Cappadocia', foto: FOTO.turkiye,
         fasilitas: fasilitasUmrah('Royal Majestik (Makkah) & Deyar Al Eiman (Madinah)'),
         mitra: MITRA.dwins, harga: 'Rp38,9 juta', download: BROSUR.umrahTurkiDwins,
