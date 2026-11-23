@@ -44,7 +44,7 @@
   "image": "https://nahditour.com/assets/umrah-akhir-tahun-vs-ramadhan-hero.webp",
   "inLanguage": "id-ID",
   "datePublished": "2026-11-13",
-  "dateModified": "2026-11-13",
+  "dateModified": "2026-11-23",
   "author": { "@type": "Organization", "name": "Nahdi Tour", "url": "https://nahditour.com" },
   "publisher": {
     "@type": "Organization",
@@ -77,7 +77,7 @@
     {
       "@type": "Question",
       "name": "Mengapa paket umrah Ramadhan terlihat lebih mahal, padahal harga per harinya bisa lebih rendah?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Paket Ramadhan, terutama paket I'tikaf 10 malam terakhir, umumnya berdurasi lebih panjang, misalnya 16 hari dibanding 9 hari untuk paket akhir tahun. Total harganya lebih tinggi, tetapi bila dibagi jumlah hari, biaya per harinya bisa lebih rendah. Bandingkan juga maskapai dan kelas hotelnya, karena keduanya ikut menentukan harga." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Paket Ramadhan, terutama paket I'tikaf 10 malam terakhir, umumnya berdurasi lebih panjang, misalnya 17 hari dibanding 9 hari untuk paket akhir tahun. Total harganya lebih tinggi, tetapi bila dibagi jumlah hari, biaya per harinya bisa lebih rendah. Bandingkan juga maskapai dan kelas hotelnya, karena keduanya ikut menentukan harga." }
     },
     {
       "@type": "Question",
@@ -855,7 +855,7 @@ legend {
             <div class="pkg">
               <b>Acuan Ramadhan</b>
               Umrah I'tikaf Ramadhan, Mutiara Sunnah
-              <ul><li>Berangkat 27 Februari 2027, 16 hari (10 malam terakhir sampai melewati Idul Fitri)</li><li>Oman Air</li><li>Wahat Ajyad (Makkah), ODST / Triple One (Madinah), bintang 3</li></ul>
+              <ul><li>Berangkat 28 Februari 2027, 17 hari (10 malam terakhir sampai melewati Idul Fitri)</li><li>Garuda Indonesia</li><li>Wahat Ajyad (Makkah), Mukhtara Golden (Madinah), bintang 3</li></ul>
             </div>
           </div>
 
@@ -897,7 +897,7 @@ legend {
           <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </summary>
         <div class="ans">
-          <p>Paket Ramadhan, terutama paket I'tikaf 10 malam terakhir, umumnya berdurasi lebih panjang. Contohnya paket acuan di matriks ini: <strong>16 hari</strong> untuk paket Ramadhan dibanding <strong>9 hari</strong> untuk paket akhir tahun. Total harganya lebih tinggi, tetapi bila dibagi jumlah hari, biaya per harinya lebih rendah.</p>
+          <p>Paket Ramadhan, terutama paket I'tikaf 10 malam terakhir, umumnya berdurasi lebih panjang. Contohnya paket acuan di matriks ini: <strong>17 hari</strong> untuk paket Ramadhan dibanding <strong>9 hari</strong> untuk paket akhir tahun. Total harganya lebih tinggi, tetapi bila dibagi jumlah hari, biaya per harinya lebih rendah.</p>
           <p>Bandingkan juga maskapai dan kelas hotelnya. Kedua paket acuan berbeda maskapai dan hotel, sehingga selisih harga tidak hanya ditentukan oleh musim.</p>
         </div>
       </details>
@@ -972,8 +972,8 @@ legend {
   const PKG = {
     at: { nama: 'Akhir Tahun', hari: 9, tgl: '28 Des 2026 sampai 5 Jan 2027',
           harga: { quad: 39500000, triple: 41800000, double: 46000000 } },
-    rm: { nama: 'Ramadhan', hari: 16, tgl: '27 Feb sampai 14 Mar 2027',
-          harga: { sharing: 38900000, quad: 46700000, triple: 52700000, double: 64700000 } },
+    rm: { nama: 'Ramadhan', hari: 17, tgl: '28 Feb sampai 16 Mar 2027',
+          harga: { sharing: 41200000, quad: 49200000, triple: 55500000, double: 68000000 } },
   };
   const KAMAR = { sharing: 'Sharing (8 orang)', quad: 'Quad', triple: 'Triple', double: 'Double' };
   const KOMPOSISI = { pasangan: 'Pasangan dewasa produktif', anak: 'Keluarga dengan anak usia sekolah', lansia: 'Membawa orang tua atau lansia' };
@@ -984,7 +984,7 @@ legend {
   /* Estimasi hari izin (dasar: SKB 2027 dan pola libur semester; lihat catatan) */
   const IZIN = {
     at: { kerja: 5, sekolah: '0 sampai 2' },
-    rm: { kerja: 6, sekolah: '4 sampai 8' },
+    rm: { kerja: 8, sekolah: '6 sampai 10' },
   };
 
   function scores(s) {
@@ -1048,7 +1048,7 @@ legend {
       ? (jadwal === 'libur'
         ? '<strong>Akhir tahun unggul jelas</strong> untuk keluarga yang hanya bisa berangkat saat libur. Paket Ramadhan tetap memerlukan izin sekolah beberapa hari di luar libur Lebaran.'
         : '<strong>Ramadhan masih realistis</strong> bila sekolah memberi izin. Sebagian besar perjalanan beririsan dengan libur Lebaran, sehingga hari izin bisa ditekan.')
-      : '<strong>Selisih cuti kerja hanya sekitar 1 hari.</strong> Paket Ramadhan lebih panjang, tetapi menumpang libur Nyepi, cuti bersama, dan Idul Fitri.';
+      : '<strong>Selisih cuti kerja sekitar 3 hari.</strong> Paket Ramadhan hampir dua kali lebih panjang, tetapi sebagian menumpang libur Nyepi, cuti bersama, dan Idul Fitri.';
 
     /* ----- Pilar 2: cuaca, puasa, fisik ----- */
     $('fisTable').innerHTML =
